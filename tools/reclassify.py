@@ -25,6 +25,24 @@ def reclass(subject, name):
         return "基本知识-党的创新理论与时政"
     return None
 
+def build_pools(idx):
+    """每科生成题池（开始考试/随机练习单文件加载，替代串行拉全库）"""
+    import random
+    pool_dir = os.path.join(BASE, "data", "pool")
+    os.makedirs(pool_dir, exist_ok=True)
+    random.seed(20261117)  # 可复现抽样；运行时 shuffle 保证每次组卷不同
+    for s in idx["subjects"]:
+        allq = []
+        for sec in s["sections"]:
+            for c in sec["chapters"]:
+                f = os.path.join(BASE, c["file"])
+                if os.path.exists(f):
+                    allq.extend(json.load(open(f, encoding="utf-8"))["questions"])
+        pool = random.sample(allq, min(600, len(allq)))
+        out = os.path.join(pool_dir, f"{s['name']}.json")
+        json.dump({"questions": pool}, open(out, "w", encoding="utf-8"), ensure_ascii=False)
+        print(f"pool {s['name']}: {len(pool)} q, {os.path.getsize(out)//1024} KB")
+
 def main():
     path = os.path.join(BASE, "data", "index.json")
     idx = json.load(open(path, encoding="utf-8"))
@@ -39,6 +57,7 @@ def main():
             n = sum(c["count"] for c in sec["chapters"])
             print(f"{s['name']} / {sec['name']}: {len(sec['chapters'])} ch / {n} q")
     json.dump(idx, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    build_pools(idx)
     print("reclassify OK")
 
 if __name__ == "__main__":

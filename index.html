@@ -91,6 +91,7 @@ const Store = {
 // ---------- 数据 ----------
 let INDEX = null;                       // data/index.json
 const CHAP_CACHE = {};                  // chapterId -> questions[]
+const POOL = {};                        // subjectId -> 题池（开始考试/随机练习用，单文件）
 async function loadIndex() {
   if (!INDEX) INDEX = await (await fetch("data/index.json")).json();
   return INDEX;
@@ -155,7 +156,7 @@ function render() {
   // nav
   $("#nav").innerHTML = NAV.map(([v,t,ic]) =>
     `<a href="#" class="${state.view===v||(v==="catalog"&&["quiz","mock","report","catalog2"].includes(state.view))?"on":""}" onclick="go('${v}')"><span class="ic">${ic}</span>${t}</a>`).join("");
-  ({ home, catalog, catalog2, quiz, wrong, stats, me, mock, report })[state.view]();
+  ({ home, catalog, catalog2, quiz, wrong, stats, me, mock, report, quizMock })[state.view](state.arg);
   window.scrollTo(0, 0);
 }
 function login() {
@@ -225,6 +226,7 @@ async function catalog() {
 // 章节列表
 async function catalog2(sid) {
   await loadIndex();
+  sid = sid || INDEX.subjects[0].id;
   const s = INDEX.subjects.find(x => x.id === sid);
   header(s.name, "catalog");
   const rec = Store.get("rec", {});
@@ -268,13 +270,16 @@ async function startWrong() {
   startQuiz("wrong", qs, "错题重做");
 }
 async function startRandom(n) {
-  await loadIndex();
-  const sid = state.arg || INDEX.subjects[0].id;
-  const chaps = subjectChapters(sid);
-  const all = [];
-  for (const c of chaps) all.push(...await loadChapter(c.id));
-  const qs = shuffle([...all]).slice(0, n);
-  startQuiz("random", qs, `随机练习·${INDEX.subjects.find(s => s.id === sid).name}`);
+  try {
+    await loadIndex();
+    const sid = state.arg || INDEX.subjects[0].id;
+    // ponytail: 题池单文件加载（旧版串行拉全部310个章节=13.3MB导致卡死）
+    if (!POOL[sid]) POOL[sid] = (await (await fetch(`data/pool/${sid}.json`)).json()).questions;
+    const qs = shuffle([...POOL[sid]]).slice(0, n);
+    startQuiz("random", qs, `随机练习·${INDEX.subjects.find(s => s.id === sid).name}`);
+  } catch (e) {
+    alert("题库加载失败，请重试：" + e.message);
+  }
 }
 function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
@@ -545,7 +550,9 @@ async function startMock() {
   const n = +$("#main .chip.on[data-n]")?.dataset.n || 50;
   const t = +$("#main .chip.on[data-t]")?.dataset.t || 60;
   state.arg = sid;
-  await startRandom.call(null, n); // 复用抽题
+  state.q = null;
+  await startRandom.call(null, n); // 复用抽题（题池单文件加载）
+  if (!state.q) return; // 加载失败已在 startRandom 内提示
   state.q.mode = "mock";
   state.q.deadline = Date.now() + t * 6e4;
   state.q.label = `模拟考试（${n}题/${t}分钟）`;
