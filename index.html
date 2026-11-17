@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>军队文职刷题</title>
+<title>刷题练习</title>
 <style>
 :root{--bg:#fafafa;--card:#fff;--fg:#222;--sub:#888;--line:#e8e8e8;--acc:#111;--ok:#2e7d32;--bad:#c62828;--okbg:#eaf5eb;--badbg:#fbecec}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -138,10 +138,10 @@ function render() {
   // 入口登录门（auth 标志存 localStorage）
   if (!Store.get("auth", false)) {
     $("#nav").innerHTML = "";
-    $("#topbar").innerHTML = `<div class="row"><h1>军队文职刷题</h1></div>`;
+    $("#topbar").innerHTML = `<div class="row"><h1>刷题练习</h1></div>`;
     $("#main").innerHTML = `
       <div class="card" style="margin-top:40px">
-        <div style="text-align:center;margin-bottom:14px"><div style="font-size:17px;font-weight:600">军队文职刷题</div>
+        <div style="text-align:center;margin-bottom:14px"><div style="font-size:17px;font-weight:600">刷题练习</div>
         <div class="muted">公共科目 · 数学1</div></div>
         <input type="password" id="pwd" placeholder="访问密码" autocomplete="current-password"
           onkeydown="if(event.key==='Enter')login()">
@@ -173,7 +173,7 @@ function header(title, back) {
 // 首页
 async function home() {
   await loadIndex();
-  header("军队文职刷题");
+  header("刷题练习");
   const st = Store.get("stats", {});
   const today = st[new Date().toISOString().slice(0, 10)] || { n: 0, c: 0 };
   const rec = Store.get("rec", {});
@@ -499,7 +499,7 @@ function exportData() {
   Object.keys(localStorage).filter(k => k.startsWith("jwz_")).forEach(k => data[k] = JSON.parse(localStorage.getItem(k)));
   const a = document.createElement("a");
   a.href = URL.createObjectURL(new Blob([JSON.stringify(data)], { type: "application/json" }));
-  a.download = "军队文职刷题-备份.json";
+  a.download = "刷题练习-备份.json";
   a.click();
 }
 function importData(f) {
