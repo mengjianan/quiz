@@ -70,6 +70,15 @@ textarea,input[type=number],input[type=password]{width:100%;border:1px solid var
 table.mini{width:100%;border-collapse:collapse;font-size:13px}
 table.mini td{padding:5px 2px;border-bottom:1px solid var(--line)}
 table.mini td:last-child{text-align:right;color:var(--sub)}
+/* 手写板 */
+.fab{position:fixed;right:14px;bottom:78px;width:48px;height:48px;border-radius:50%;background:var(--acc);color:#fff;font-size:21px;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(0,0,0,.3);z-index:60;cursor:pointer;user-select:none}
+#pad{position:fixed;z-index:120;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 34px rgba(0,0,0,.2);display:none;flex-direction:column;overflow:hidden}
+#pad.on{display:flex}
+#pad .ph{display:flex;align-items:center;gap:8px;padding:6px 10px;background:#f5f5f5;border-bottom:1px solid var(--line);font-size:13px;cursor:move;user-select:none;touch-action:none;-webkit-user-select:none}
+#pad .ph b{font-weight:600}
+#pad .ph button{border:1px solid var(--line);background:#fff;border-radius:6px;font-size:12px;padding:3px 10px;cursor:pointer;color:var(--fg)}
+#pad canvas{flex:1;display:block;background:#fff;touch-action:none;cursor:crosshair}
+#pad .grip{position:absolute;right:0;bottom:0;width:26px;height:26px;cursor:nwse-resize;z-index:2;background:linear-gradient(135deg,transparent 50%,#bbb 50%);border-top-left-radius:4px;touch-action:none}
 </style>
 </head>
 <body>
@@ -165,6 +174,121 @@ function login() {
   else document.getElementById("pwderr").textContent = "密码不对";
 }
 function logout() { Store.set("auth", false); render(); }
+
+// ===== 手写板（数学1/岗位能力做题页显示入口；可拖动、右下角调大小、清空）=====
+const PAD = { open: false, x: 16, y: 110, w: 320, h: 260, strokes: [], cur: null };
+function needScratch(qid) {
+  try {
+    const c = findChapter(String(qid).split("#")[0]);
+    return !!c && (c.subjectName === "数学1" || c.sectionName.indexOf("岗位能力") === 0);
+  } catch (e) { return false; }
+}
+function togglePad() {
+  PAD.open = !PAD.open;
+  if (PAD.open) { padInit(); document.getElementById("pad").classList.add("on"); padPlace(); }
+  else document.getElementById("pad").classList.remove("on");
+}
+function padClear() { PAD.strokes = []; redrawPad(); }
+function padInit() {
+  if (document.getElementById("pad")) return;
+  const el = document.createElement("div");
+  el.id = "pad";
+  el.innerHTML = `<div class="ph" id="padH"><b>手写板</b><span style="flex:1"></span>
+    <button onclick="padClear()">清空</button><button onclick="togglePad()">×</button></div>
+    <canvas id="padC"></canvas><div class="grip" id="padG"></div>`;
+  document.body.appendChild(el);
+  const c = document.getElementById("padC");
+  const pos = e => { const r = c.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+  c.addEventListener("pointerdown", e => {
+    c.setPointerCapture(e.pointerId);
+    PAD.cur = [pos(e)];
+    PAD.strokes.push(PAD.cur);
+    const ctx = c.getContext("2d");
+    ctx.beginPath(); ctx.moveTo(PAD.cur[0][0], PAD.cur[0][1]); ctx.lineTo(PAD.cur[0][0] + .01, PAD.cur[0][1] + .01); ctx.stroke();
+    e.preventDefault();
+  });
+  c.addEventListener("pointermove", e => {
+    if (!PAD.cur) return;
+    const p = pos(e), last = PAD.cur[PAD.cur.length - 1];
+    PAD.cur.push(p);
+    const ctx = c.getContext("2d");
+    ctx.beginPath(); ctx.moveTo(last[0], last[1]); ctx.lineTo(p[0], p[1]); ctx.stroke();
+  });
+  ["pointerup", "pointercancel"].forEach(t => c.addEventListener(t, () => { PAD.cur = null; }));
+  // 标题栏拖动
+  const h = document.getElementById("padH");
+  let drag = null;
+  h.addEventListener("pointerdown", e => {
+    if (e.target.tagName === "BUTTON") return;
+    drag = { x: e.clientX - PAD.x, y: e.clientY - PAD.y };
+    h.setPointerCapture(e.pointerId);
+  });
+  h.addEventListener("pointermove", e => {
+    if (!drag) return;
+    PAD.x = e.clientX - drag.x; PAD.y = e.clientY - drag.y;
+    padPlace();
+  });
+  h.addEventListener("pointerup", () => { drag = null; });
+  // 右下角调大小
+  const g = document.getElementById("padG");
+  let rs = null;
+  g.addEventListener("pointerdown", e => {
+    rs = { x: e.clientX, y: e.clientY, w: PAD.w, h: PAD.h };
+    g.setPointerCapture(e.pointerId);
+    e.preventDefault(); e.stopPropagation();
+  });
+  g.addEventListener("pointermove", e => {
+    if (!rs) return;
+    PAD.w = Math.max(180, Math.min(innerWidth - 8, rs.w + e.clientX - rs.x));
+    PAD.h = Math.max(140, Math.min(innerHeight - 8, rs.h + e.clientY - rs.y));
+    padPlace();
+  });
+  g.addEventListener("pointerup", () => { rs = null; });
+}
+function padPlace() {
+  const el = document.getElementById("pad");
+  if (!el) return;
+  PAD.x = Math.max(0, Math.min(PAD.x, innerWidth - PAD.w));
+  PAD.y = Math.max(0, Math.min(PAD.y, innerHeight - PAD.h));
+  el.style.left = PAD.x + "px"; el.style.top = PAD.y + "px";
+  el.style.width = PAD.w + "px"; el.style.height = PAD.h + "px";
+  padCanvasSize();
+}
+function padCanvasSize() {
+  const c = document.getElementById("padC");
+  if (!c || !c.clientWidth) return;
+  const dpr = devicePixelRatio || 1;
+  c.width = Math.round(c.clientWidth * dpr);
+  c.height = Math.round(c.clientHeight * dpr);
+  const ctx = c.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.lineWidth = 2.5; ctx.strokeStyle = "#111";
+  redrawPad();
+}
+function redrawPad() {
+  const c = document.getElementById("padC");
+  if (!c || !c.width) return;
+  const ctx = c.getContext("2d");
+  ctx.clearRect(0, 0, c.width, c.height);
+  ctx.lineWidth = 2.5; ctx.strokeStyle = "#111";
+  for (const s of PAD.strokes) {
+    if (!s.length) continue;
+    if (s.length === 1) {
+      ctx.beginPath(); ctx.arc(s[0][0], s[0][1], 1.5, 0, 7); ctx.fillStyle = "#111"; ctx.fill();
+      continue;
+    }
+    ctx.beginPath(); ctx.moveTo(s[0][0], s[0][1]);
+    for (let i = 1; i < s.length; i++) ctx.lineTo(s[i][0], s[i][1]);
+    ctx.stroke();
+  }
+}
+// 图片预取：当前题解析图 + 下一题整题，消除切换等待
+function prefetchQ(q) {
+  if (!q) return;
+  [].concat(q.img || [], q.expl_img || []).forEach(src => {
+    if (src) { const i = new Image(); i.src = src; }
+  });
+}
 function go(view, arg) { state.view = view; state.arg = arg; render(); }
 
 function header(title, back) {
@@ -335,7 +459,10 @@ function quiz() {
     <button class="btn ghost" onclick="toggleFav('${q.id}')">${isFav(q.id) ? "★ 已收藏" : "☆ 收藏"}</button>
     <button class="btn" onclick="moveQ(1)">${Q.idx === Q.qs.length - 1 ? (Q.mode === "wrong" ? "完成" : "完成") : "下一题"}</button>
   </div>`;
+  if (needScratch(q.id)) html += `<div class="fab" onclick="togglePad()" title="手写板">✎</div>`;
   $("#main").innerHTML = html;
+  prefetchQ(q);            // 当前题解析图提前拉
+  prefetchQ(Q.qs[Q.idx + 1]); // 下一题整题提前拉
 
   // 继续上次
   if (Q.mode === "chapter") {
@@ -399,9 +526,9 @@ function zoom(src) {
   document.body.appendChild(d);
 }
 function imgHTML(v, alt) {
-  // v: string | [string] | null；跨页题多段图竖排
+  // v: string | [string] | null；跨页题多段图竖排；预取+懒加载减小切换等待
   if (!v) return "";
-  return [].concat(v).map(src => `<img class="qimg" src="${esc(src)}" onclick="zoom(this.src)" alt="${esc(alt)}" style="margin:4px 0">`).join("");
+  return [].concat(v).map(src => `<img class="qimg" src="${esc(src)}" loading="lazy" decoding="async" onclick="zoom(this.src)" alt="${esc(alt)}" style="margin:4px 0">`).join("");
 }
 
 // 错题本
@@ -598,7 +725,9 @@ function quizMock() {
       ? `<button class="btn" onclick="submitMock()">交卷</button>`
       : `<button class="btn" onclick="mqNav(${Q.idx + 1})">下一题</button>`}
   </div>`;
+  if (needScratch(q.id)) html += `<div class="fab" onclick="togglePad()" title="手写板">✎</div>`;
   $("#main").innerHTML = html;
+  prefetchQ(Q.qs[Q.idx + 1]);
 }
 function mqNav(i) {
   const Q = state.q;
