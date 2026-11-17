@@ -1,0 +1,6 @@
+资料/
+tools/download_pdfs.py
+img/test_*
+pan_*.py
+__pycache__/
+_test/

@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>军队文职刷题</title>
+<style>
+:root{--bg:#fafafa;--card:#fff;--fg:#222;--sub:#888;--line:#e8e8e8;--acc:#111;--ok:#2e7d32;--bad:#c62828;--okbg:#eaf5eb;--badbg:#fbecec}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font:15px/1.7 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--fg)}
+#app{max-width:640px;margin:0 auto;min-height:100vh;padding-bottom:64px}
+.topbar{position:sticky;top:0;background:var(--bg);z-index:10;padding:14px 16px 10px;border-bottom:1px solid var(--line)}
+.topbar h1{font-size:19px;font-weight:600}
+.topbar .row{display:flex;align-items:center;gap:10px}
+.topbar .back{background:none;border:none;font-size:20px;color:var(--fg);cursor:pointer;padding:0 4px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 16px}
+h2{font-size:16px;font-weight:600;margin:16px 16px 4px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--acc);background:var(--acc);color:#fff;border-radius:8px;padding:10px 18px;font-size:15px;cursor:pointer;user-select:none}
+.btn.ghost{background:var(--card);color:var(--fg);border-color:var(--line)}
+.btn.block{display:flex;width:100%}
+.btn:disabled{opacity:.4;pointer-events:none}
+.link{color:var(--fg);text-decoration:none}
+.muted{color:var(--sub);font-size:13px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.statnum{font-size:26px;font-weight:600}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin:6px 0}
+.bar>i{display:block;height:100%;background:var(--acc)}
+.chip{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:13px;margin:3px 4px 3px 0;cursor:pointer;background:var(--card)}
+.chip.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+/* 答题 */
+.qstem{font-size:16px;font-weight:500;margin:10px 0 14px;white-space:pre-wrap}
+.qimg{width:100%;border:1px solid var(--line);border-radius:8px;cursor:zoom-in;background:#fff}
+.opt{display:flex;align-items:flex-start;gap:10px;border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0;cursor:pointer;background:var(--card)}
+.opt .tag{flex:0 0 22px;height:22px;border-radius:50%;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--sub)}
+.opt.sel{border-color:var(--acc)}
+.opt.sel .tag{background:var(--acc);color:#fff;border-color:var(--acc)}
+.opt.ok{border-color:var(--ok);background:var(--okbg)}
+.opt.ok .tag{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.bad{border-color:var(--bad);background:var(--badbg)}
+.opt.bad .tag{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opttext{flex:1;white-space:pre-wrap}
+.expl{border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:8px;padding:12px 14px;margin:14px 0;background:var(--card);font-size:14px;white-space:pre-wrap}
+.qnav{display:flex;gap:10px;margin:16px}
+.qnav .btn{flex:1}
+.pill{display:inline-block;font-size:12px;color:var(--sub);border:1px solid var(--line);border-radius:6px;padding:1px 8px;margin-right:6px}
+.answerline{margin:12px 16px;font-size:15px}
+/* 列表行 */
+.row-item{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line);cursor:pointer;background:var(--card)}
+.row-item .arrow{margin-left:auto;color:var(--sub)}
+.tag-ok{color:var(--ok)}.tag-bad{color:var(--bad)}
+/* 底部导航 */
+.nav{position:fixed;bottom:0;left:0;right:0;max-width:640px;margin:0 auto;background:var(--card);border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom)}
+.nav a{flex:1;text-align:center;padding:9px 0;font-size:11px;color:var(--sub);text-decoration:none}
+.nav a.on{color:var(--acc);font-weight:600}
+.nav .ic{display:block;font-size:19px;line-height:1.2}
+/* 模拟考 */
+.timer{font-variant-numeric:tabular-nums;font-size:17px;font-weight:600}
+.cardgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:8px;margin:10px 0}
+.cardgrid .cell{aspect-ratio:1;border:1px solid var(--line);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;background:var(--card)}
+.cardgrid .cell.done{background:var(--acc);color:#fff;border-color:var(--acc)}
+.cardgrid .cell.flag{border-color:var(--bad);color:var(--bad)}
+.cardgrid .cell.cur{outline:2px solid var(--acc);outline-offset:1px}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;z-index:100;cursor:zoom-out;padding:12px}
+.overlay img{max-width:100%;max-height:100%}
+.sect{font-size:13px;color:var(--sub);margin:18px 16px 2px;text-transform:none}
+.prog{display:flex;gap:3px;height:5px;margin:8px 0}
+.prog>i{flex:1;background:var(--line);border-radius:2px}
+.prog>i.ok{background:var(--ok)}.prog>i.bad{background:var(--bad)}
+textarea,input[type=number],input[type=password]{width:100%;border:1px solid var(--line);border-radius:8px;padding:10px;font:inherit;background:var(--card);color:var(--fg)}
+table.mini{width:100%;border-collapse:collapse;font-size:13px}
+table.mini td{padding:5px 2px;border-bottom:1px solid var(--line)}
+table.mini td:last-child{text-align:right;color:var(--sub)}
+</style>
+</head>
+<body>
+<div id="app">
+  <header class="topbar" id="topbar"></header>
+  <main id="main"></main>
+</div>
+<nav class="nav" id="nav"></nav>
+<script>
+"use strict";
+const LOGIN_PWD = "jwz2026"; // 入口密码：改这里（注：静态页的门槛密码，防路过的访客，防不了看源码）
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const Store = {
+  get(k, d) { try { const v = JSON.parse(localStorage.getItem("jwz_" + k)); return v == null ? d : v; } catch { return d; } },
+  set(k, v) { localStorage.setItem("jwz_" + k, JSON.stringify(v)); }
+};
+
+// ---------- 数据 ----------
+let INDEX = null;                       // data/index.json
+const CHAP_CACHE = {};                  // chapterId -> questions[]
+async function loadIndex() {
+  if (!INDEX) INDEX = await (await fetch("data/index.json")).json();
+  return INDEX;
+}
+async function loadChapter(id) {
+  if (!CHAP_CACHE[id]) {
+    const meta = findChapter(id);
+    CHAP_CACHE[id] = (await (await fetch(meta.file)).json()).questions;
+  }
+  return CHAP_CACHE[id];
+}
+function findChapter(id) {
+  for (const s of INDEX.subjects) for (const sec of s.sections) for (const c of sec.chapters)
+    if (c.id === id) return { ...c, subjectId: s.id, subjectName: s.name, sectionName: sec.name };
+  return null;
+}
+function subjectChapters(sid) {
+  const out = [];
+  for (const s of INDEX.subjects) if (s.id === sid) for (const sec of s.sections)
+    for (const c of sec.chapters) out.push({ ...c, sectionName: sec.name });
+  return out;
+}
+
+// ---------- 记录 ----------
+// rec: {qid:{n:做题数,c:答对数}}  wrong:{qid:{count}}  fav:[qid]  stats:{date:{n,c}}
+function bump(qid, correct) {
+  const rec = Store.get("rec", {});
+  const r = rec[qid] || (rec[qid] = { n: 0, c: 0 });
+  r.n++; if (correct) r.c++;
+  Store.set("rec", rec);
+  const today = new Date().toISOString().slice(0, 10);
+  const st = Store.get("stats", {});
+  const d = st[today] || (st[today] = { n: 0, c: 0 });
+  d.n++; if (correct) d.c++;
+  Store.set("stats", st);
+  const wrong = Store.get("wrong", {});
+  if (!correct) { const w = wrong[qid] || (wrong[qid] = { count: 0 }); w.count++; Store.set("wrong", wrong); }
+  else if (wrong[qid]) { delete wrong[qid]; Store.set("wrong", wrong); }
+}
+
+// ---------- 视图 ----------
+const state = { view: "home", q: null };
+const NAV = [["home","首页","⌂"],["catalog","练习","✎"],["wrong","错题","⚑"],["stats","统计","▤"],["me","我","☰"]];
+function render() {
+  // 入口登录门（auth 标志存 localStorage）
+  if (!Store.get("auth", false)) {
+    $("#nav").innerHTML = "";
+    $("#topbar").innerHTML = `<div class="row"><h1>军队文职刷题</h1></div>`;
+    $("#main").innerHTML = `
+      <div class="card" style="margin-top:40px">
+        <div style="text-align:center;margin-bottom:14px"><div style="font-size:17px;font-weight:600">军队文职刷题</div>
+        <div class="muted">公共科目 · 数学1</div></div>
+        <input type="password" id="pwd" placeholder="访问密码" autocomplete="current-password"
+          onkeydown="if(event.key==='Enter')login()">
+        <div id="pwderr" style="color:var(--bad);text-align:center;font-size:13px;min-height:22px;padding-top:6px"></div>
+        <button class="btn block" onclick="login()">登录</button>
+      </div>`;
+    const p = document.getElementById("pwd");
+    if (p) p.focus();
+    return;
+  }
+  // nav
+  $("#nav").innerHTML = NAV.map(([v,t,ic]) =>
+    `<a href="#" class="${state.view===v||(v==="catalog"&&["quiz","mock","report","catalog2"].includes(state.view))?"on":""}" onclick="go('${v}')"><span class="ic">${ic}</span>${t}</a>`).join("");
+  ({ home, catalog, catalog2, quiz, wrong, stats, me, mock, report })[state.view]();
+  window.scrollTo(0, 0);
+}
+function login() {
+  const v = document.getElementById("pwd").value;
+  if (v === LOGIN_PWD) { Store.set("auth", true); state.view = "home"; render(); }
+  else document.getElementById("pwderr").textContent = "密码不对";
+}
+function logout() { Store.set("auth", false); render(); }
+function go(view, arg) { state.view = view; state.arg = arg; render(); }
+
+function header(title, back) {
+  $("#topbar").innerHTML = `<div class="row">${back ? `<button class="back" onclick="go('${back}')">‹</button>` : ""}<h1>${esc(title)}</h1></div>`;
+}
+
+// 首页
+async function home() {
+  await loadIndex();
+  header("军队文职刷题");
+  const st = Store.get("stats", {});
+  const today = st[new Date().toISOString().slice(0, 10)] || { n: 0, c: 0 };
+  const rec = Store.get("rec", {});
+  const wrong = Store.get("wrong", {});
+  const totalN = Object.values(rec).reduce((a, r) => a + r.n, 0);
+  const totalC = Object.values(rec).reduce((a, r) => a + r.c, 0);
+  // 连续天数
+  let streak = 0;
+  for (let i = 0; ; i++) {
+    const d = new Date(Date.now() - i * 864e5).toISOString().slice(0, 10);
+    if (st[d] && st[d].n > 0) streak++; else if (i > 0) break; else if (!st[d]) break;
+  }
+  const last = Store.get("last", null);
+  let html = `<div class="card"><div class="grid2">`;
+  for (const s of INDEX.subjects) {
+    const qs = subjectChapters(s.id);
+    const done = qs.filter(c => CHAP_DONE(c.id)).length;
+    html += `<div style="border:1px solid var(--line);border-radius:10px;padding:14px;cursor:pointer" onclick="go('catalog2','${s.id}')">
+      <div style="font-weight:600">${esc(s.name)}</div>
+      <div class="muted">${qs.length} 章 · 已刷 ${done} 章</div></div>`;
+  }
+  html += `</div></div>`;
+  html += `<div class="card"><div class="grid2">
+    <div><div class="statnum">${today.n}</div><div class="muted">今日做题</div></div>
+    <div><div class="statnum">${streak}<span style="font-size:13px;font-weight:400"> 天</span></div><div class="muted">连续学习</div></div>
+    <div><div class="statnum">${totalN}</div><div class="muted">累计做题</div></div>
+    <div><div class="statnum">${totalN ? Math.round(totalC / totalN * 100) : 0}%</div><div class="muted">总正确率</div></div>
+  </div></div>`;
+  if (last && last.qid) {
+    html += `<div class="card" style="cursor:pointer" onclick="resumeLast()"><b>继续上次练习</b><div class="muted">${esc(last.label || "")} ${last.idx + 1}/${last.total}</div></div>`;
+  }
+  html += `<div class="card"><div class="grid2">
+    <button class="btn ghost" onclick="go('wrong')">错题本 ${Object.keys(wrong).length}</button>
+    <button class="btn" onclick="go('mock')">模拟考试</button>
+  </div></div>`;
+  $("#main").innerHTML = html;
+}
+function CHAP_DONE() { return false; } // 占位：章节完成度简化为不显示（ponytail）
+
+// 练习入口
+async function catalog() {
+  await loadIndex();
+  header("练习");
+  $("#main").innerHTML = INDEX.subjects.map(s =>
+    `<div class="row-item" onclick="go('catalog2','${s.id}')"><div><b>${esc(s.name)}</b><div class="muted">${subjectChapters(s.id).length} 章可练</div></div><span class="arrow">›</span></div>`
+  ).join("") + `<div class="card"><button class="btn block" onclick="go('mock')">随机抽题 / 模拟考试</button></div>`;
+}
+
+// 章节列表
+async function catalog2(sid) {
+  await loadIndex();
+  const s = INDEX.subjects.find(x => x.id === sid);
+  header(s.name, "catalog");
+  const rec = Store.get("rec", {});
+  let html = "", secName = "";
+  for (const c of subjectChapters(sid)) {
+    if (c.sectionName !== secName) { secName = c.sectionName; html += `<div class="sect">${esc(secName)}</div>`; }
+    const meta = CHAPTER_STATS(c.id, rec);
+    html += `<div class="row-item" onclick="startChapter('${c.id}')">
+      <div style="flex:1"><div>${esc(c.name)}</div><div class="muted">${c.count} 题${meta ? ` · 已做 ${meta.n} · 正确率 ${meta.pct}%` : ""}</div>
+      ${meta ? `<div class="bar"><i style="width:${meta.pct}%"></i></div>` : ""}</div>
+      <span class="arrow">›</span></div>`;
+  }
+  $("#main").innerHTML = html;
+}
+function CHAPTER_STATS(cid, rec) {
+  const qs = CHAP_CACHE[cid];
+  if (!qs) return null;
+  let n = 0, c = 0;
+  for (const q of qs) { const r = rec[q.id]; if (r) { n += r.n; c += r.c; } }
+  return n ? { n, pct: Math.round(c / n * 100) } : null;
+}
+
+// ---------- 答题引擎 ----------
+async function startChapter(cid) {
+  const qs = await loadChapter(cid);
+  const meta = findChapter(cid);
+  startQuiz("chapter", qs, `${meta.subjectName}·${meta.name}`, { chapterId: cid });
+}
+async function startWrong() {
+  const wrong = Store.get("wrong", {});
+  const ids = Object.keys(wrong);
+  if (!ids.length) return;
+  // 按章节分组加载
+  const byChap = {};
+  for (const id of ids) { const [cid] = id.split("#"); (byChap[cid] = byChap[cid] || []).push(id); }
+  const qs = [];
+  for (const cid of Object.keys(byChap)) {
+    const arr = await loadChapter(cid);
+    for (const q of arr) if (wrong[q.id]) qs.push(q);
+  }
+  startQuiz("wrong", qs, "错题重做");
+}
+async function startRandom(n) {
+  await loadIndex();
+  const sid = state.arg || INDEX.subjects[0].id;
+  const chaps = subjectChapters(sid);
+  const all = [];
+  for (const c of chaps) all.push(...await loadChapter(c.id));
+  const qs = shuffle([...all]).slice(0, n);
+  startQuiz("random", qs, `随机练习·${INDEX.subjects.find(s => s.id === sid).name}`);
+}
+function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+
+function startQuiz(mode, qs, label, extra = {}) {
+  state.q = { mode, qs, label, idx: 0, judged: {}, picked: {}, flags: new Set(), start: Date.now(), ...extra };
+  if (mode === "chapter" && extra.chapterId) {
+    const last = Store.get("last", null);
+    if (last && last.chapterId === extra.chapterId && last.idx < qs.length - 1) state.q.idx = last.idx;
+  }
+  go("quiz");
+}
+
+function quiz() {
+  const Q = state.q;
+  if (!Q) return go("home");
+  const q = Q.qs[Q.idx];
+  const judged = Q.judged[q.id];
+  const isMulti = q.type === "multi";
+  const picked = Q.picked[q.id] || (isMulti ? [] : null);
+  header(Q.label, Q.mode === "wrong" ? "wrong" : (Q.mode === "random" ? "catalog" : "catalog2"));
+  $("#topbar").innerHTML += `<div class="prog">${Q.qs.map((x, i) => `<i class="${Q.judged[x.id] ? (Q.judged[x.id].correct ? "ok" : "bad") : ""}"></i>`).join("")}</div>`;
+
+  const tags = [`<span class="pill">${Q.idx + 1} / ${Q.qs.length}</span>`,
+    `<span class="pill">${isMulti ? "多选" : "单选"}</span>`];
+  let html = `<div class="card">`;
+  html += tags.join("");
+  if (q.img) {
+    html += `<div class="qstem">${esc(q.stem || "")}</div>${imgHTML(q.img, "题目图片")}`;
+  } else {
+    html += `<div class="qstem">${esc(q.stem)}</div>`;
+  }
+  const letters = ["A","B","C","D","E","F"];
+  q.options.forEach((o, i) => {
+    const L = letters[i];
+    const isRight = q.answer.includes(L);
+    let cls = "opt";
+    if (judged) cls += isRight ? " ok" : (picked.includes?.(L) || picked === L ? " bad" : "");
+    else if (isMulti ? picked.includes(L) : picked === L) cls += " sel";
+    html += `<div class="${cls}" onclick="pick('${q.id}',${i})">
+      <div class="tag">${L}</div>
+      <div class="opttext">${q.img && q.textOptions ? esc(o) : esc(o)}</div></div>`;
+  });
+  if (judged) {
+    html += `<div class="answerline"><b class="${judged.correct ? "tag-ok" : "tag-bad"}">${judged.correct ? "✓ 回答正确" : "✗ 回答错误"}</b> · 正确答案：<b>${esc(q.answer)}</b></div>`;
+    if (q.explanation) html += `<div class="expl"><b>解析</b>\n${esc(q.explanation)}</div>`;
+    if (q.expl_img) html += imgHTML(q.expl_img, "解析图片");
+  } else if (isMulti) {
+    html += `<button class="btn block" onclick="judge('${q.id}')" style="margin-top:8px">确认答案</button>`;
+  }
+  html += `</div>`;
+  html += `<div class="qnav">
+    <button class="btn ghost" onclick="moveQ(-1)" ${Q.idx === 0 ? "disabled" : ""}>上一题</button>
+    <button class="btn ghost" onclick="toggleFav('${q.id}')">${isFav(q.id) ? "★ 已收藏" : "☆ 收藏"}</button>
+    <button class="btn" onclick="moveQ(1)">${Q.idx === Q.qs.length - 1 ? (Q.mode === "wrong" ? "完成" : "完成") : "下一题"}</button>
+  </div>`;
+  $("#main").innerHTML = html;
+
+  // 继续上次
+  if (Q.mode === "chapter") {
+    const last = { qid: q.id, idx: Q.idx, total: Q.qs.length, chapterId: Q.chapterId, label: Q.label };
+    Store.set("last", last);
+  }
+}
+function isFav(id) { return Store.get("fav", []).includes(id); }
+function toggleFav(id) {
+  let fav = Store.get("fav", []);
+  fav = fav.includes(id) ? fav.filter(x => x !== id) : [...fav, id];
+  Store.set("fav", fav); render();
+}
+function resumeLast() {
+  const last = Store.get("last", null);
+  if (last && last.chapterId) startChapter(last.chapterId);
+}
+function pick(qid, i) {
+  const Q = state.q, q = Q.qs[Q.idx];
+  if (Q.judged[qid]) return;
+  const L = "ABCDEF"[i];
+  if (q.type === "multi") {
+    const arr = Q.picked[qid] || [];
+    Q.picked[qid] = arr.includes(L) ? arr.filter(x => x !== L) : [...arr, L];
+    render();
+  } else {
+    Q.picked[qid] = L;
+    judge(qid);
+  }
+}
+function judge(qid) {
+  const Q = state.q, q = Q.qs.find(x => x.id === qid);
+  const picked = Q.picked[qid];
+  if (!picked || (q.type === "multi" && !picked.length)) return;
+  const correct = q.type === "multi"
+    ? [...picked].sort().join("") === [...q.answer].sort().join("")
+    : picked === q.answer;
+  Q.judged[qid] = { correct, picked };
+  bump(qid, correct);
+  render();
+}
+function moveQ(d) {
+  const Q = state.q;
+  if (Q.idx + d >= Q.qs.length) return finishQuiz();
+  Q.idx = Math.max(0, Q.idx + d);
+  render();
+}
+function finishQuiz() {
+  const Q = state.q;
+  const n = Object.keys(Q.judged).length;
+  const c = Object.values(Q.judged).filter(j => j.correct).length;
+  alert(`完成！共做 ${n} 题，答对 ${c} 题，正确率 ${n ? Math.round(c / n * 100) : 0}%`);
+  Store.set("last", null);
+  go(Q.mode === "wrong" ? "wrong" : "home");
+}
+function zoom(src) {
+  const d = document.createElement("div");
+  d.className = "overlay";
+  d.innerHTML = `<img src="${esc(src)}">`;
+  d.onclick = () => d.remove();
+  document.body.appendChild(d);
+}
+function imgHTML(v, alt) {
+  // v: string | [string] | null；跨页题多段图竖排
+  if (!v) return "";
+  return [].concat(v).map(src => `<img class="qimg" src="${esc(src)}" onclick="zoom(this.src)" alt="${esc(alt)}" style="margin:4px 0">`).join("");
+}
+
+// 错题本
+function wrong() {
+  header("错题本");
+  const w = Store.get("wrong", {});
+  const ids = Object.keys(w);
+  if (!ids.length) { $("#main").innerHTML = `<div class="card muted">暂无错题。答错的题会自动收录到这里。</div>`; return; }
+  let html = `<div class="card"><button class="btn block" onclick="startWrong()">重做全部错题（${ids.length}）</button>
+    <button class="btn ghost block" style="margin-top:10px" onclick="if(confirm('清空全部错题？')){Store.set('wrong',{});render()}">清空错题本</button></div>`;
+  // 按章节展示（同步读缓存，未加载的章节先只列 id）
+  const byChap = {};
+  for (const id of ids) { const [cid] = id.split("#"); (byChap[cid] = byChap[cid] || []).push(id); }
+  for (const cid of Object.keys(byChap)) {
+    const meta = findChapter(cid);
+    html += `<div class="sect">${esc(meta ? meta.name : cid)}（${byChap[cid].length}）</div>`;
+    for (const qid of byChap[cid]) {
+      const q = findQ(qid);
+      html += `<div class="row-item" onclick="redoOne('${qid}')">
+        <div style="flex:1"><div>${esc(q ? (q.stem || "[图片题]").slice(0, 40) : qid)}</div>
+        <div class="muted">错 ${w[qid].count} 次${q ? ` · 答案 ${esc(q.answer)}` : ""}</div></div>
+        <span class="arrow">›</span></div>`;
+    }
+  }
+  $("#main").innerHTML = html;
+}
+function findQ(qid) {
+  const [cid] = qid.split("#");
+  const arr = CHAP_CACHE[cid];
+  return arr ? arr.find(x => x.id === qid) : null;
+}
+async function redoOne(qid) {
+  const [cid] = qid.split("#");
+  const arr = await loadChapter(cid);
+  const q = arr.find(x => x.id === qid);
+  if (q) startQuiz("wrong", [q], "错题重做");
+}
+
+// 统计
+function stats() {
+  header("学习统计");
+  const rec = Store.get("rec", {});
+  const st = Store.get("stats", {});
+  let n = 0, c = 0;
+  for (const r of Object.values(rec)) { n += r.n; c += r.c; }
+  // 近 7 日
+  const days = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date(Date.now() - i * 864e5).toISOString().slice(0, 10);
+    days.push([d.slice(5), st[d]?.n || 0]);
+  }
+  const maxN = Math.max(1, ...days.map(x => x[1]));
+  let html = `<div class="card"><div class="grid2">
+    <div><div class="statnum">${n}</div><div class="muted">累计做题</div></div>
+    <div><div class="statnum">${n ? Math.round(c / n * 100) : 0}%</div><div class="muted">总正确率</div></div>
+  </div>
+  <div class="muted" style="margin-top:12px">近 7 日做题量</div>
+  <div style="display:flex;align-items:flex-end;gap:8px;height:90px;margin-top:6px">
+    ${days.map(([d, v]) => `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px">
+      <div style="width:100%;background:var(--acc);border-radius:4px 4px 0 0;height:${Math.round(v / maxN * 64)}px"></div>
+      <span class="muted" style="font-size:10px">${d}</span></div>`).join("")}
+  </div></div>`;
+  // 章节掌握度
+  html += `<h2>章节掌握度</h2><div class="card">`;
+  const rows = [];
+  if (INDEX) for (const s of INDEX.subjects) for (const cid of subjectChapters(s.id).map(c => c.id)) {
+    const arr = CHAP_CACHE[cid];
+    if (!arr) continue;
+    let cn = 0, cc = 0;
+    for (const q of arr) { const r = rec[q.id]; if (r) { cn += r.n; cc += r.c; } }
+    if (cn) rows.push([findChapter(cid).name, Math.round(cc / cn * 100), cn]);
+  }
+  rows.sort((a, b) => a[1] - b[1]);
+  html += rows.length ? rows.map(([name, pct, cn]) =>
+    `<div style="margin:10px 0"><div style="display:flex;justify-content:space-between"><span>${esc(name)}</span><span class="muted">${pct}%（${cn}题）</span></div>
+     <div class="bar"><i style="width:${pct}%"></i></div></div>`).join("")
+    : `<div class="muted">做题后这里会显示各章正确率。</div>`;
+  html += `</div>`;
+  $("#main").innerHTML = html;
+}
+
+// 我（备份/恢复）
+function me() {
+  header("我");
+  $("#main").innerHTML = `
+  <div class="card">
+    <div class="muted">数据全部保存在本浏览器，换设备可导出/导入备份。</div>
+    <div class="grid2" style="margin-top:12px">
+      <button class="btn ghost" onclick="exportData()">导出数据</button>
+      <button class="btn ghost" onclick="document.getElementById('impfile').click()">导入数据</button>
+    </div>
+    <input type="file" id="impfile" accept=".json" style="display:none" onchange="importData(this.files[0])">
+    <button class="btn ghost block" style="margin-top:10px;color:var(--bad);border-color:var(--bad)"
+      onclick="if(confirm('确定清空全部学习记录？')){Object.keys(localStorage).filter(k=>k.startsWith('jwz_')).forEach(k=>localStorage.removeItem(k));render()}">清空全部数据</button>
+    <button class="btn ghost block" style="margin-top:10px" onclick="logout()">退出登录</button>
+  </div>`;
+}
+function exportData() {
+  const data = {};
+  Object.keys(localStorage).filter(k => k.startsWith("jwz_")).forEach(k => data[k] = JSON.parse(localStorage.getItem(k)));
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(data)], { type: "application/json" }));
+  a.download = "军队文职刷题-备份.json";
+  a.click();
+}
+function importData(f) {
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const data = JSON.parse(r.result);
+      for (const [k, v] of Object.entries(data)) localStorage.setItem(k, JSON.stringify(v));
+      alert("导入成功"); render();
+    } catch { alert("文件格式不对"); }
+  };
+  r.readAsText(f);
+}
+
+// ---------- 模拟考试 ----------
+function mock() {
+  header("模拟考试", "home");
+  const lastM = Store.get("mocks", [])[0];
+  $("#main").innerHTML = `
+  <div class="card">
+    <div class="muted">按真题结构随机组卷，计时作答，交卷后出成绩报告。</div>
+    <div style="margin-top:12px">科目</div>
+    <div>${INDEX.subjects.map((s, i) => `<span class="chip ${i === 0 ? "on" : ""}" data-sid="${s.id}" onclick="mockSel(this,'sid')">${esc(s.name)}</span>`).join("")}</div>
+    <div style="margin-top:10px">题量</div>
+    <div>${[20, 50, 110].map((n, i) => `<span class="chip ${i === 1 ? "on" : ""}" data-n="${n}" onclick="mockSel(this,'n')">${n} 题</span>`).join("")}</div>
+    <div style="margin-top:10px">时长</div>
+    <div>${[30, 60, 120].map((t, i) => `<span class="chip ${i === 1 ? "on" : ""}" data-t="${t}" onclick="mockSel(this,'t')">${t} 分钟</span>`).join("")}</div>
+    <button class="btn block" style="margin-top:16px" onclick="startMock()">开始考试</button>
+  </div>
+  <h2>随机练习</h2>
+  <div class="card"><div class="grid2">
+    <button class="btn ghost" onclick="startRandom(10)">随机 10 题</button>
+    <button class="btn ghost" onclick="startRandom(20)">随机 20 题</button>
+  </div></div>
+  ${lastM ? `<h2>最近成绩</h2><div class="card">${mocksHTML()}</div>` : ""}`;
+}
+function mockSel(el, key) {
+  el.parentElement.querySelectorAll(".chip").forEach(c => c.classList.remove("on"));
+  el.classList.add("on");
+}
+async function startMock() {
+  const sid = $("#main .chip.on[data-sid]")?.dataset.sid || INDEX.subjects[0].id;
+  const n = +$("#main .chip.on[data-n]")?.dataset.n || 50;
+  const t = +$("#main .chip.on[data-t]")?.dataset.t || 60;
+  state.arg = sid;
+  await startRandom.call(null, n); // 复用抽题
+  state.q.mode = "mock";
+  state.q.deadline = Date.now() + t * 6e4;
+  state.q.label = `模拟考试（${n}题/${t}分钟）`;
+  state.q.timer = setInterval(() => {
+    const left = state.q.deadline - Date.now();
+    const el = $("#timer");
+    if (el) el.textContent = fmtTime(left);
+    if (left <= 0) { clearInterval(state.q.timer); submitMock(); }
+  }, 1000);
+  go("quizMock");
+}
+function fmtTime(ms) {
+  const s = Math.max(0, Math.floor(ms / 1000));
+  return `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+}
+// 模拟考答题页（不即时判分）
+function quizMock() {
+  const Q = state.q;
+  if (!Q) return go("home");
+  const q = Q.qs[Q.idx];
+  const picked = Q.picked[q.id] || (q.type === "multi" ? [] : null);
+  $("#topbar").innerHTML = `<div class="row"><button class="back" onclick="if(confirm('放弃本次考试？')){clearInterval(state.q.timer);go('mock')}">‹</button>
+    <h1 style="font-size:16px">${esc(Q.label)}</h1><div class="timer" id="timer" style="margin-left:auto">${fmtTime(Q.deadline - Date.now())}</div></div>`;
+  let html = `<div class="card"><div class="cardgrid">${Q.qs.map((x, i) => {
+    const done = Q.picked[x.id] && (q.type === "multi" ? Q.picked[x.id].length : true);
+    return `<div class="cell ${i === Q.idx ? "cur" : ""} ${Q.picked[x.id]?.length ? "done" : ""} ${Q.flags.has(x.id) ? "flag" : ""}" onclick="mqNav(${i})">${i + 1}</div>`;
+  }).join("")}</div></div>`;
+  html += `<div class="card">`;
+  html += `<div><span class="pill">${Q.idx + 1} / ${Q.qs.length}</span><span class="pill">${q.type === "multi" ? "多选" : "单选"}</span>
+    <button class="btn ghost" style="padding:3px 10px;font-size:12px;float:right" onclick="mflag('${q.id}')">${Q.flags.has(q.id) ? "取消标记" : "标记"}</button></div>`;
+  if (q.img) html += `<div class="qstem">${esc(q.stem || "")}</div>${imgHTML(q.img, "题目图片")}`;
+  else html += `<div class="qstem">${esc(q.stem)}</div>`;
+  const letters = ["A","B","C","D","E","F"];
+  q.options.forEach((o, i) => {
+    const L = letters[i];
+    const sel = q.type === "multi" ? picked.includes(L) : picked === L;
+    html += `<div class="opt ${sel ? "sel" : ""}" onclick="mpick('${q.id}',${i})"><div class="tag">${L}</div><div class="opttext">${esc(o)}</div></div>`;
+  });
+  html += `</div>`;
+  html += `<div class="qnav">
+    <button class="btn ghost" onclick="mqNav(${Q.idx - 1})" ${Q.idx === 0 ? "disabled" : ""}>上一题</button>
+    ${Q.idx === Q.qs.length - 1
+      ? `<button class="btn" onclick="submitMock()">交卷</button>`
+      : `<button class="btn" onclick="mqNav(${Q.idx + 1})">下一题</button>`}
+  </div>`;
+  $("#main").innerHTML = html;
+}
+function mqNav(i) {
+  const Q = state.q;
+  if (i < 0 || i >= Q.qs.length) return;
+  Q.idx = i; render();
+}
+function mflag(qid) {
+  const F = state.q.flags;
+  F.has(qid) ? F.delete(qid) : F.add(qid);
+  render();
+}
+function mpick(qid, i) {
+  const q = state.q.qs.find(x => x.id === qid);
+  const L = "ABCDEF"[i];
+  if (q.type === "multi") {
+    const arr = state.q.picked[qid] || [];
+    state.q.picked[qid] = arr.includes(L) ? arr.filter(x => x !== L) : [...arr, L];
+  } else state.q.picked[qid] = L;
+  render();
+}
+function submitMock() {
+  const Q = state.q;
+  if (!Q) return;
+  clearInterval(Q.timer);
+  const unanswered = Q.qs.filter(q => !Q.picked[q.id]?.length).length;
+  if (unanswered && !confirm(`还有 ${unanswered} 题未作答，确定交卷？`)) return;
+  let c = 0;
+  for (const q of Q.qs) {
+    const p = Q.picked[q.id];
+    const ok = q.type === "multi"
+      ? (p && [...p].sort().join("") === [...q.answer].sort().join(""))
+      : p === q.answer;
+    Q.judged[q.id] = { correct: !!ok, picked: p };
+    if (ok) c++;
+    bump(q.id, !!ok); // 计入统计与错题本
+  }
+  const mocks = Store.get("mocks", []);
+  mocks.unshift({ date: new Date().toISOString().slice(0, 10), label: Q.label, total: Q.qs.length, correct: c, timeUsed: Math.round((Date.now() - Q.start) / 1000) });
+  Store.set("mocks", mocks.slice(0, 20));
+  go("report");
+}
+function report() {
+  const Q = state.q;
+  const n = Q.qs.length, c = Object.values(Q.judged).filter(j => j.correct).length;
+  header("成绩报告", "mock");
+  let html = `<div class="card" style="text-align:center">
+    <div class="statnum" style="font-size:42px">${Math.round(c / n * 100)}</div>
+    <div class="muted">总得分率 · 答对 ${c} / ${n} 题</div>
+    <div class="muted">用时 ${fmtTime(Date.now() - Q.start)}</div>
+    <div class="grid2" style="margin-top:14px">
+      <button class="btn ghost" onclick="go('wrong')">看错题</button>
+      <button class="btn" onclick="go('mock')">再来一套</button>
+    </div></div>`;
+  html += `<h2>逐题回顾</h2>`;
+  Q.qs.forEach((q, i) => {
+    const j = Q.judged[q.id];
+    html += `<div class="card" style="padding:12px 14px">
+      <div><b class="${j.correct ? "tag-ok" : "tag-bad"}">${j.correct ? "✓" : "✗"}</b>
+      <span class="pill">${i + 1}</span> ${(q.stem || "[图片题]").slice(0, 36)}
+      </div><div class="muted">你的答案 ${esc(j.picked?.join?.("") || j.picked || "未答")} · 正确答案 ${esc(q.answer)}</div></div>`;
+  });
+  $("#main").innerHTML = html;
+}
+function mocksHTML() {
+  return Store.get("mocks", []).slice(0, 5).map(m =>
+    `<table class="mini"><tr><td>${esc(m.date)} ${esc(m.label)}</td><td>${m.correct}/${m.total} · ${fmtTime(m.timeUsed * 1000)}</td></tr></table>`).join("");
+}
+
+render();
+</script>
+</body>
+</html>
