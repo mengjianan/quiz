@@ -199,13 +199,22 @@ def classify(path):
             return subject, "其他"
     return None, None
 
+def make_cid(cid0, seen, counts):
+    """同名章节消歧：首个沿用原 cid（进度兼容），其余加 -d序号。
+    一文件一章节——旧版按同名合并会把不同专题的强化练习混成一章。"""
+    if counts.get(cid0, 0) <= 1:
+        return cid0
+    k = seen.get(cid0, 0)
+    seen[cid0] = k + 1
+    return cid0 if k == 0 else f"{cid0}-d{k}"
+
 def main():
-    index = {"subjects": {}}
     files = sorted(glob.glob(os.path.join(SRC, "**", "*.pdf"), recursive=True))
     files = [f for f in files if "题目+解析" in f.replace("\\", "/")]
     print(f"found {len(files)} pdfs", flush=True)
 
-    chap_map = {}  # (subject, section, chapname) -> [questions]
+    # pass1：文件元信息 + 同名计数
+    meta = []
     for f in files:
         subject, section = classify(f)
         if not subject:
@@ -215,14 +224,32 @@ def main():
         chap = re.sub(r"-\d+\.pdf$", "", chap)       # 去尾部 id
         chap = re.sub(r"\.pdf$", "", chap)
         chap = chap.replace("（解析）", "").replace(" 答案解析", "")
+        cid0 = re.sub(r"\W+", "-", f"{subject[:2]}-{chap}")[:24].strip("-")
+        meta.append((f, subject, section, chap, cid0, name))
+    counts = {}
+    for m in meta:
+        counts[m[4]] = counts.get(m[4], 0) + 1
+
+    # 清空旧数据（全部重建，避免孤儿文件）
+    for old in glob.glob(os.path.join(DATA, "*.json")):
+        os.remove(old)
+
+    seen_cid, seen_img = {}, {}
+    entries = []  # 源文件顺序（章节排序的基础）
+    for f, subject, section, chap, cid0, orig in meta:
         try:
             reader = PdfReader(f)
             raw = "\n".join((p.extract_text() or "") for p in reader.pages)
         except Exception as e:
-            print(f"SKIP {name}: {e}", flush=True)
+            print(f"SKIP {orig}: {e}", flush=True)
             continue
         qs = parse_text_questions(raw)
-        prefix = re.sub(r"\W", "", chap)[:12]
+        cid = make_cid(cid0, seen_cid, counts)
+        # 图片前缀同规则消歧：同名文件首个沿用旧前缀（已有切图缓存命中），其余重渲染
+        ibase = re.sub(r"\W", "", chap)[:12]
+        k = seen_img.get(ibase, 0)
+        seen_img[ibase] = k + 1
+        prefix = ibase if k == 0 else f"{ibase}d{k}"
         if subject == "数学1":
             # 公式在图片里，整章切图
             try:
@@ -230,7 +257,7 @@ def main():
                 if img_qs:
                     qs = img_qs
             except Exception as e:
-                print(f"IMG-FAIL {name}: {e}", flush=True)
+                print(f"IMG-FAIL {orig}: {e}", flush=True)
         elif qs and any(not q["stem"] for q in qs):
             # 公共科目图表题：题干为空的按序号对齐补图片
             try:
@@ -242,29 +269,48 @@ def main():
                             q["expl_img"] = iq.get("expl_img")
                             q["options"] = iq["options"] or q["options"]
             except Exception as e:
-                print(f"IMG-MIX-FAIL {name}: {e}", flush=True)
-        key = (subject, section, chap)
-        if qs:
-            chap_map.setdefault(key, []).extend(qs)
-            print(f"OK {subject}/{section}/{chap}: +{len(qs)}", flush=True)
-        else:
-            print(f"EMPTY {name}", flush=True)
-
-    # 输出 index + 每章 json
-    subjects_out = {}
-    n_total = 0
-    for (subject, section, chap), qs in sorted(chap_map.items()):
-        cid = re.sub(r"\W+", "-", f"{subject[:2]}-{chap}")[:24].strip("-")
-        if cid in [c.get("id") for s in subjects_out.values() for sec in s["sections"].values() for c in sec["chapters"]]:
-            cid += "-" + str(len(qs))
+                print(f"IMG-MIX-FAIL {orig}: {e}", flush=True)
+        if not qs:
+            print(f"EMPTY {orig}", flush=True)
+            continue
         for i, q in enumerate(qs):
             q["id"] = f"{cid}#{i+1}"
         with open(os.path.join(DATA, cid + ".json"), "w", encoding="utf-8") as fp:
             json.dump({"questions": qs}, fp, ensure_ascii=False)
-        n_total += len(qs)
-        s = subjects_out.setdefault(subject, {"id": subject, "name": subject, "sections": {}})
-        sec = s["sections"].setdefault(section, {"name": section, "chapters": []})
-        sec["chapters"].append({"id": cid, "name": chap, "file": f"data/{cid}.json", "count": len(qs)})
+        print(f"OK {subject}/{section}/{chap}: {len(qs)}q", flush=True)
+        entries.append({"subject": subject, "section": section, "chap": chap,
+                        "orig": orig, "cid": cid, "count": len(qs)})
+
+    # index 按源文件顺序（节/章排序交给 reclassify 的规范化规则）
+    subjects_out = {}
+    n_total = 0
+    for e in entries:
+        n_total += e["count"]
+        s = subjects_out.setdefault(e["subject"], {"id": e["subject"], "name": e["subject"], "sections": {}})
+        sec = s["sections"].setdefault(e["section"], {"name": e["section"], "chapters": []})
+        sec["chapters"].append({"id": e["cid"], "name": e["chap"],
+                                "file": f"data/{e['cid']}.json", "count": e["count"],
+                                "orig": e["orig"]})
+
+    # 清理未被任何题引用的孤儿图片（同名前缀消歧后的遗留）
+    referenced = set()
+    for e in entries:
+        with open(os.path.join(DATA, e["cid"] + ".json"), encoding="utf-8") as fp:
+            for q in json.load(fp)["questions"]:
+                for key in ("img", "expl_img"):
+                    v = q.get(key)
+                    if isinstance(v, list):
+                        referenced.update(v)
+                    elif v:
+                        referenced.add(v)
+    img_dir = os.path.join(ROOT, "img")
+    removed = 0
+    if os.path.isdir(img_dir):
+        for fn in os.listdir(img_dir):
+            if "img/" + fn not in referenced:
+                os.remove(os.path.join(img_dir, fn))
+                removed += 1
+    print(f"orphan imgs removed: {removed}", flush=True)
 
     index_out = {"subjects": []}
     for s in subjects_out.values():
