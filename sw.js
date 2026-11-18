@@ -19,10 +19,10 @@ self.addEventListener("fetch", e => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
 
-  // 页面导航：网络优先（保证更新触达），断网回退缓存
+  // 页面导航：网络优先 + no-store 绕过 HTTP 启发式缓存（否则更新要等缓存过期才可见），断网回退缓存
   if (req.mode === "navigate") {
     e.respondWith(
-      fetch(req).then(resp => {
+      fetch(req, { cache: "no-store" }).then(resp => {
         const c = resp.clone();
         caches.open(V).then(ca => ca.put(req, c));
         return resp;
@@ -43,9 +43,9 @@ self.addEventListener("fetch", e => {
     return;
   }
 
-  // html/js/json：网络优先，回退缓存（离线可用）
+  // html/js/json：网络优先 + no-store（杜绝旧版 index/题库滞留），回退缓存（离线可用）
   e.respondWith(
-    fetch(req).then(resp => {
+    fetch(req, { cache: "no-store" }).then(resp => {
       const c = resp.clone();
       caches.open(V).then(ca => ca.put(req, c));
       return resp;

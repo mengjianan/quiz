@@ -183,7 +183,7 @@ const PAD = { open: false, x: 16, y: 110, w: 320, h: 260, strokes: [], cur: null
 function needScratch(qid) {
   try {
     const c = findChapter(String(qid).split("#")[0]);
-    return !!c && (c.subjectName === "数学1" || c.sectionName.indexOf("岗位能力") === 0);
+    return !!c && (c.subjectName === "数学1" || c.subjectName === "408" || c.sectionName.indexOf("岗位能力") === 0);
   } catch (e) { return false; }
 }
 function togglePad() {
@@ -800,19 +800,21 @@ function mocksHTML() {
     `<table class="mini"><tr><td>${esc(m.date)} ${esc(m.label)}</td><td>${m.correct}/${m.total} · ${fmtTime(m.timeUsed * 1000)}</td></tr></table>`).join("");
 }
 
-// ===== 408 备考资料（GitHub 公开仓库精选，仅链接不复制内容）=====
+// ===== 408 备考资料（按最近更新排序的最新活跃仓库，仅链接不复制内容）=====
 const REPOS408 = [
-  { g: "复习笔记与经验", items: [
-    { u: "https://github.com/ddy-ddy/cs-408", s: 6340, n: "ddy-ddy/cs-408", d: "复习经验 + 资源 + OneNote 笔记" },
-    { u: "https://github.com/cen6667/408", s: 1024, n: "cen6667/408", d: "数据结构 / 组成原理 / 操作系统 / 计网 学习资料与笔记" },
+  { g: "刷题工具", items: [
+    { u: "https://github.com/zhangtianshi001/pi-408-quiz", s: 4, n: "zhangtianshi001/pi-408-quiz", d: "408 刷题安卓 App（开源免注册）· 11-17 更新" },
+    { u: "https://github.com/ly9098-prog/MemoGrad", s: 1, n: "ly9098-prog/MemoGrad", d: "408 刷题小程序 · 2009–2026 题库 · 错题复盘 · 11-17 更新" },
   ]},
   { g: "资料与真题", items: [
-    { u: "https://github.com/CodePanda66/CSPostgraduate-408", s: 5685, n: "CodePanda66/CSPostgraduate-408", d: "专业课资料及真题资源" },
-    { u: "https://github.com/xiaolei565/aimto408", s: 4630, n: "xiaolei565/aimto408", d: "死磕 408 全套复习仓库" },
-    { u: "https://github.com/youngflysky/KaoYanZhenTi-PDF", s: 619, n: "youngflysky/KaoYanZhenTi-PDF", d: "408 真题等 PDF 合集" },
+    { u: "https://github.com/SolitaryJune/408-zhenti", s: 0, n: "SolitaryJune/408-zhenti", d: "408 历年真题复习站（2009–2026 · 846 题）· 11-16 更新" },
+    { u: "https://github.com/luckywangyi/408CSFamily", s: 0, n: "luckywangyi/408CSFamily", d: "408 复习资料站（含王道同步精讲）· 11-15 更新" },
+    { u: "https://github.com/DzmingLi/408-official-resources", s: 9, n: "DzmingLi/408-official-resources", d: "官方大纲 / 历年真题 / 参考答案汇编 · 11-07 更新" },
+    { u: "https://github.com/chiyunxian/408", s: 0, n: "chiyunxian/408", d: "720 道真题选择题库——本站 408 题目来源 · 10-29 更新" },
   ]},
-  { g: "路线规划", items: [
-    { u: "https://github.com/lanlankaoyanshan/408Bester", s: 1493, n: "lanlankaoyanshan/408Bester", d: "复习路线 + 月度规划 + 视频书籍" },
+  { g: "规划与择校", items: [
+    { u: "https://github.com/Laz8Noy/kaoyan408-share", s: 33, n: "Laz8Noy/kaoyan408-share", d: "择校数据 / 三源考情核对 / 录取分数统计 · 10-25 更新" },
+    { u: "https://github.com/LamberttLiu/CS-Basic-SelfLearning", s: 542, n: "LamberttLiu/CS-Basic-SelfLearning", d: "数据结构 + 操作系统知识框架图解自学 · 11-16 更新" },
   ]},
 ];
 function links() {

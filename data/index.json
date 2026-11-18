@@ -2054,6 +2054,188 @@
      ]
     }
    ]
+  },
+  {
+   "id": "408",
+   "name": "408",
+   "sections": [
+    {
+     "name": "数据结构",
+     "chapters": [
+      {
+       "id": "408-ds1",
+       "name": "绪论",
+       "file": "data/408-ds1.json",
+       "count": 7
+      },
+      {
+       "id": "408-ds2",
+       "name": "线性表",
+       "file": "data/408-ds2.json",
+       "count": 9
+      },
+      {
+       "id": "408-ds3",
+       "name": "栈、队列和数组",
+       "file": "data/408-ds3.json",
+       "count": 26
+      },
+      {
+       "id": "408-ds4",
+       "name": "串",
+       "file": "data/408-ds4.json",
+       "count": 3
+      },
+      {
+       "id": "408-ds5",
+       "name": "树与二叉树",
+       "file": "data/408-ds5.json",
+       "count": 40
+      },
+      {
+       "id": "408-ds6",
+       "name": "图",
+       "file": "data/408-ds6.json",
+       "count": 33
+      },
+      {
+       "id": "408-ds7",
+       "name": "查找",
+       "file": "data/408-ds7.json",
+       "count": 39
+      },
+      {
+       "id": "408-ds8",
+       "name": "排序",
+       "file": "data/408-ds8.json",
+       "count": 40
+      }
+     ]
+    },
+    {
+     "name": "计算机组成原理",
+     "chapters": [
+      {
+       "id": "408-co1",
+       "name": "计算机系统概述",
+       "file": "data/408-co1.json",
+       "count": 17
+      },
+      {
+       "id": "408-co2",
+       "name": "数据的表示和运算",
+       "file": "data/408-co2.json",
+       "count": 41
+      },
+      {
+       "id": "408-co3",
+       "name": "存储系统",
+       "file": "data/408-co3.json",
+       "count": 41
+      },
+      {
+       "id": "408-co4",
+       "name": "指令系统",
+       "file": "data/408-co4.json",
+       "count": 19
+      },
+      {
+       "id": "408-co5",
+       "name": "中央处理器",
+       "file": "data/408-co5.json",
+       "count": 36
+      },
+      {
+       "id": "408-co6",
+       "name": "总线",
+       "file": "data/408-co6.json",
+       "count": 18
+      },
+      {
+       "id": "408-co7",
+       "name": "输入/输出系统",
+       "file": "data/408-co7.json",
+       "count": 27
+      }
+     ]
+    },
+    {
+     "name": "操作系统",
+     "chapters": [
+      {
+       "id": "408-os1",
+       "name": "计算机系统概述",
+       "file": "data/408-os1.json",
+       "count": 27
+      },
+      {
+       "id": "408-os2",
+       "name": "进程与线程",
+       "file": "data/408-os2.json",
+       "count": 62
+      },
+      {
+       "id": "408-os3",
+       "name": "内存管理",
+       "file": "data/408-os3.json",
+       "count": 37
+      },
+      {
+       "id": "408-os4",
+       "name": "文件管理",
+       "file": "data/408-os4.json",
+       "count": 37
+      },
+      {
+       "id": "408-os5",
+       "name": "输入/输出管理",
+       "file": "data/408-os5.json",
+       "count": 17
+      }
+     ]
+    },
+    {
+     "name": "计算机网络",
+     "chapters": [
+      {
+       "id": "408-cn1",
+       "name": "计算机网络体系结构",
+       "file": "data/408-cn1.json",
+       "count": 16
+      },
+      {
+       "id": "408-cn2",
+       "name": "物理层",
+       "file": "data/408-cn2.json",
+       "count": 15
+      },
+      {
+       "id": "408-cn3",
+       "name": "数据链路层",
+       "file": "data/408-cn3.json",
+       "count": 37
+      },
+      {
+       "id": "408-cn4",
+       "name": "网络层",
+       "file": "data/408-cn4.json",
+       "count": 34
+      },
+      {
+       "id": "408-cn5",
+       "name": "传输层",
+       "file": "data/408-cn5.json",
+       "count": 25
+      },
+      {
+       "id": "408-cn6",
+       "name": "应用层",
+       "file": "data/408-cn6.json",
+       "count": 17
+      }
+     ]
+    }
+   ]
   }
  ]
 }
