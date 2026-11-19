@@ -17,7 +17,10 @@ SECTION_ORDER = {
     ],
     "数学1": ["高等数学", "线性代数", "概率论与数理统计", "综合强化", "真题与模拟卷", "其他"],
     "408": ["数据结构", "计算机组成原理", "操作系统", "计算机网络"],
-    "考公考编": ["政治理论", "常识判断", "言语理解与表达", "数量关系", "判断推理", "资料分析"],
+    "行测": ["政治理论", "常识判断", "言语理解与表达", "数量关系", "判断推理", "资料分析"],
+    "法律": ["宪法", "法理学", "法制史", "国际法", "民法", "刑法", "行政法",
+             "民诉法", "刑诉法", "商经法", "知识产权法", "司法制度与职业道德"],
+    "申论": ["概括", "分析", "对策", "应用文", "大作文"],
 }
 # 板块合并：旧解析产生的近似板块并入规范名
 PARTS = {"基本知识-党的创新理论": "基本知识-党的创新理论与时政"}
@@ -151,7 +154,9 @@ def build_pools(idx):
             for c in sec["chapters"]:
                 f = os.path.join(BASE, c["file"])
                 if os.path.exists(f):
-                    allq.extend(json.load(open(f, encoding="utf-8"))["questions"])
+                    # 主观题（申论）不入题池：随机/模拟考只组客观题
+                    allq.extend(q for q in json.load(open(f, encoding="utf-8"))["questions"]
+                                if q.get("type") != "subjective")
         pool = random.sample(allq, min(600, len(allq)))
         out = os.path.join(pool_dir, f"{s['name']}.json")
         json.dump({"questions": pool}, open(out, "w", encoding="utf-8"), ensure_ascii=False)

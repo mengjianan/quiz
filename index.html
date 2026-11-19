@@ -168,7 +168,7 @@ function render() {
   // nav
   $("#nav").innerHTML = NAV.map(([v,t,ic]) =>
     `<a href="#" class="${state.view===v||(v==="catalog"&&["quiz","mock","report","catalog2"].includes(state.view))?"on":""}" onclick="go('${v}')"><span class="ic">${ic}</span>${t}</a>`).join("");
-  ({ home, catalog, catalog2, quiz, wrong, stats, me, mock, report, quizMock, links })[state.view](state.arg);
+  ({ home, catalog, catalog2, quiz, wrong, stats, me, mock, report, quizMock, links, hotspot })[state.view](state.arg);
   window.scrollTo(0, 0);
 }
 function login() {
@@ -183,7 +183,7 @@ const PAD = { open: false, x: 16, y: 110, w: 320, h: 260, strokes: [], cur: null
 function needScratch(qid) {
   try {
     const c = findChapter(String(qid).split("#")[0]);
-    return !!c && (c.subjectName === "数学1" || c.subjectName === "408" || c.subjectName === "考公考编" || c.sectionName.indexOf("岗位能力") === 0);
+    return !!c && (c.subjectName === "数学1" || c.subjectName === "408" || c.subjectName === "行测" || c.subjectName === "申论" || c.sectionName.indexOf("岗位能力") === 0);
   } catch (e) { return false; }
 }
 function togglePad() {
@@ -338,6 +338,7 @@ async function home() {
     <button class="btn" onclick="go('mock')">模拟考试</button>
   </div></div>`;
   html += `<div class="card" style="cursor:pointer" onclick="go('links')"><b>408 备考资料</b><div class="muted">计算机考研 GitHub 公开仓库：笔记 / 真题 / 规划 →</div></div>`;
+  html += `<div class="card" style="cursor:pointer" onclick="go('hotspot')"><b>时政热点</b><div class="muted">政策速览 · 国内外大事 · 每日自动更新 →</div></div>`;
   $("#main").innerHTML = html;
 }
 function CHAP_DONE() { return false; } // 占位：章节完成度简化为不显示（ponytail）
@@ -403,6 +404,7 @@ async function startRandom(n) {
     const sid = state.arg || INDEX.subjects[0].id;
     // ponytail: 题池单文件加载（旧版串行拉全部310个章节=13.3MB导致卡死）
     if (!POOL[sid]) POOL[sid] = (await (await fetch(`data/pool/${sid}.json`)).json()).questions;
+    if (!POOL[sid].length) { alert("该科目为主观题练习（申论），请从章节进入；随机/模拟考仅支持客观题科目。"); return; }
     const qs = shuffle([...POOL[sid]]).slice(0, n);
     startQuiz("random", qs, `随机练习·${INDEX.subjects.find(s => s.id === sid).name}`);
   } catch (e) {
@@ -426,12 +428,13 @@ function quiz() {
   const q = Q.qs[Q.idx];
   const judged = Q.judged[q.id];
   const isMulti = q.type === "multi";
+  const isSubj = q.type === "subjective" || !(q.options && q.options.length);
   const picked = Q.picked[q.id] || (isMulti ? [] : null);
   header(Q.label, Q.mode === "wrong" ? "wrong" : (Q.mode === "random" ? "catalog" : "catalog2"));
   $("#topbar").innerHTML += `<div class="prog">${Q.qs.map((x, i) => `<i class="${Q.judged[x.id] ? (Q.judged[x.id].correct ? "ok" : "bad") : ""}"></i>`).join("")}</div>`;
 
   const tags = [`<span class="pill">${Q.idx + 1} / ${Q.qs.length}</span>`,
-    `<span class="pill">${isMulti ? "多选" : "单选"}</span>`];
+    `<span class="pill">${isSubj ? "主观题" : isMulti ? "多选" : "单选"}</span>`];
   let html = `<div class="card">`;
   html += tags.join("");
   if (q.img) {
@@ -439,23 +442,41 @@ function quiz() {
   } else {
     html += `<div class="qstem">${esc(q.stem)}</div>`;
   }
-  const letters = ["A","B","C","D","E","F"];
-  q.options.forEach((o, i) => {
-    const L = letters[i];
-    const isRight = q.answer.includes(L);
-    let cls = "opt";
-    if (judged) cls += isRight ? " ok" : (picked.includes?.(L) || picked === L ? " bad" : "");
-    else if (isMulti ? picked.includes(L) : picked === L) cls += " sel";
-    html += `<div class="${cls}" onclick="pick('${q.id}',${i})">
-      <div class="tag">${L}</div>
-      <div class="opttext">${q.img && q.textOptions ? esc(o) : esc(o)}</div></div>`;
-  });
-  if (judged) {
-    html += `<div class="answerline"><b class="${judged.correct ? "tag-ok" : "tag-bad"}">${judged.correct ? "✓ 回答正确" : "✗ 回答错误"}</b> · 正确答案：<b>${esc(q.answer)}</b></div>`;
-    if (q.explanation) html += `<div class="expl"><b>解析</b>\n${esc(q.explanation)}</div>`;
-    if (q.expl_img) html += imgHTML(q.expl_img, "解析图片");
-  } else if (isMulti) {
-    html += `<button class="btn block" onclick="judge('${q.id}')" style="margin-top:8px">确认答案</button>`;
+  if (isSubj) {
+    // 主观题（申论）：阅读材料 → 查看参考答案 → 自评（接入统计/错题本）
+    if (judged) {
+      html += `<div class="answerline"><b class="${judged.correct ? "tag-ok" : "tag-bad"}">${judged.correct ? "✓ 已掌握" : "✗ 未掌握"}</b> · <span class="muted">自评已计入统计与错题本</span></div>`;
+      if (q.explanation) html += `<div class="expl"><b>机构参考答案</b>\n${esc(q.explanation)}</div>`;
+      if (q.expl_img) html += imgHTML(q.expl_img, "参考答案图片");
+    } else if (Q.showAns && Q.showAns[q.id]) {
+      if (q.explanation) html += `<div class="expl"><b>机构参考答案</b>\n${esc(q.explanation)}</div>`;
+      if (q.expl_img) html += imgHTML(q.expl_img, "参考答案图片");
+      html += `<div class="grid2" style="margin-top:12px">
+        <button class="btn ghost" onclick="subjJudge(true)">✓ 已掌握</button>
+        <button class="btn" onclick="subjJudge(false)">✗ 未掌握</button></div>`;
+    } else {
+      html += `<div class="muted" style="margin-top:8px">读完给定资料与作答要求，自己先动笔作答，再看参考答案自评。</div>`;
+      html += `<button class="btn block" onclick="showAnswer()" style="margin-top:10px">查看参考答案</button>`;
+    }
+  } else {
+    const letters = ["A","B","C","D","E","F"];
+    q.options.forEach((o, i) => {
+      const L = letters[i];
+      const isRight = q.answer.includes(L);
+      let cls = "opt";
+      if (judged) cls += isRight ? " ok" : (picked.includes?.(L) || picked === L ? " bad" : "");
+      else if (isMulti ? picked.includes(L) : picked === L) cls += " sel";
+      html += `<div class="${cls}" onclick="pick('${q.id}',${i})">
+        <div class="tag">${L}</div>
+        <div class="opttext">${q.img && q.textOptions ? esc(o) : esc(o)}</div></div>`;
+    });
+    if (judged) {
+      html += `<div class="answerline"><b class="${judged.correct ? "tag-ok" : "tag-bad"}">${judged.correct ? "✓ 回答正确" : "✗ 回答错误"}</b> · 正确答案：<b>${esc(q.answer)}</b></div>`;
+      if (q.explanation) html += `<div class="expl"><b>解析</b>\n${esc(q.explanation)}</div>`;
+      if (q.expl_img) html += imgHTML(q.expl_img, "解析图片");
+    } else if (isMulti) {
+      html += `<button class="btn block" onclick="judge('${q.id}')" style="margin-top:8px">确认答案</button>`;
+    }
   }
   html += `</div>`;
   html += `<div class="qnav">
@@ -512,6 +533,19 @@ function moveQ(d) {
   const Q = state.q;
   if (Q.idx + d >= Q.qs.length) return finishQuiz();
   Q.idx = Math.max(0, Q.idx + d);
+  render();
+}
+// 主观题（申论）
+function showAnswer() {
+  const Q = state.q;
+  (Q.showAns = Q.showAns || {})[Q.qs[Q.idx].id] = true;
+  render();
+}
+function subjJudge(ok) {
+  const Q = state.q;
+  const q = Q.qs[Q.idx];
+  Q.judged[q.id] = { correct: !!ok, self: true };
+  bump(q.id, !!ok);
   render();
 }
 function finishQuiz() {
@@ -827,6 +861,189 @@ function links() {
         <div style="flex:1"><div>${esc(r.n)} <span class="muted">★ ${r.s >= 1000 ? (r.s / 1000).toFixed(1) + "k" : r.s}</span></div>
         <div class="muted">${esc(r.d)}</div></div><span class="arrow">↗</span></div>`;
     }
+  }
+  html += `<div style="height:24px"></div>`;
+  $("#main").innerHTML = html;
+}
+// ===== 时政热点（每日自动更新：打开即拉两个开源每日源，localStorage 兜底）=====
+function hotCache(k, v) {
+  if (v === undefined) { try { return JSON.parse(localStorage.getItem("jwz_hot_" + k)); } catch (e) { return null; } }
+  localStorage.setItem("jwz_hot_" + k, JSON.stringify({ t: Date.now(), v }));
+}
+// 带超时的 fetch（外网源挂起时 8s 中止走回退链，绝不永久卡住）
+async function fetchTO(url, opts = {}, ms = 8000) {
+  const ctl = new AbortController();
+  const t = setTimeout(() => ctl.abort(), ms);
+  try {
+    const r = await fetch(url, { ...opts, signal: ctl.signal });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    return r;
+  } finally { clearTimeout(t); }
+}
+async function ghRaw(repo, path) {
+  const r = await fetchTO(`https://api.github.com/repos/${repo}/contents/${path}`,
+    { headers: { Accept: "application/vnd.github.raw" }, cache: "no-store" });
+  return r.text();
+}
+async function ghList(repo, dir) {
+  const r = await fetchTO(`https://api.github.com/repos/${repo}/contents/${dir}?per_page=100`, { cache: "no-store" });
+  return r.json();
+}
+// md 迷你渲染器（标题/表格/列表/引用/加粗/分隔线）
+function md2html(src) {
+  const inl = s => esc(s).replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>").replace(/`([^`]+)`/g, "<code>$1</code>");
+  const lines = src.split("\n");
+  let html = "", i = 0;
+  while (i < lines.length) {
+    const l = lines[i];
+    if (/^#{1,4}\s/.test(l)) {
+      const lv = Math.min(5, l.match(/^#+/)[0].length + 1);
+      html += `<h${lv} style="margin:12px 0 6px;font-size:${17 - lv}px;font-weight:600">${inl(l.replace(/^#+\s*/, ""))}</h${lv}>`;
+      i++; continue;
+    }
+    if (/^\|/.test(l)) {
+      const rows = [];
+      while (i < lines.length && /^\|/.test(lines[i])) {
+        const cells = lines[i].replace(/^\||\|$/g, "").split("|").map(c => c.trim());
+        if (!/^-{2,}/.test(cells[0])) rows.push(cells);
+        i++;
+      }
+      if (rows.length) {
+        html += `<table class="mini" style="width:100%;border-collapse:collapse;font-size:13px;margin:8px 0"><tr>` +
+          rows[0].map(c => `<th style="border:1px solid var(--line);padding:5px 7px;text-align:left;background:#f5f5f5">${inl(c)}</th>`).join("") + `</tr>` +
+          rows.slice(1).map(r => "<tr>" + r.map(c => `<td style="border:1px solid var(--line);padding:5px 7px;vertical-align:top">${inl(c)}</td>`).join("") + "</tr>").join("") + `</table>`;
+      }
+      continue;
+    }
+    if (/^---+\s*$/.test(l)) { html += `<hr style="border:none;border-top:1px solid var(--line);margin:10px 0">`; i++; continue; }
+    if (/^\s*[-*]\s+/.test(l)) {
+      const items = [];
+      while (i < lines.length && /^\s*[-*]\s+/.test(lines[i])) { items.push(lines[i].replace(/^\s*[-*]\s+/, "")); i++; }
+      html += `<ul style="margin:6px 0 6px 20px">` + items.map(x => `<li>${inl(x)}</li>`).join("") + `</ul>`;
+      continue;
+    }
+    if (/^>\s?/.test(l)) {
+      const qs = [];
+      while (i < lines.length && /^>\s?/.test(lines[i])) { qs.push(lines[i].replace(/^>\s?/, "")); i++; }
+      html += `<div class="muted" style="border-left:3px solid var(--line);padding-left:8px;margin:6px 0">${inl(qs.join(" "))}</div>`;
+      continue;
+    }
+    if (!l.trim()) { i++; continue; }
+    const para = [];
+    while (i < lines.length && lines[i].trim() && !/^(#|\||>|---+|\s*[-*]\s)/.test(lines[i])) { para.push(inl(lines[i])); i++; }
+    html += `<p style="margin:6px 0">${para.join("<br>")}</p>`;
+  }
+  return html;
+}
+// 每日日报 HTML → {date, groups:[{title, items:[{title,date,url}]}]}
+function parseReport(html) {
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  const date = (doc.querySelector("h1") || {}).textContent || "";
+  const groups = [];
+  for (const h2 of doc.querySelectorAll("section h2")) {
+    const sec = h2.closest("section");
+    if (!sec) continue;
+    const items = [];
+    for (const h3 of sec.querySelectorAll("h3")) {
+      const tag = h3.querySelector(".tag");
+      const d = tag ? tag.textContent.trim() : "";
+      let title = h3.textContent.replace(d, "").trim();
+      const card = h3.parentElement;
+      const a = (card && card.querySelector("p.src a")) || h3.nextElementSibling;
+      const url = a && a.href ? a.href : "";
+      if (title) items.push({ title, date: d, url });
+    }
+    if (items.length) groups.push({ title: h2.textContent.trim(), items });
+  }
+  return { date: date.trim(), groups };
+}
+async function loadHotspot() {
+  const out = { daily: null, report: null, cached: [], errs: [] };
+  // ① 政策与热点速览（时政日报 md）：jsDelivr 优先（国内友好），GitHub API 兜底
+  try {
+    const list = await ghList("Cor-beau/gd-shizheng-daily", "daily");
+    const latest = list.filter(f => f.name.endsWith(".md")).map(f => f.name).sort().pop();
+    if (latest) {
+      let md;
+      try {
+        const r = await fetchTO(`https://cdn.jsdelivr.net/gh/Cor-beau/gd-shizheng-daily@main/daily/${latest}`, { cache: "no-store" }, 6000);
+        md = await r.text();
+      } catch (e) { md = await ghRaw("Cor-beau/gd-shizheng-daily", "daily/" + latest); }
+      out.daily = { date: latest.replace(/\.md$/, ""), md };
+      hotCache("daily", out.daily);
+    }
+  } catch (e) {
+    const c = hotCache("daily");
+    if (c && c.v) { out.daily = c.v; out.cached.push("政策源"); }
+    out.errs.push("政策源: " + e.message);
+  }
+  // ② 国内外大事（每日日报 HTML）：GitHub API 优先（该仓 jsDelivr 不可用），jsDelivr 兜底
+  try {
+    const list = await ghList("zjy-allen/daily-report", "archive");
+    const latest = list.filter(f => f.name.endsWith(".html")).map(f => f.name).sort().pop();
+    if (latest) {
+      let html;
+      try { html = await ghRaw("zjy-allen/daily-report", "archive/" + latest); }
+      catch (e) {
+        const r = await fetchTO(`https://cdn.jsdelivr.net/gh/zjy-allen/daily-report@main/archive/${latest}`, { cache: "no-store" }, 6000);
+        html = await r.text();
+      }
+      out.report = parseReport(html);
+      out.report.date = latest.replace(/\.html$/, "") || out.report.date;
+      hotCache("report", out.report);
+    }
+  } catch (e) {
+    const c = hotCache("report");
+    if (c && c.v) { out.report = c.v; out.cached.push("大事源"); }
+    out.errs.push("大事源: " + e.message);
+  }
+  return out;
+}
+async function hotspot() {
+  header("时政热点", "home");
+  $("#main").innerHTML = `<div class="card muted">⏳ 正在获取每日最新内容…（每日自动更新，打开即刷新）</div>`;
+  let data;
+  try { data = await loadHotspot(); }
+  catch (e) { data = { errs: ["加载异常: " + e.message] }; }
+  if (state.view !== "hotspot") return; // 用户已切页则丢弃
+  renderHot(data);
+}
+function renderHot(d) {
+  const badge = (dt, ok) => `<span class="pill">${ok ? "● 实时" : "○ 缓存"} ${esc(dt || "—")}</span>`;
+  let html = `<div class="card" style="margin-bottom:0">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <b>每日自动更新</b><span class="muted">打开即拉最新</span>
+      <span style="flex:1"></span>
+      <button class="btn ghost" style="padding:4px 12px;font-size:13px" onclick="hotspot()">刷新</button>
+    </div>
+    <div class="muted" style="margin-top:6px">
+      政策速览 ${badge(d.daily && d.daily.date, !d.cached.includes("政策源"))}
+      国内外大事 ${badge(d.report && d.report.date, !d.cached.includes("大事源"))}
+    </div>
+    ${d.errs && d.errs.length ? `<div class="muted" style="color:var(--bad);margin-top:4px">部分源获取失败（${esc(d.errs.join("；"))}），已用缓存兜底</div>` : ""}
+  </div>`;
+  if (d.daily && d.daily.md) {
+    const md = d.daily.md;
+    const cut = md.indexOf("\n---");
+    const lead = cut > 0 ? md.slice(0, cut) : md;
+    html += `<div class="sect">政策与热点速览 · ${esc(d.daily.date)}</div>`;
+    html += `<div class="card">${md2html(lead)}`;
+    if (cut > 0) html += `<details style="margin-top:8px"><summary class="muted" style="cursor:pointer">展开全文素材（含论点/表述/用法）</summary>${md2html(md.slice(cut))}</details>`;
+    html += `</div>`;
+  }
+  if (d.report && d.report.groups) {
+    for (const g of d.report.groups) {
+      html += `<div class="sect">${esc(g.title)} · ${esc(d.report.date)}</div>`;
+      for (const it of g.items) {
+        html += `<div class="row-item" ${it.url ? `onclick="window.open('${esc(it.url)}','_blank','noopener')"` : ""}>
+          <div style="flex:1"><div>${esc(it.title)}</div>
+          <div class="muted">${esc(it.date)}${it.url ? " · 来源 ↗" : ""}</div></div>
+          ${it.url ? '<span class="arrow">↗</span>' : ""}</div>`;
+      }
+    }
+  }
+  if (!d.daily && !d.report) {
+    html += `<div class="card muted">暂无内容：网络不可用且没有本地缓存，稍后再试。</div>`;
   }
   html += `<div style="height:24px"></div>`;
   $("#main").innerHTML = html;

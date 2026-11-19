@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""导入 xiaogaostu/xingce-app 行测真题（22,298 题，2022-2026）为新科目「考公考编」
+"""导入 xiaogaostu/xingce-app 行测真题（22,298 题，2022-2026）为新科目「行测」
 - 文本：jsDelivr 拉 6 个模块 JSON（50.6MB）
 - 配图：GitHub Releases 下完整版 APK（116MB，即 ZIP）解出被引用的题目图
 - 章节 = 题型（qtype），板块 = 模块；含解析/材料题材料拼干
@@ -186,10 +186,10 @@ def main():
         os.remove(old)
     idx_path = os.path.join(DATA, "index.json")
     idx = json.load(open(idx_path, encoding="utf-8"))
-    idx["subjects"] = [s for s in idx["subjects"] if s.get("id") != "考公考编"]
+    idx["subjects"] = [s for s in idx["subjects"] if s.get("id") not in ("行测", "考公考编")]
 
     MOD_ORDER = ["政治理论", "常识判断", "言语理解与表达", "数量关系", "判断推理", "资料分析"]
-    subject = {"id": "考公考编", "name": "考公考编", "sections": []}
+    subject = {"id": "行测", "name": "行测", "sections": []}
     n_q = 0
     for mod in MOD_ORDER:
         pairs = [(qt, g) for (m, qt), g in groups.items() if m == mod]
