@@ -1,0 +1,1 @@
+{"questions": [{"type": "single", "stem": "题目: 关于区块链，不包含（ ）。", "options": ["私有链", "公有链", "行业链", "联盟链"], "answer": "C", "explanation": "区块链按准入机制分为三类：公有链（Public Blockchain，完全开放，如比特币/以太坊）、私有链（Private Blockchain，权限控制，仅内部使用）、联盟链（Consortium Blockchain，多机构联合，半开放）。\"行业链\"不是区块链的标准分类。", "id": "架构-新技术应用-2023年下半年#1"}]}

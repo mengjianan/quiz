@@ -168,7 +168,7 @@ function render() {
   // nav
   $("#nav").innerHTML = NAV.map(([v,t,ic]) =>
     `<a href="#" class="${state.view===v||(v==="catalog"&&["quiz","mock","report","catalog2"].includes(state.view))?"on":""}" onclick="go('${v}')"><span class="ic">${ic}</span>${t}</a>`).join("");
-  ({ home, catalog, catalog2, quiz, wrong, stats, me, mock, report, quizMock, links, hotspot })[state.view](state.arg);
+  ({ home, catalog, catalog2, quiz, wrong, stats, me, mock, report, quizMock, links, hotspot, exams, kp })[state.view](state.arg);
   window.scrollTo(0, 0);
 }
 function login() {
@@ -324,6 +324,21 @@ async function home() {
       <div class="muted">${qs.length} 章 · 已刷 ${done} 章</div></div>`;
   }
   html += `</div></div>`;
+  // 考试倒计时条（最近一场未考的试 → 考试中心）
+  try {
+    const exd = await (await fetch("data/exams.json")).json();
+    const t0 = new Date(new Date().toDateString());
+    const upcoming = (exd.exams || []).filter(e => !e.done && e.exam_iso)
+      .map(e => ({ e, days: Math.ceil((new Date(e.exam_iso + "T00:00:00") - t0) / 86400000) }))
+      .filter(x => x.days >= 0)
+      .sort((a, b) => a.days - b.days)[0];
+    if (upcoming) {
+      html += `<div class="card" style="cursor:pointer;display:flex;gap:12px;align-items:center" onclick="go('exams')">
+        <div class="statnum" style="color:${upcoming.days <= 14 ? "var(--bad)" : "var(--fg)"}">D-${upcoming.days}</div>
+        <div style="flex:1"><div><b>${esc(upcoming.e.name)}</b></div>
+        <div class="muted">${esc(upcoming.e.exam_text || "")} · 报名入口与全部考试 →</div></div></div>`;
+    }
+  } catch (e) { /* 倒计时失败不影响首页其余内容 */ }
   html += `<div class="card"><div class="grid2">
     <div><div class="statnum">${today.n}</div><div class="muted">今日做题</div></div>
     <div><div class="statnum">${streak}<span style="font-size:13px;font-weight:400"> 天</span></div><div class="muted">连续学习</div></div>
@@ -337,6 +352,10 @@ async function home() {
   html += `<div class="card"><div class="grid2">
     <button class="btn ghost" onclick="go('hotspot')">时政热点 · 每日更新</button>
     <button class="btn ghost" onclick="go('links')">408 备考资料</button>
+  </div></div>`;
+  html += `<div class="card"><div class="grid2">
+    <button class="btn ghost" onclick="go('kp')">知识点 · 背诵</button>
+    <button class="btn ghost" onclick="go('exams')">考试中心 · 倒计时</button>
   </div></div>`;
   html += `<div class="card"><div class="grid2">
     <button class="btn ghost" onclick="go('wrong')">错题本 ${Object.keys(wrong).length}</button>
@@ -1049,6 +1068,160 @@ function renderHot(d) {
     html += `<div class="card muted">暂无内容：网络不可用且没有本地缓存，稍后再试。</div>`;
   }
   html += `<div style="height:24px"></div>`;
+  $("#main").innerHTML = html;
+}
+// ===== 知识点 · 背诵（P1：科目 → 分组 → 翻面自评，掌握度存 localStorage）=====
+let KPDATA = null;
+const kpSt = { stage: "s", s: 0, g: 0, c: 0, show: false };
+function kpGet(subj, grp, card) {
+  return (Store.get("kp", {})[subj + "/" + grp + "/" + card] || {}).lvl || 0;
+}
+function kpSet(subj, grp, card, lvl) {
+  const m = Store.get("kp", {});
+  m[subj + "/" + grp + "/" + card] = { lvl, t: Date.now() };
+  Store.set("kp", m);
+}
+function kpGroupStat(subj, cards, grp) {
+  let done = 0, known = 0;
+  for (const c of cards) {
+    const l = kpGet(subj, grp, c.q);
+    if (l) { done++; if (l >= 3) known++; }
+  }
+  return { done, known, total: cards.length };
+}
+async function kp() {
+  header("知识点 · 背诵", "home");
+  if (!KPDATA) {
+    $("#main").innerHTML = `<div class="card muted">📚 加载知识点卡片…</div>`;
+    try { KPDATA = await (await fetch("data/kp.json")).json(); }
+    catch (e) {
+      if (state.view === "kp") $("#main").innerHTML = `<div class="card muted">加载失败：${esc(e.message)}</div>`;
+      return;
+    }
+  }
+  if (state.view !== "kp") return;
+  renderKp();
+}
+function renderKp() {
+  const S = kpSt;
+  const subs = KPDATA.subjects;
+  if (S.stage === "s") {
+    let html = `<div class="card muted" style="margin-bottom:0">翻面自评：先看考点自测，翻面对答案，点「认识 / 模糊 / 不认识」记掌握度。</div><div class="card"><div style="display:flex;gap:8px;flex-wrap:wrap">`;
+    subs.forEach((s, i) => {
+      html += `<span class="chip ${i === S.s ? "on" : ""}" onclick="kpPickSubj(${i})">${esc(s.name)}<span class="muted" style="margin-left:4px">${s.groups.length}组</span></span>`;
+    });
+    html += `</div></div>`;
+    $("#main").innerHTML = html;
+    return;
+  }
+  const subj = subs[S.s];
+  if (S.stage === "g") {
+    let html = `<div class="sect">${esc(subj.name)} · ${subj.groups.length} 组</div>`;
+    subj.groups.forEach((g, i) => {
+      const st = kpGroupStat(subj.name, g.cards, g.name);
+      const pct = st.total ? Math.round(st.known / st.total * 100) : 0;
+      html += `<div class="row-item" onclick="kpPickGroup(${i})">
+        <div style="flex:1"><div>${esc(g.name)}</div>
+        <div class="muted">${g.cards.length} 卡 · 已评 ${st.done} · 熟悉 ${st.known}</div>
+        ${st.done ? `<div class="bar"><i style="width:${pct}%"></i></div>` : ""}</div><span class="arrow">›</span></div>`;
+    });
+    $("#main").innerHTML = html;
+    return;
+  }
+  if (S.stage === "c") {
+    const g = subj.groups[S.g];
+    const cards = g.cards;
+    if (S.c >= cards.length) {
+      const st = kpGroupStat(subj.name, cards, g.name);
+      $("#main").innerHTML = `<div class="card" style="text-align:center">
+        <div class="statnum">${st.known}/${st.total}</div><div class="muted">本组熟悉 · 已评 ${st.done} 张</div>
+        <div class="grid2" style="margin-top:14px">
+          <button class="btn ghost" onclick="kpRestart()">重背本组</button>
+          <button class="btn" onclick="kpBack('g')">返回分组</button></div></div>`;
+      return;
+    }
+    const card = cards[S.c];
+    const lvl = kpGet(subj.name, g.name, card.q);
+    let html = `<div class="topbar" style="position:static;border:none;padding:0 16px"><div class="row" style="padding:10px 0">
+      <button class="back" onclick="kpBack('g')">‹</button>
+      <div style="flex:1;font-size:13px" class="muted">${esc(subj.name)} · ${esc(g.name)}</div>
+      <span class="pill">${S.c + 1} / ${cards.length}</span></div></div>`;
+    html += `<div class="card" onclick="kpFlip()" style="cursor:pointer;min-height:150px">`;
+    if (!S.show) {
+      html += `<div style="text-align:center;padding:26px 6px">
+        <div style="font-size:17px;font-weight:600;line-height:1.6">${esc(card.q)}</div>
+        <div class="muted" style="margin-top:26px">点击卡片翻面看答案 ↻</div></div>`;
+    } else {
+      html += `<div class="muted" style="font-size:13px;margin-bottom:6px">考点：</div>
+        <div style="font-size:16px;font-weight:600;margin-bottom:10px">${esc(card.q)}</div>
+        <div class="expl" style="margin:0">${esc(card.a || "（无详解）")}</div>`;
+    }
+    html += `</div>`;
+    if (S.show) {
+      html += `<div class="card"><div style="display:flex;gap:8px">
+        <button class="btn ghost" style="flex:1" onclick="kpJudge(1)">✗ 不认识</button>
+        <button class="btn ghost" style="flex:1" onclick="kpJudge(2)">~ 模糊</button>
+        <button class="btn" style="flex:1" onclick="kpJudge(3)">✓ 认识</button></div>
+        ${lvl ? `<div class="muted" style="text-align:center;margin-top:8px">上次自评：${["", "不认识", "模糊", "认识"][lvl]}</div>` : ""}</div>`;
+    }
+    html += `<div class="qnav">
+      <button class="btn ghost" onclick="kpMove(-1)" ${S.c === 0 ? "disabled" : ""}>上一张</button>
+      <button class="btn" onclick="kpMove(1)">下一张 →</button></div>`;
+    $("#main").innerHTML = html;
+    return;
+  }
+}
+function kpPickSubj(i) { kpSt.s = i; kpSt.stage = "g"; renderKp(); }
+function kpPickGroup(i) { kpSt.g = i; kpSt.c = 0; kpSt.show = false; kpSt.stage = "c"; renderKp(); }
+function kpBack(stage) { kpSt.stage = stage; kpSt.show = false; renderKp(); }
+function kpFlip() { kpSt.show = !kpSt.show; renderKp(); }
+function kpMove(d) {
+  const g = KPDATA.subjects[kpSt.s].groups[kpSt.g];
+  kpSt.c = Math.max(0, Math.min(g.cards.length, kpSt.c + d));
+  kpSt.show = false;
+  renderKp();
+}
+function kpJudge(lvl) {
+  const subj = KPDATA.subjects[kpSt.s];
+  const g = subj.groups[kpSt.g];
+  kpSet(subj.name, g.name, g.cards[kpSt.c].q, lvl);
+  kpMove(1);
+}
+function kpRestart() { kpSt.c = 0; kpSt.show = false; renderKp(); }
+
+// ===== 考试中心（倒计时 + 报名入口，数据源 data/exams.json 可自行维护）=====
+async function exams() {
+  header("考试中心", "home");
+  $("#main").innerHTML = `<div class="card muted">📅 正在加载考试日程…</div>`;
+  let data;
+  try { data = await (await fetch("data/exams.json")).json(); }
+  catch (e) { data = { exams: [], note: "加载失败：" + e.message }; }
+  if (state.view !== "exams") return;
+  const t0 = new Date(new Date().toDateString());
+  const dayDiff = (iso) => Math.ceil((new Date(iso + "T00:00:00") - t0) / 86400000);
+  const list = [...(data.exams || [])].sort((a, b) =>
+    (a.done ? 1 : 0) - (b.done ? 1 : 0) ||
+    String(a.exam_iso || "9999").localeCompare(String(b.exam_iso || "9999")));
+  let html = `<div class="card muted" style="margin-bottom:0">📅 ${esc(data.note || "以官方公告为准")}</div>`;
+  for (const e of list) {
+    const days = e.exam_iso ? dayDiff(e.exam_iso) : null;
+    let badge;
+    if (e.done) badge = `<span class="pill">已考完</span>`;
+    else if (days != null && days >= 0) badge = `<div class="statnum" style="font-size:24px;color:${days <= 14 ? "var(--bad)" : "var(--fg)"}">D-${days}</div>`;
+    else badge = `<span class="pill">已结束</span>`;
+    html += `<div class="card">
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        ${badge}
+        <div style="flex:1;min-width:150px"><b>${esc(e.name)}</b>${e.est ? ' <span class="pill">预估</span>' : ""}
+          <div class="muted" style="font-size:13px">${esc(e.group || "")}</div></div>
+      </div>
+      <div class="muted" style="margin-top:8px;font-size:13px">笔试：${esc(e.exam_text || "待公告")}<br>报名：${esc(e.reg_text || "待公告")}</div>
+      <div class="grid2" style="margin-top:10px">
+        <button class="btn ghost" onclick="window.open('${esc(e.reg_url)}','_blank','noopener')">报名入口 ↗</button>
+        <button class="btn ghost" onclick="window.open('${esc(e.site_url)}','_blank','noopener')">官方网站 ↗</button>
+      </div>
+    </div>`;
+  }
   $("#main").innerHTML = html;
 }
 render();
