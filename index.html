@@ -333,12 +333,15 @@ async function home() {
   if (last && last.qid) {
     html += `<div class="card" style="cursor:pointer" onclick="resumeLast()"><b>继续上次练习</b><div class="muted">${esc(last.label || "")} ${last.idx + 1}/${last.total}</div></div>`;
   }
+  // 快捷入口区：时政热点/408资料前置一行（原在页尾易被忽略），错题/模拟随后
+  html += `<div class="card"><div class="grid2">
+    <button class="btn ghost" onclick="go('hotspot')">时政热点 · 每日更新</button>
+    <button class="btn ghost" onclick="go('links')">408 备考资料</button>
+  </div></div>`;
   html += `<div class="card"><div class="grid2">
     <button class="btn ghost" onclick="go('wrong')">错题本 ${Object.keys(wrong).length}</button>
     <button class="btn" onclick="go('mock')">模拟考试</button>
   </div></div>`;
-  html += `<div class="card" style="cursor:pointer" onclick="go('links')"><b>408 备考资料</b><div class="muted">计算机考研 GitHub 公开仓库：笔记 / 真题 / 规划 →</div></div>`;
-  html += `<div class="card" style="cursor:pointer" onclick="go('hotspot')"><b>时政热点</b><div class="muted">政策速览 · 国内外大事 · 每日自动更新 →</div></div>`;
   $("#main").innerHTML = html;
 }
 function CHAP_DONE() { return false; } // 占位：章节完成度简化为不显示（ponytail）
