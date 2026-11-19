@@ -4,3 +4,4 @@ img/test_*
 pan_*.py
 __pycache__/
 _test/
+_tmp_xingce/

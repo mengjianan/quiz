@@ -183,7 +183,7 @@ const PAD = { open: false, x: 16, y: 110, w: 320, h: 260, strokes: [], cur: null
 function needScratch(qid) {
   try {
     const c = findChapter(String(qid).split("#")[0]);
-    return !!c && (c.subjectName === "数学1" || c.subjectName === "408" || c.sectionName.indexOf("岗位能力") === 0);
+    return !!c && (c.subjectName === "数学1" || c.subjectName === "408" || c.subjectName === "考公考编" || c.sectionName.indexOf("岗位能力") === 0);
   } catch (e) { return false; }
 }
 function togglePad() {
