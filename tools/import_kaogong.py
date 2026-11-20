@@ -197,8 +197,10 @@ def main():
             continue
         pairs.sort(key=lambda p: -len(p[1]))  # 题量大的题型在前
         sec = {"name": mod, "chapters": []}
+        n_ch = 0
         for qt, g in pairs:
-            cid = f"考公-{mod}-{qt}"
+            n_ch += 1
+            cid = f"civil-{len([1 for x in subject['sections'] for c in x['chapters']]) + n_ch:03d}"
             for i, e in enumerate(g, 1):
                 e["id"] = f"{cid}#{i}"
             with open(os.path.join(DATA, cid + ".json"), "w", encoding="utf-8") as fp:

@@ -158,7 +158,7 @@ def build_pools(idx):
                     allq.extend(q for q in json.load(open(f, encoding="utf-8"))["questions"]
                                 if q.get("type") != "subjective")
         pool = random.sample(allq, min(600, len(allq)))
-        out = os.path.join(pool_dir, f"{s['name']}.json")
+        out = os.path.join(pool_dir, f"{s.get('code') or s['name']}.json")
         json.dump({"questions": pool}, open(out, "w", encoding="utf-8"), ensure_ascii=False)
         print(f"pool {s['name']}: {len(pool)} q, {os.path.getsize(out)//1024} KB")
 

@@ -1,0 +1,1 @@
+{"questions": [{"type": "single", "stem": "Java 中实现接口使用的关键字是（　）。", "options": ["extends", "implements", "implements abstract", "interface"], "answer": "B", "explanation": "类继承类用 extends，类实现接口用 implements；接口本身用 interface 定义。", "id": "dev-065#1"}]}

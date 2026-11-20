@@ -1,0 +1,1 @@
+{"questions": [{"type": "single", "stem": "对长度为n的有序数组进行二分查找，最坏情况下的时间复杂度为（ ）。", "options": ["O(n)", "O(n²)", "O(log₂n)", "O(nlog₂n)"], "answer": "C", "explanation": "二分查找每次将搜索范围缩小一半，最坏情况下需要比较⌈log₂n⌉+1次，时间复杂度为O(log₂n)。", "id": "architect-175#1"}]}

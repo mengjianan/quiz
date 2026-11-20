@@ -170,7 +170,7 @@ def load_architect():
                    key=lambda s: -sum(len(v) for (a, b), v in groups.items() if a == s))
     if "案例分析" in {s for s, _ in groups}: order.append("案例分析")
     if "论文" in {s for s, _ in groups}: order.append("论文")
-    return "系统架构设计师", "架构", groups, order
+    return "系统架构设计师", "architect", groups, order
 
 def load_analyst():
     p = cache_get("analyst_bank.json", "LOCAL")  # 已由 jsx_extract 生成
@@ -196,7 +196,7 @@ def load_analyst():
                 groups.setdefault(("案例分析", mod), []).append(e); stat["case"] += 1
     print(f"  analyst: {stat} | modules: {mod_order}", flush=True)
     order = mod_order + ["案例分析"]
-    return "系统分析师", "分析", groups, order
+    return "系统分析师", "analyst", groups, order
 
 def load_gaoxiang():
     p = cache_get("gaoxiang_q.json", CDN_MAIN.format("xmgzxmgz/ruankao-cli") + "questions.json")
@@ -220,7 +220,7 @@ def load_gaoxiang():
         groups.setdefault((sec, chap), []).append(e)
         stat["q"] += 1
     print(f"  gaoxiang: {stat} | sections: {len(sec_order)}", flush=True)
-    return "信息系统项目管理师", "高项", groups, sec_order
+    return "信息系统项目管理师", "pm", groups, sec_order
 
 def load_designer():
     # 章节（知识点标题）
@@ -266,7 +266,7 @@ def load_designer():
     order = [t for _, t in sorted(((k, chap_titles[k]) for k in chap_titles), key=lambda x: x[0])]
     order = [t for t in order if any(s == t for s, _ in groups)]
     print(f"  designer: {stat} | sections: {len(order)}", flush=True)
-    return "软件设计师", "软设", groups, order
+    return "软件设计师", "dev", groups, order
 
 def load_infosec():
     SEC = {"application": "应用安全", "crypto": "密码学", "network": "网络安全",
@@ -285,7 +285,7 @@ def load_infosec():
             groups.setdefault((cn, topic), []).append(e)
             stat["q"] += 1
     print(f"  infosec: {stat} | sections: {order}", flush=True)
-    return "信息安全工程师", "信安", groups, order
+    return "信息安全工程师", "sec", groups, order
 
 # ---------- 写盘 ----------
 def write_subject(subj_name, prefix, groups, section_order):
@@ -306,8 +306,10 @@ def write_subject(subj_name, prefix, groups, section_order):
         if not chaps:
             continue
         s_entry = {"name": sec, "chapters": []}
+        n_ch = 0
         for chap, entries in chaps:
-            cid = f"{prefix}-{safe(sec)}-{safe(chap)}"
+            n_ch += 1
+            cid = f"{prefix}-{len([1 for x in subject['sections'] for c in x['chapters']]) + n_ch:03d}"
             for i, e in enumerate(entries, 1):
                 e["id"] = f"{cid}#{i}"
             with open(os.path.join(DATA, cid + ".json"), "w", encoding="utf-8") as fp:

@@ -1,1 +1,0 @@
-{"questions": [{"type": "single", "stem": "某密码系统设计者声称'我们的加密算法是保密的，所以更安全'。这违反了哪个原则？", "options": ["最小权限原则", "Kerckhoffs原则", "纵深防御原则", "失败安全原则"], "answer": "B", "explanation": "场景题。Kerckhoffs原则：安全不应依赖算法保密。假设攻击者知道算法，安全只依赖密钥。'算法保密'是安全错觉(可通过逆向工程获取)。", "id": "信安-密码学-engineering-detail#1"}]}

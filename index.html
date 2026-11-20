@@ -425,7 +425,10 @@ async function startRandom(n) {
     await loadIndex();
     const sid = state.arg || INDEX.subjects[0].id;
     // ponytail: 题池单文件加载（旧版串行拉全部310个章节=13.3MB导致卡死）
-    if (!POOL[sid]) POOL[sid] = (await (await fetch(`data/pool/${sid}.json`)).json()).questions;
+    if (!POOL[sid]) {
+      const subj = INDEX.subjects.find(s => s.id === sid);
+      POOL[sid] = (await (await fetch(`data/pool/${(subj && subj.code) || sid}.json`)).json()).questions;
+    }
     if (!POOL[sid].length) { alert("该科目为主观题练习（申论），请从章节进入；随机/模拟考仅支持客观题科目。"); return; }
     const qs = shuffle([...POOL[sid]]).slice(0, n);
     startQuiz("random", qs, `随机练习·${INDEX.subjects.find(s => s.id === sid).name}`);
@@ -887,6 +890,45 @@ function links() {
   html += `<div style="height:24px"></div>`;
   $("#main").innerHTML = html;
 }
+// 文件名英文化后的进度迁移：localStorage 中旧 qid/章节ID → 新 ID（data/idmap.json）
+async function migrateIds() {
+  let map = null;
+  try {
+    const r = await fetch("data/idmap.json");
+    if (r.ok) map = await r.json();
+  } catch (e) { return; }
+  if (!map || !Object.keys(map).length) return;
+  const remap = (q) => {
+    q = String(q);
+    const i = q.indexOf("#");
+    if (i < 0) return map[q] || q;
+    const cid = q.slice(0, i);
+    return (map[cid] || cid) + q.slice(i);
+  };
+  const rec = Store.get("rec", {}); const rec2 = {};
+  for (const k of Object.keys(rec)) {
+    const nk = remap(k);
+    if (rec2[nk]) { rec2[nk].n += rec[k].n; rec2[nk].c += rec[k].c; }
+    else rec2[nk] = rec[k];
+  }
+  Store.set("rec", rec2);
+  const wrong = Store.get("wrong", {}); const w2 = {};
+  for (const k of Object.keys(wrong)) {
+    const nk = remap(k);
+    w2[nk] = w2[nk] ? { count: Math.max(w2[nk].count, wrong[k].count) } : wrong[k];
+  }
+  Store.set("wrong", w2);
+  const fav = Store.get("fav", []);
+  Store.set("fav", [...new Set(fav.map(remap))]);
+  const last = Store.get("last", null);
+  if (last) {
+    const l = { ...last };
+    if (l.qid) l.qid = remap(l.qid);
+    if (l.chapterId && map[l.chapterId]) l.chapterId = map[l.chapterId];
+    Store.set("last", l);
+  }
+}
+
 // ===== 时政热点（每日自动更新：打开即拉两个开源每日源，localStorage 兜底）=====
 function hotCache(k, v) {
   if (v === undefined) { try { return JSON.parse(localStorage.getItem("jwz_hot_" + k)); } catch (e) { return null; } }
@@ -1224,7 +1266,9 @@ async function exams() {
   }
   $("#main").innerHTML = html;
 }
-render();
+// 启动：idmap 迁移（文件名英文化后旧做题进度自动换新 ID），再渲染
+(async () => { try { await migrateIds(); } catch (e) {} render(); })();
+
 // 注册 Service Worker（PWA 安装资格 + 图片缓存提速 + 离线）
 if ("serviceWorker" in navigator) {
   addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));

@@ -1,1 +1,0 @@
-{"questions": [{"type": "single", "stem": "Floyd 算法求每对顶点间最短路径，采用的策略是（　）。", "options": ["贪心", "动态规划", "分治", "回溯"], "answer": "B", "explanation": "Floyd 通过逐步允许中间顶点 k，递推更新 dist[i][j]，是典型的动态规划，复杂度 O(n³)。", "id": "软设-算法设计与分析-四大算法策略对比#1"}]}

@@ -9,7 +9,7 @@ import os, re, sys, json, glob
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, "资料")
+SRC = os.path.join(ROOT, "sources")
 DATA = os.path.join(ROOT, "data")
 IMG = os.path.join(ROOT, "img")
 os.makedirs(DATA, exist_ok=True)
@@ -92,8 +92,9 @@ def parse_text_questions(raw):
 # ---------- 图片切题（数学1 / 图表题）----------
 RE_ANCHOR = re.compile(r"^\s*(\d+)\s*[、.．]\s*\S")
 
-def parse_image_questions(pdf_path, prefix):
+def parse_image_questions(pdf_path, cid):
     """按题号/答案锚点切出题干区域渲染成 PNG（公式/图表在图里）
+    命名 {cid}_{序}[_a段][_e][段] —— 与 rename_en 规则一致，重跑缓存命中
     跨页题输出多段图（img 为数组）；另附解析区域切图（expl_img）"""
     import pymupdf
     doc = pymupdf.open(pdf_path)
@@ -113,23 +114,32 @@ def parse_image_questions(pdf_path, prefix):
     ans_lines = [(pno, y0, re.sub(r"[^A-F]", "", re.search(r"正确答案[：:]\s*([A-F](?:[，,、 ]*[A-F])*)", s).group(1)))
                  for pno, y0, y1, s in lines if re.search(r"正确答案[：:]\s*[A-F]", s)]
 
-    def clip_to_imgs(y_from, y_to, qid, suffix=""):
-        """从 (p0,y_from) 切到 (p1,y_to)，跨页则多段"""
+    def clip_to_imgs(y_from, y_to, base, kind):
+        """从 (p0,y_from) 切到 (p1,y_to)，跨页多段
+        stem: {base}.png / {base}_a{j}.png   解析: {base}_e.png / {base}_e{j}.png"""
         p0, yf = y_from
         p1, yt = y_to
-        outs = []
+        segs = []
         for p in range(p0, p1 + 1):
             page = doc[p]
             y_a = max(0, yf - 2) if p == p0 else 0
             y_b = min(page.rect.height, yt + 2) if p == p1 else page.rect.height
             if y_b - y_a < 4:
                 continue
-            clip = pymupdf.Rect(0, y_a, page.rect.width, y_b)
-            rel = f"img/{qid}{suffix}_{p}.png"
+            segs.append((p, y_a, y_b))
+        outs = []
+        n = len(segs)
+        for j, (p, ya, yb) in enumerate(segs, 1):
+            clip = pymupdf.Rect(0, ya, doc[p].rect.width, yb)
+            if n == 1:
+                name = f"{base}.png" if kind == "stem" else f"{base}_e.png"
+            else:
+                name = f"{base}_a{j}.png" if kind == "stem" else f"{base}_e{j}.png"
+            rel = "img/" + name
             out_abs = os.path.join(ROOT, rel)
             if not os.path.exists(out_abs):  # 已切过则跳过（重跑提速）
                 # ponytail: 灰度1.5x省70%体积(Pages 1GB上限)；彩色图表题灰度失真时按章重渲染RGB
-                pix = page.get_pixmap(matrix=pymupdf.Matrix(1.5, 1.5), clip=clip, colorspace=pymupdf.csGRAY)
+                pix = doc[p].get_pixmap(matrix=pymupdf.Matrix(1.5, 1.5), clip=clip, colorspace=pymupdf.csGRAY)
                 pix.save(out_abs)
             outs.append(rel)
         return outs
@@ -141,8 +151,8 @@ def parse_image_questions(pdf_path, prefix):
         if not a:
             continue
         seq += 1
-        qid = f"{prefix}_{seq}"
-        imgs = clip_to_imgs((p0, y0), (a[0], a[1]), qid)
+        qid = f"{cid}_{seq}"
+        imgs = clip_to_imgs((p0, y0), (a[0], a[1]), qid, "stem")
         if not imgs:
             continue
         # 解析区域：答案行 -> 下一题号行（全局）
@@ -150,7 +160,7 @@ def parse_image_questions(pdf_path, prefix):
         expl = " ".join(s for p, y0_, y1_, s in lines
                         if (p, y0_) > (a[0], a[1]) and (p, y0_) < nxt).strip()
         expl = re.sub(r"^正确答案[：:]\s*[A-F]+\s*|^解析[：:]?\s*", "", expl)
-        expl_imgs = clip_to_imgs((a[0], a[1]), nxt, qid, "_e") if (nxt[0], nxt[1]) != (a[0], a[1]) else []
+        expl_imgs = clip_to_imgs((a[0], a[1]), nxt, qid, "e") if (nxt[0], nxt[1]) != (a[0], a[1]) else []
         ans = a[2]
         n_opt = max(4, max(ord(c) - 64 for c in ans))
         questions.append({
@@ -167,12 +177,12 @@ def parse_image_questions(pdf_path, prefix):
 
 # ---------- 章节目录（按文件名归类）----------
 SUBJ_RULES = [
-    ("数学1", "数学1", [  # 前缀匹配本地资料目录
+    ("math1", "数学1", [  # 前缀匹配本地资料目录
         ("函数|极限|连续|导数|微分|积分|级数|微分方程|空间解析|向量代数|多元", "高等数学"),
         ("行列式|矩阵|向量|线性方程|特征值|二次型|线性代数", "线性代数"),
         ("概率|随机|分布|数字特征|大数定律|中心极限|数理统计|参数估计|假设检验|抽样", "概率论与数理统计"),
     ]),
-    ("公共科目", "公共科目", [  # 前缀匹配本地资料目录
+    ("public-subject", "公共科目", [  # 前缀匹配本地资料目录
         ("马克思主义|马原|哲学|认识|唯物|历史观|社会发展", "基本知识-马克思主义理论"),
         ("毛泽东|邓小平|三个代表|科学发展观|习近平|中特|社会主义", "基本知识-党的创新理论"),
         ("思想道德|人生观|理想信念|中国精神|核心价值观|道德", "基本知识-思想道德"),
@@ -199,22 +209,15 @@ def classify(path):
             return subject, "其他"
     return None, None
 
-def make_cid(cid0, seen, counts):
-    """同名章节消歧：首个沿用原 cid（进度兼容），其余加 -d序号。
-    一文件一章节——旧版按同名合并会把不同专题的强化练习混成一章。"""
-    if counts.get(cid0, 0) <= 1:
-        return cid0
-    k = seen.get(cid0, 0)
-    seen[cid0] = k + 1
-    return cid0 if k == 0 else f"{cid0}-d{k}"
-
 def main():
     files = sorted(glob.glob(os.path.join(SRC, "**", "*.pdf"), recursive=True))
-    files = [f for f in files if "题目+解析" in f.replace("\\", "/")]
+    files = [f for f in files if "/qa/" in f.replace("\\", "/")]
     print(f"found {len(files)} pdfs", flush=True)
+    CODE_OF = {"公共科目": "common", "数学1": "math1"}
 
-    # pass1：文件元信息 + 同名计数
+    # pass1：文件元信息 + 英文章节 id（common/math1-NNN，与 rename_en 规则一致）
     meta = []
+    seq_by = {}
     for f in files:
         subject, section = classify(f)
         if not subject:
@@ -224,19 +227,18 @@ def main():
         chap = re.sub(r"-\d+\.pdf$", "", chap)       # 去尾部 id
         chap = re.sub(r"\.pdf$", "", chap)
         chap = chap.replace("（解析）", "").replace(" 答案解析", "")
-        cid0 = re.sub(r"\W+", "-", f"{subject[:2]}-{chap}")[:24].strip("-")
-        meta.append((f, subject, section, chap, cid0, name))
-    counts = {}
-    for m in meta:
-        counts[m[4]] = counts.get(m[4], 0) + 1
+        code = CODE_OF[subject]
+        seq_by[code] = seq_by.get(code, 0) + 1
+        cid = f"{code}-{seq_by[code]:03d}"
+        meta.append((f, subject, section, chap, cid, name))
+    del seq_by
 
-    # 清空旧数据（全部重建，避免孤儿文件）
-    for old in glob.glob(os.path.join(DATA, "*.json")):
+    # 只清理本脚本产出的文件（common-*/math1-*），不影响其他科目
+    for old in glob.glob(os.path.join(DATA, "common-*.json")) + glob.glob(os.path.join(DATA, "math1-*.json")):
         os.remove(old)
 
-    seen_cid, seen_img = {}, {}
     entries = []  # 源文件顺序（章节排序的基础）
-    for f, subject, section, chap, cid0, orig in meta:
+    for f, subject, section, chap, cid, orig in meta:
         try:
             reader = PdfReader(f)
             raw = "\n".join((p.extract_text() or "") for p in reader.pages)
@@ -244,16 +246,10 @@ def main():
             print(f"SKIP {orig}: {e}", flush=True)
             continue
         qs = parse_text_questions(raw)
-        cid = make_cid(cid0, seen_cid, counts)
-        # 图片前缀同规则消歧：同名文件首个沿用旧前缀（已有切图缓存命中），其余重渲染
-        ibase = re.sub(r"\W", "", chap)[:12]
-        k = seen_img.get(ibase, 0)
-        seen_img[ibase] = k + 1
-        prefix = ibase if k == 0 else f"{ibase}d{k}"
         if subject == "数学1":
-            # 公式在图片里，整章切图
+            # 公式在图片里，整章切图（命名 {cid}_{序}[_a段][_e]，与 rename_en 一致=缓存命中）
             try:
-                img_qs = parse_image_questions(f, prefix)
+                img_qs = parse_image_questions(f, cid)
                 if img_qs:
                     qs = img_qs
             except Exception as e:
@@ -261,7 +257,7 @@ def main():
         elif qs and any(not q["stem"] for q in qs):
             # 公共科目图表题：题干为空的按序号对齐补图片
             try:
-                img_qs = parse_image_questions(f, prefix)
+                img_qs = parse_image_questions(f, cid)
                 if len(img_qs) == len(qs):
                     for q, iq in zip(qs, img_qs):
                         if not q["stem"]:
@@ -312,13 +308,19 @@ def main():
                 removed += 1
     print(f"orphan imgs removed: {removed}", flush=True)
 
-    index_out = {"subjects": []}
+    # 与其他科目合并写回（公共/数学1 重建，其余科目原样保留）
+    ipath = os.path.join(DATA, "index.json")
+    try:
+        full = json.load(open(ipath, encoding="utf-8"))
+    except Exception:
+        full = {"subjects": []}
+    full["subjects"] = [s for s in full.get("subjects", []) if s.get("id") not in ("公共科目", "数学1")]
     for s in subjects_out.values():
         s["sections"] = list(s["sections"].values())
-        index_out["subjects"].append(s)
-    with open(os.path.join(DATA, "index.json"), "w", encoding="utf-8") as fp:
-        json.dump(index_out, fp, ensure_ascii=False, indent=1)
-    print(f"DONE: {n_total} questions, {sum(len(s['sections']) for s in index_out['subjects'])} sections", flush=True)
+        full["subjects"].append(s)
+    with open(ipath, "w", encoding="utf-8") as fp:
+        json.dump(full, fp, ensure_ascii=False, indent=1)
+    print(f"DONE: {n_total} questions, {sum(len(s['sections']) for s in full['subjects'])} sections", flush=True)
 
 if __name__ == "__main__":
     main()

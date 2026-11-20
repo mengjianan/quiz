@@ -1,1 +1,0 @@
-{"questions": [{"type": "single", "stem": "Java 中实现接口使用的关键字是（　）。", "options": ["extends", "implements", "implements abstract", "interface"], "answer": "B", "explanation": "类继承类用 extends，类实现接口用 implements；接口本身用 interface 定义。", "id": "软设-应用技术（案例分析）专题-第-5-题：Java-C++-程序设计（15-分）#1"}]}

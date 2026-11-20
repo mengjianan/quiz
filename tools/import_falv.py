@@ -15,8 +15,7 @@ CDN = "https://cdn.jsdelivr.net/gh/DADA-dcc/fakao-pwa@main/questions/"
 
 # 法考大纲式顺序
 ORDER = ["宪法", "法理学", "法制史", "国际法", "民法", "刑法", "行政法",
-         "民诉法", "刑诉法", "商经法", "知识产权法", "司法制度与职业道德",
-         "司法制度与道德", "法制史"]
+         "民诉法", "刑诉法", "商经法", "知识产权法", "司法制度与职业道德"]
 DIFF_ORDER = ["基础", "中等", "困难"]
 
 def fetch(url, timeout=90, dest=None):
@@ -76,11 +75,13 @@ def main():
             d = (q.get("difficulty") or "").strip() or "未分级"
             groups.setdefault(d, []).append(q)
         sec = {"name": name, "chapters": []}
+        n_ch = 0
         for d in DIFF_ORDER + [k for k in groups if k not in DIFF_ORDER]:
             g = groups.get(d)
             if not g:
                 continue
-            cid = f"法律-{name}-{d}"
+            n_ch += 1
+            cid = f"law-{len([1 for x in subject['sections'] for c in x['chapters']]) + n_ch:03d}"
             out = []
             for i, q in enumerate(g, 1):
                 opts = q.get("options") or {}

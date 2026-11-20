@@ -1,0 +1,1 @@
+{"questions": [{"type": "single", "stem": "", "img": "img/math1-009_1.png", "expl_img": "img/math1-009_1_e.png", "options": ["", "", "", ""], "answer": "C", "explanation": "本题求解的定义域是自然定义域，也即使得函数有意义的所有点的集合。对数函 数ln(3x+1)要求3x+1>0，根式 要求5-2x>0，反三角函数arcsinx要求-1", "id": "math1-009#1"}]}

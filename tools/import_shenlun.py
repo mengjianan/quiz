@@ -47,9 +47,11 @@ def main():
         if not years:
             continue
         sec = {"name": t, "chapters": []}
+        n_ch = 0
         for y in years:
             g = groups[(t, y)]
-            cid = f"申论-{t}-{y}"
+            n_ch += 1
+            cid = f"essay-{len([1 for x in subject['sections'] for c in x['chapters']]) + n_ch:03d}"
             out = []
             for i, r in enumerate(g, 1):
                 meta = " · ".join(x for x in [str(r["year"] or ""), r["region"] or "", r["variant"] or ""] if x)
