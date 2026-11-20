@@ -315,16 +315,8 @@ async function home() {
     if (st[d] && st[d].n > 0) streak++; else if (i > 0) break; else if (!st[d]) break;
   }
   const last = Store.get("last", null);
-  let html = `<div class="card"><div class="grid2">`;
-  for (const s of INDEX.subjects) {
-    const qs = subjectChapters(s.id);
-    const done = qs.filter(c => CHAP_DONE(c.id)).length;
-    html += `<div style="border:1px solid var(--line);border-radius:10px;padding:14px;cursor:pointer" onclick="go('catalog2','${s.id}')">
-      <div style="font-weight:600">${esc(s.name)}</div>
-      <div class="muted">${qs.length} 章 · 已刷 ${done} 章</div></div>`;
-  }
-  html += `</div></div>`;
-  // 考试倒计时条（最近一场未考的试 → 考试中心）
+  let html = "";
+  // ① 考试倒计时条（置顶，点击进考试中心——即「考试中心」按钮的入口）
   try {
     const exd = await (await fetch("data/exams.json")).json();
     const t0 = new Date(new Date().toDateString());
@@ -339,31 +331,47 @@ async function home() {
         <div class="muted">${esc(upcoming.e.exam_text || "")} · 报名入口与全部考试 →</div></div></div>`;
     }
   } catch (e) { /* 倒计时失败不影响首页其余内容 */ }
-  html += `<div class="card"><div class="grid2">
-    <div><div class="statnum">${today.n}</div><div class="muted">今日做题</div></div>
-    <div><div class="statnum">${streak}<span style="font-size:13px;font-weight:400"> 天</span></div><div class="muted">连续学习</div></div>
-    <div><div class="statnum">${totalN}</div><div class="muted">累计做题</div></div>
-    <div><div class="statnum">${totalN ? Math.round(totalC / totalN * 100) : 0}%</div><div class="muted">总正确率</div></div>
-  </div></div>`;
+  // ② 统计单行
+  html += `<div class="card" style="display:flex;justify-content:space-between;text-align:center;padding:12px 6px">
+    <div><div style="font-weight:600;font-size:19px">${today.n}</div><div class="muted" style="font-size:12px">今日做题</div></div>
+    <div><div style="font-weight:600;font-size:19px">${streak}</div><div class="muted" style="font-size:12px">连续天</div></div>
+    <div><div style="font-weight:600;font-size:19px">${totalN}</div><div class="muted" style="font-size:12px">累计做题</div></div>
+    <div><div style="font-weight:600;font-size:19px">${totalN ? Math.round(totalC / totalN * 100) : 0}%</div><div class="muted" style="font-size:12px">总正确率</div></div>
+  </div>`;
+  // ③ 继续上次
   if (last && last.qid) {
     html += `<div class="card" style="cursor:pointer" onclick="resumeLast()"><b>继续上次练习</b><div class="muted">${esc(last.label || "")} ${last.idx + 1}/${last.total}</div></div>`;
   }
-  // 快捷入口区：时政热点/408资料前置一行（原在页尾易被忽略），错题/模拟随后
+  // ④ 功能入口合并一张卡（考试中心由顶部倒计时条承担，不再单列）
   html += `<div class="card"><div class="grid2">
     <button class="btn ghost" onclick="go('hotspot')">时政热点 · 每日更新</button>
     <button class="btn ghost" onclick="go('links')">408 备考资料</button>
-  </div></div>`;
-  html += `<div class="card"><div class="grid2">
-    <button class="btn ghost" onclick="go('kp')">知识点 · 背诵</button>
-    <button class="btn ghost" onclick="go('exams')">考试中心 · 倒计时</button>
-  </div></div>`;
-  html += `<div class="card"><div class="grid2">
+    <button class="btn ghost" style="grid-column:1/-1" onclick="go('kp')">知识点 · 背诵</button>
     <button class="btn ghost" onclick="go('wrong')">错题本 ${Object.keys(wrong).length}</button>
     <button class="btn" onclick="go('mock')">模拟考试</button>
   </div></div>`;
+  // ⑤ 分科板块（按考试分组，软考高级→中级排序）
+  const EXAM_GROUPS = [
+    ["军队文职", ["公共科目", "数学1"]],
+    ["考研", ["408"]],
+    ["公务员", ["行测", "申论"]],
+    ["法考", ["法律"]],
+    ["软考", ["系统架构设计师", "系统分析师", "信息系统项目管理师", "软件设计师", "信息安全工程师"]],
+  ];
+  html += `<div class="sect">分科练习 · 点击进入章节</div><div class="card">`;
+  for (const [gname, ids] of EXAM_GROUPS) {
+    html += `<div class="muted" style="font-size:13px;margin:8px 0 2px">${gname}</div><div style="display:flex;flex-wrap:wrap">`;
+    for (const id of ids) {
+      const s = INDEX.subjects.find(x => x.id === id);
+      if (!s) continue;
+      const n = subjectChapters(s.id).length;
+      html += `<span class="chip" onclick="go('catalog2','${id}')">${esc(s.name)}<span class="muted" style="margin-left:4px">${n}章</span></span>`;
+    }
+    html += `</div>`;
+  }
+  html += `</div>`;
   $("#main").innerHTML = html;
 }
-function CHAP_DONE() { return false; } // 占位：章节完成度简化为不显示（ponytail）
 
 // 练习入口
 async function catalog() {
