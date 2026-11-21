@@ -301,7 +301,7 @@ function header(title, back) {
 // 首页
 async function home() {
   await loadIndex();
-  header("刷题练习");
+  header("首页");
   const st = Store.get("stats", {});
   const today = st[new Date().toISOString().slice(0, 10)] || { n: 0, c: 0 };
   const rec = Store.get("rec", {});
@@ -342,34 +342,17 @@ async function home() {
   if (last && last.qid) {
     html += `<div class="card" style="cursor:pointer" onclick="resumeLast()"><b>继续上次练习</b><div class="muted">${esc(last.label || "")} ${last.idx + 1}/${last.total}</div></div>`;
   }
-  // ④ 功能入口合并一张卡（考试中心由顶部倒计时条承担，不再单列）
+  // ④ 时政/408/知识点各占整行（考试中心由顶部倒计时条承担）
   html += `<div class="card"><div class="grid2">
-    <button class="btn ghost" onclick="go('hotspot')">时政热点 · 每日更新</button>
-    <button class="btn ghost" onclick="go('links')">408 备考资料</button>
+    <button class="btn ghost" style="grid-column:1/-1" onclick="go('hotspot')">时政热点 · 每日更新</button>
+    <button class="btn ghost" style="grid-column:1/-1" onclick="go('links')">408 备考资料</button>
     <button class="btn ghost" style="grid-column:1/-1" onclick="go('kp')">知识点 · 背诵</button>
+  </div></div>`;
+  // ⑤ 错题本 + 模拟考试 并一行
+  html += `<div class="card"><div class="grid2">
     <button class="btn ghost" onclick="go('wrong')">错题本 ${Object.keys(wrong).length}</button>
     <button class="btn" onclick="go('mock')">模拟考试</button>
   </div></div>`;
-  // ⑤ 分科板块（按考试分组，软考高级→中级排序）
-  const EXAM_GROUPS = [
-    ["军队文职", ["公共科目", "数学1"]],
-    ["考研", ["408"]],
-    ["公务员", ["行测", "申论"]],
-    ["法考", ["法律"]],
-    ["软考", ["系统架构设计师", "系统分析师", "信息系统项目管理师", "软件设计师", "信息安全工程师"]],
-  ];
-  html += `<div class="sect">分科练习 · 点击进入章节</div><div class="card">`;
-  for (const [gname, ids] of EXAM_GROUPS) {
-    html += `<div class="muted" style="font-size:13px;margin:8px 0 2px">${gname}</div><div style="display:flex;flex-wrap:wrap">`;
-    for (const id of ids) {
-      const s = INDEX.subjects.find(x => x.id === id);
-      if (!s) continue;
-      const n = subjectChapters(s.id).length;
-      html += `<span class="chip" onclick="go('catalog2','${id}')">${esc(s.name)}<span class="muted" style="margin-left:4px">${n}章</span></span>`;
-    }
-    html += `</div>`;
-  }
-  html += `</div>`;
   $("#main").innerHTML = html;
 }
 
