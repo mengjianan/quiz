@@ -1,49 +1,34 @@
-from PIL import Image, ImageOps
-import base64
-import io
+from PIL import Image
+import base64, io
 
-# 打开原图
-img_path = r"C:\Users\Administrator\Desktop\1.jpg"
-im = Image.open(img_path).convert("RGBA")
+IMG = r"C:\Users\Administrator\Desktop\1.jpg"
+im = Image.open(IMG).convert("RGBA")
 
-# 裁剪为正方形（取中心）
+# 裁剪为正方形（取中心），之后从同一张正方形图派生出两种图标
 w, h = im.size
-min_dim = min(w, h)
-left = (w - min_dim) // 2
-top = (h - min_dim) // 2
-im = im.crop((left, top, left + min_dim, top + min_dim))
+m = min(w, h)
+sq = im.crop(((w - m) // 2, (h - m) // 2, (w - m) // 2 + m, (h - m) // 2 + m))
 
-# 缩放到 100x100（在 192x192 画布中居中）
-im = im.resize((100, 100), Image.Resampling.LANCZOS)
+def b64(img):
+    buf = io.BytesIO()
+    img.save(buf, format="PNG")
+    return base64.b64encode(buf.getvalue()).decode("utf-8")
 
-# 创建 192x192 的暖色背景画布 (#FCEBD5)
-canvas = Image.new("RGBA", (192, 192), (252, 235, 213, 255))
-
-# 先画一个白色的圆形/圆角底座作为白色边框底衬（例如在中心放置一个 126x126 的白色圆角矩形或圆）
-# 这里我们用画图或者直接贴一个带白边的图
-# 让我们用纯 Pillow 画一个带白边的圆形容器：
-# 画布尺寸 192x192，中心 (96,96)，半径 66 的白色圆盘（即白色边框 + 留白）
-from PIL import ImageDraw
-draw = ImageDraw.Draw(canvas)
-# 绘制白色圆形底盘（直径 140，半径 70，中心 96,96）
-draw.ellipse([96 - 72, 96 - 72, 96 + 72, 96 + 72], fill=(255, 255, 255, 255))
-
-# 把原图粘贴在白色底盘中心 (96 - 50 = 46)
-canvas.paste(im, (46, 46), im)
-
-# 保存为 PNG 字节流转 base64
-buffered = io.BytesIO()
-canvas.save(buffered, format="PNG")
-img_str = base64.b64encode(buffered.getvalue()).decode("utf-8")
-
-# 生成新的 SVG（暖色背景 + 带有白色圆形内衬及头像）
-svg_content = f'''<svg width="192" height="192" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <rect width="192" height="192" rx="42" fill="#FCEBD5"/>
-  <circle cx="96" cy="96" r="72" fill="#FFFFFF"/>
-  <image xlink:href="data:image/png;base64,{img_str}" x="0" y="0" width="192" height="192" preserveAspectRatio="xMidYMid meet"/>
+# 1) PWA 图标：纯白圆角底 + 内图放大到 140（原 100）
+inner = sq.resize((140, 140), Image.Resampling.LANCZOS)
+pwa = Image.new("RGBA", (192, 192), (255, 255, 255, 255))
+pwa.paste(inner, (26, 26), inner)
+svg = f'''<svg width="192" height="192" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <rect width="192" height="192" rx="42" fill="#FFFFFF"/>
+  <image xlink:href="data:image/png;base64,{b64(pwa)}" x="0" y="0" width="192" height="192" preserveAspectRatio="xMidYMid meet"/>
 </svg>'''
+open(r"D:\military-civilian-quiz\icon-hamster.svg", "w", encoding="utf-8").write(svg)
 
-with open("D:\\military-civilian-quiz\\icon-hamster.svg", "w", encoding="utf-8") as f:
-    f.write(svg_content)
+# 2) 浏览器标签图标：直接用原图，不加底色和边框
+fav = sq.resize((192, 192), Image.Resampling.LANCZOS)
+fsvg = f'''<svg width="192" height="192" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <image xlink:href="data:image/png;base64,{b64(fav)}" x="0" y="0" width="192" height="192" preserveAspectRatio="xMidYMid meet"/>
+</svg>'''
+open(r"D:\military-civilian-quiz\favicon.svg", "w", encoding="utf-8").write(fsvg)
 
-print("Icon updated successfully with white border!")
+print("icon-hamster.svg (white bg, bigger) + favicon.svg (original photo) done")
