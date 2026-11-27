@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-11-26 13:50:07",
+  "results": {
+    "build": true,
+    "encryption": true,
+    "obfuscation": true,
+    "string_mask": false,
+    "decryption": true,
+    "performance": true
+  },
+  "summary": "5/6 tests passed"
+}

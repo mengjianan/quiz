@@ -1,0 +1,6748 @@
+{
+ "subjects": [
+  {
+   "id": "公共科目",
+   "name": "公共科目",
+   "sections": [
+    {
+     "name": "基本知识-马克思主义理论",
+     "chapters": [
+      {
+       "id": "common-001",
+       "name": "一、马克思主义是关于无产阶级和人类解放的科学",
+       "file": "data/common-001.json",
+       "count": 19,
+       "orig": "1020102-一、马克思主义是关于无产阶级和人类解放的科学-193638.pdf"
+      },
+      {
+       "id": "common-002",
+       "name": "世界的物质性及发展规律",
+       "file": "data/common-002.json",
+       "count": 99,
+       "orig": "1020103-二、世界的物质性及发展规律-193639.pdf"
+      },
+      {
+       "id": "common-003",
+       "name": "实践与认识及其发展规律",
+       "file": "data/common-003.json",
+       "count": 98,
+       "orig": "1020104-三、实践与认识及其发展规律-193640.pdf"
+      },
+      {
+       "id": "common-004",
+       "name": "人类社会及其发展规律",
+       "file": "data/common-004.json",
+       "count": 117,
+       "orig": "1020105-四、人类社会及其发展规律-193641.pdf"
+      },
+      {
+       "id": "common-005",
+       "name": "资本主义的本质及规律",
+       "file": "data/common-005.json",
+       "count": 145,
+       "orig": "1020107-五、资本主义的本质及规律-193642.pdf"
+      },
+      {
+       "id": "common-006",
+       "name": "资本主义的发展及其趋势",
+       "file": "data/common-006.json",
+       "count": 28,
+       "orig": "1020108-六、资本主义的发展及其趋势-193643.pdf"
+      },
+      {
+       "id": "common-007",
+       "name": "社会主义的发展及其规律",
+       "file": "data/common-007.json",
+       "count": 49,
+       "orig": "1020109-七、社会主义的发展及其规律-193644.pdf"
+      },
+      {
+       "id": "common-008",
+       "name": "共产主义崇高理想及其最终实现",
+       "file": "data/common-008.json",
+       "count": 29,
+       "orig": "1020110-八、共产主义崇高理想及其最终实现-193645.pdf"
+      },
+      {
+       "id": "common-009",
+       "name": "导论",
+       "file": "data/common-009.json",
+       "count": 4,
+       "orig": "70022801-导论-193660.pdf"
+      }
+     ]
+    },
+    {
+     "name": "基本知识-党的创新理论与时政",
+     "chapters": [
+      {
+       "id": "common-010",
+       "name": "毛泽东思想及其历史地位",
+       "file": "data/common-010.json",
+       "count": 29,
+       "orig": "1020201-一、毛泽东思想及其历史地位-193646.pdf"
+      },
+      {
+       "id": "common-011",
+       "name": "新民主主义革命理论",
+       "file": "data/common-011.json",
+       "count": 104,
+       "orig": "1020202-二、新民主主义革命理论-193647.pdf"
+      },
+      {
+       "id": "common-012",
+       "name": "社会主义改造理论",
+       "file": "data/common-012.json",
+       "count": 68,
+       "orig": "1020203-三、社会主义改造理论-193648.pdf"
+      },
+      {
+       "id": "common-013",
+       "name": "四、社会主义革命和建设中取得的独创性理论成果",
+       "file": "data/common-013.json",
+       "count": 43,
+       "orig": "1020204-四、社会主义革命和建设中取得的独创性理论成果-193649.pdf"
+      },
+      {
+       "id": "common-014",
+       "name": "一、中国特色社会主义理论体系的形成发展",
+       "file": "data/common-014.json",
+       "count": 41,
+       "orig": "1020301-一、中国特色社会主义理论体系的形成发展-193650.pdf"
+      },
+      {
+       "id": "common-015",
+       "name": "邓小平理论",
+       "file": "data/common-015.json",
+       "count": 69,
+       "orig": "1020302-二、邓小平理论-193651.pdf"
+      },
+      {
+       "id": "common-016",
+       "name": "“三个代表”重要思想",
+       "file": "data/common-016.json",
+       "count": 26,
+       "orig": "1020303-三、“三个代表”重要思想-193652.pdf"
+      },
+      {
+       "id": "common-017",
+       "name": "四、科学发展观",
+       "file": "data/common-017.json",
+       "count": 20,
+       "orig": "1020304-四、科学发展观-193653.pdf"
+      },
+      {
+       "id": "common-018",
+       "name": "习近平新时代中国特色社会主义思想",
+       "file": "data/common-018.json",
+       "count": 38,
+       "orig": "1020408-习近平新时代中国特色社会主义思想-193654.pdf"
+      },
+      {
+       "id": "common-019",
+       "name": "党和国家方针政策",
+       "file": "data/common-019.json",
+       "count": 100,
+       "orig": "700107-党和国家方针政策-173650.pdf"
+      },
+      {
+       "id": "common-020",
+       "name": "高频考点",
+       "file": "data/common-020.json",
+       "count": 50,
+       "orig": "700108-高频考点-173651.pdf"
+      },
+      {
+       "id": "common-021",
+       "name": "综合练习",
+       "file": "data/common-021.json",
+       "count": 95,
+       "orig": "700109-综合练习-173652.pdf"
+      },
+      {
+       "id": "common-022",
+       "name": "党的二十届三中全会",
+       "file": "data/common-022.json",
+       "count": 200,
+       "orig": "700111-党的二十届三中全会-173653.pdf"
+      },
+      {
+       "id": "common-023",
+       "name": "2024年中央一号文件重点标注",
+       "file": "data/common-023.json",
+       "count": 70,
+       "orig": "700112-2024年中央一号文件重点标注-173654.pdf"
+      },
+      {
+       "id": "common-024",
+       "name": "2024年中央经济工作会议",
+       "file": "data/common-024.json",
+       "count": 32,
+       "orig": "700113-2024年中央经济工作会议-173655.pdf"
+      },
+      {
+       "id": "common-025",
+       "name": "2024年国务院政府工作报告",
+       "file": "data/common-025.json",
+       "count": 90,
+       "orig": "700116-2024年国务院政府工作报告-173656.pdf"
+      },
+      {
+       "id": "common-026",
+       "name": "“两会”综合练习1",
+       "file": "data/common-026.json",
+       "count": 80,
+       "orig": "700117-“两会”综合练习1-173657.pdf"
+      },
+      {
+       "id": "common-027",
+       "name": "“两会”综合练习2",
+       "file": "data/common-027.json",
+       "count": 80,
+       "orig": "700118-“两会”综合练习2-173658.pdf"
+      },
+      {
+       "id": "common-028",
+       "name": "二十大综合练习",
+       "file": "data/common-028.json",
+       "count": 272,
+       "orig": "700119-二十大综合练习-173659.pdf"
+      },
+      {
+       "id": "common-029",
+       "name": "“十四五”",
+       "file": "data/common-029.json",
+       "count": 37,
+       "orig": "700122-“十四五”-173661.pdf"
+      },
+      {
+       "id": "common-030",
+       "name": "社会主义建设道路初步探索的理论成果",
+       "file": "data/common-030.json",
+       "count": 14,
+       "orig": "70022904-社会主义建设道路初步探索的理论成果-193671.pdf"
+      },
+      {
+       "id": "common-031",
+       "name": "坚持和发展中国特色社会主义的总任务",
+       "file": "data/common-031.json",
+       "count": 2,
+       "orig": "70023001-坚持和发展中国特色社会主义的总任务-193674.pdf"
+      },
+      {
+       "id": "common-032",
+       "name": "“五位一体”总体布局",
+       "file": "data/common-032.json",
+       "count": 30,
+       "orig": "70023002-“五位一体”总体布局-193675.pdf"
+      },
+      {
+       "id": "common-033",
+       "name": "“四个全面”战略布局",
+       "file": "data/common-033.json",
+       "count": 5,
+       "orig": "700317-“四个全面”战略布局-173682.pdf"
+      },
+      {
+       "id": "common-034",
+       "name": "全面推进国防和军队现代化",
+       "file": "data/common-034.json",
+       "count": 1,
+       "orig": "700318-全面推进国防和军队现代化-173683.pdf"
+      },
+      {
+       "id": "common-035",
+       "name": "中国特色大国外交",
+       "file": "data/common-035.json",
+       "count": 9,
+       "orig": "700319-中国特色大国外交-173684.pdf"
+      },
+      {
+       "id": "common-036",
+       "name": "2025年1月时政热点练习题",
+       "file": "data/common-036.json",
+       "count": 100,
+       "orig": "661001-2025年1月时政热点练习题-173612.pdf"
+      },
+      {
+       "id": "common-037",
+       "name": "2024年1月时政热点练习题",
+       "file": "data/common-037.json",
+       "count": 100,
+       "orig": "661101-2024年1月时政热点练习题-173613.pdf"
+      },
+      {
+       "id": "common-038",
+       "name": "2024年2月时政热点练习题",
+       "file": "data/common-038.json",
+       "count": 100,
+       "orig": "661102-2024年2月时政热点练习题-173614.pdf"
+      },
+      {
+       "id": "common-039",
+       "name": "2024年3月时政热点练习题",
+       "file": "data/common-039.json",
+       "count": 100,
+       "orig": "661103-2024年3月时政热点练习题-173615.pdf"
+      },
+      {
+       "id": "common-040",
+       "name": "2024年4月时政热点练习题",
+       "file": "data/common-040.json",
+       "count": 100,
+       "orig": "661104-2024年4月时政热点练习题-173616.pdf"
+      },
+      {
+       "id": "common-041",
+       "name": "2024年5月时政热点练习题",
+       "file": "data/common-041.json",
+       "count": 100,
+       "orig": "661105-2024年5月时政热点练习题-173617.pdf"
+      },
+      {
+       "id": "common-042",
+       "name": "2024年6月时政热点练习题",
+       "file": "data/common-042.json",
+       "count": 100,
+       "orig": "661106-2024年6月时政热点练习题-173618.pdf"
+      },
+      {
+       "id": "common-043",
+       "name": "2024年7月时政热点练习题",
+       "file": "data/common-043.json",
+       "count": 100,
+       "orig": "661107-2024年7月时政热点练习题-173619.pdf"
+      },
+      {
+       "id": "common-044",
+       "name": "2024年8月时政热点练习题",
+       "file": "data/common-044.json",
+       "count": 100,
+       "orig": "661108-2024年8月时政热点练习题-173620.pdf"
+      },
+      {
+       "id": "common-045",
+       "name": "2024年9月时政热点练习题",
+       "file": "data/common-045.json",
+       "count": 100,
+       "orig": "661109-2024年9月时政热点练习题-173621.pdf"
+      },
+      {
+       "id": "common-046",
+       "name": "2024年10月时政热点练习题",
+       "file": "data/common-046.json",
+       "count": 100,
+       "orig": "661110-2024年10月时政热点练习题-173622.pdf"
+      },
+      {
+       "id": "common-047",
+       "name": "2024年11月时政热点练习题",
+       "file": "data/common-047.json",
+       "count": 100,
+       "orig": "661111-2024年11月时政热点练习题-173623.pdf"
+      },
+      {
+       "id": "common-048",
+       "name": "2024年12月时政热点练习题",
+       "file": "data/common-048.json",
+       "count": 100,
+       "orig": "661112-2024年12月时政热点练习题-173624.pdf"
+      },
+      {
+       "id": "common-049",
+       "name": "2023年1月时政热点练习题",
+       "file": "data/common-049.json",
+       "count": 100,
+       "orig": "661201-2023年1月时政热点练习题-173625.pdf"
+      },
+      {
+       "id": "common-050",
+       "name": "2023年2月时政热点练习题",
+       "file": "data/common-050.json",
+       "count": 100,
+       "orig": "661202-2023年2月时政热点练习题-173626.pdf"
+      },
+      {
+       "id": "common-051",
+       "name": "2023年3月时政热点练习题",
+       "file": "data/common-051.json",
+       "count": 100,
+       "orig": "661203-2023年3月时政热点练习题-173627.pdf"
+      },
+      {
+       "id": "common-052",
+       "name": "2023年4月时政热点练习题",
+       "file": "data/common-052.json",
+       "count": 100,
+       "orig": "661204-2023年4月时政热点练习题-173628.pdf"
+      },
+      {
+       "id": "common-053",
+       "name": "2023年5月时政热点练习题",
+       "file": "data/common-053.json",
+       "count": 100,
+       "orig": "661205-2023年5月时政热点练习题-173629.pdf"
+      },
+      {
+       "id": "common-054",
+       "name": "2023年6月时政热点练习题",
+       "file": "data/common-054.json",
+       "count": 100,
+       "orig": "661206-2023年6月时政热点练习题-173630.pdf"
+      },
+      {
+       "id": "common-055",
+       "name": "2023年7月时政热点练习题",
+       "file": "data/common-055.json",
+       "count": 100,
+       "orig": "661207-2023年7月时政热点练习题-173631.pdf"
+      },
+      {
+       "id": "common-056",
+       "name": "2023年8月时政热点练习题",
+       "file": "data/common-056.json",
+       "count": 100,
+       "orig": "661208-2023年8月时政热点练习题-173632.pdf"
+      },
+      {
+       "id": "common-057",
+       "name": "2023年9月时政热点练习题",
+       "file": "data/common-057.json",
+       "count": 100,
+       "orig": "661209-2023年9月时政热点练习题-173633.pdf"
+      },
+      {
+       "id": "common-058",
+       "name": "2023年10月时政热点练习题",
+       "file": "data/common-058.json",
+       "count": 100,
+       "orig": "661210-2023年10月时政热点练习题-173634.pdf"
+      },
+      {
+       "id": "common-059",
+       "name": "2023年11月时政热点练习题",
+       "file": "data/common-059.json",
+       "count": 100,
+       "orig": "661211-2023年11月时政热点练习题-173635.pdf"
+      },
+      {
+       "id": "common-060",
+       "name": "2023年12月时政热点练习题",
+       "file": "data/common-060.json",
+       "count": 100,
+       "orig": "661212-2023年12月时政热点练习题-173636.pdf"
+      },
+      {
+       "id": "common-061",
+       "name": "2022年1月时政热点练习题",
+       "file": "data/common-061.json",
+       "count": 150,
+       "orig": "662501-2022年1月时政热点练习题-173637.pdf"
+      },
+      {
+       "id": "common-062",
+       "name": "2022年2月时政热点练习题",
+       "file": "data/common-062.json",
+       "count": 100,
+       "orig": "662502-2022年2月时政热点练习题-173638.pdf"
+      },
+      {
+       "id": "common-063",
+       "name": "2022年3月时政热点练习题",
+       "file": "data/common-063.json",
+       "count": 100,
+       "orig": "662503-2022年3月时政热点练习题-173639.pdf"
+      },
+      {
+       "id": "common-064",
+       "name": "2022年4月时政热点练习题",
+       "file": "data/common-064.json",
+       "count": 100,
+       "orig": "662504-2022年4月时政热点练习题-173640.pdf"
+      },
+      {
+       "id": "common-065",
+       "name": "2022年5月时政热点练习题",
+       "file": "data/common-065.json",
+       "count": 100,
+       "orig": "662505-2022年5月时政热点练习题-173641.pdf"
+      },
+      {
+       "id": "common-066",
+       "name": "2022年6月时政热点练习题",
+       "file": "data/common-066.json",
+       "count": 100,
+       "orig": "662506-2022年6月时政热点练习题-173642.pdf"
+      },
+      {
+       "id": "common-067",
+       "name": "2022年7月时政热点练习题",
+       "file": "data/common-067.json",
+       "count": 100,
+       "orig": "662507-2022年7月时政热点练习题-173643.pdf"
+      },
+      {
+       "id": "common-068",
+       "name": "2022年8月时政热点练习题",
+       "file": "data/common-068.json",
+       "count": 100,
+       "orig": "662508-2022年8月时政热点练习题-173644.pdf"
+      },
+      {
+       "id": "common-069",
+       "name": "2022年9月时政热点练习题",
+       "file": "data/common-069.json",
+       "count": 100,
+       "orig": "662509-2022年9月时政热点练习题-173645.pdf"
+      },
+      {
+       "id": "common-070",
+       "name": "2022年10月时政热点练习题",
+       "file": "data/common-070.json",
+       "count": 100,
+       "orig": "662510-2022年10月时政热点练习题-173646.pdf"
+      },
+      {
+       "id": "common-071",
+       "name": "2022年11月时政热点练习题",
+       "file": "data/common-071.json",
+       "count": 100,
+       "orig": "662511-2022年11月时政热点练习题-173647.pdf"
+      },
+      {
+       "id": "common-072",
+       "name": "2022年12月时政热点练习题",
+       "file": "data/common-072.json",
+       "count": 100,
+       "orig": "662512-2022年12月时政热点练习题-173648.pdf"
+      }
+     ]
+    },
+    {
+     "name": "基本知识-中国近现代史",
+     "chapters": [
+      {
+       "id": "common-073",
+       "name": "进入近代后中华民族的磨难与斗争",
+       "file": "data/common-073.json",
+       "count": 17,
+       "orig": "70023101-进入近代后中华民族的磨难与斗争-193676.pdf"
+      },
+      {
+       "id": "common-074",
+       "name": "不同社会力量对国家出路的早期探索",
+       "file": "data/common-074.json",
+       "count": 27,
+       "orig": "70023102-不同社会力量对国家出路的早期探索-193677.pdf"
+      },
+      {
+       "id": "common-075",
+       "name": "辛亥革命与君主专制制度的终结",
+       "file": "data/common-075.json",
+       "count": 20,
+       "orig": "70023103-辛亥革命与君主专制制度的终结-193678.pdf"
+      },
+      {
+       "id": "common-076",
+       "name": "中国共产党成立和中国革命新局面",
+       "file": "data/common-076.json",
+       "count": 34,
+       "orig": "70023104-中国共产党成立和中国革命新局面-193679.pdf"
+      },
+      {
+       "id": "common-077",
+       "name": "中国革命的新道路",
+       "file": "data/common-077.json",
+       "count": 16,
+       "orig": "70023105-中国革命的新道路-193680.pdf"
+      },
+      {
+       "id": "common-078",
+       "name": "中华民族的抗日战争",
+       "file": "data/common-078.json",
+       "count": 35,
+       "orig": "70023106-中华民族的抗日战争-193681.pdf"
+      },
+      {
+       "id": "common-079",
+       "name": "为建立新中国而奋斗",
+       "file": "data/common-079.json",
+       "count": 25,
+       "orig": "70023107-为建立新中国而奋斗-193682.pdf"
+      },
+      {
+       "id": "common-080",
+       "name": "中华人民共和国的成立与中国社会主义建设道路的探索",
+       "file": "data/common-080.json",
+       "count": 26,
+       "orig": "70023108-中华人民共和国的成立与中国社会主义建设道路的探索-193683.pdf"
+      },
+      {
+       "id": "common-081",
+       "name": "改革开放和中国特色社会主义的开创和发展",
+       "file": "data/common-081.json",
+       "count": 7,
+       "orig": "70023109-改革开放和中国特色社会主义的开创和发展-193684.pdf"
+      },
+      {
+       "id": "common-082",
+       "name": "中国特色社会主义进入新时代",
+       "file": "data/common-082.json",
+       "count": 3,
+       "orig": "70023110-中国特色社会主义进入新时代-193685.pdf"
+      }
+     ]
+    },
+    {
+     "name": "基本知识-思想道德",
+     "chapters": [
+      {
+       "id": "common-083",
+       "name": "一、人生观",
+       "file": "data/common-083.json",
+       "count": 52,
+       "orig": "1030202-一、人生观-193655.pdf"
+      },
+      {
+       "id": "common-084",
+       "name": "二、理想信念",
+       "file": "data/common-084.json",
+       "count": 42,
+       "orig": "1030203-二、理想信念-193656.pdf"
+      },
+      {
+       "id": "common-085",
+       "name": "三、中国精神",
+       "file": "data/common-085.json",
+       "count": 51,
+       "orig": "1030204-三、中国精神-193657.pdf"
+      },
+      {
+       "id": "common-086",
+       "name": "四、社会主义核心价值观",
+       "file": "data/common-086.json",
+       "count": 26,
+       "orig": "1030205-四、社会主义核心价值观-193658.pdf"
+      },
+      {
+       "id": "common-087",
+       "name": "五、道德规范",
+       "file": "data/common-087.json",
+       "count": 191,
+       "orig": "1030206-五、道德规范-193659.pdf"
+      }
+     ]
+    },
+    {
+     "name": "基本知识-法治知识",
+     "chapters": [
+      {
+       "id": "common-088",
+       "name": "法治知识",
+       "file": "data/common-088.json",
+       "count": 336,
+       "orig": "10304-法治知识-173569.pdf"
+      }
+     ]
+    },
+    {
+     "name": "基本知识-人文与社会",
+     "chapters": [
+      {
+       "id": "common-089",
+       "name": "中国历史+文化常识",
+       "file": "data/common-089.json",
+       "count": 625,
+       "orig": "10301-中国历史+文化常识-173567.pdf"
+      }
+     ]
+    },
+    {
+     "name": "基本知识-科学技术",
+     "chapters": [
+      {
+       "id": "common-090",
+       "name": "科学技术",
+       "file": "data/common-090.json",
+       "count": 423,
+       "orig": "10306-科学技术-173570.pdf"
+      }
+     ]
+    },
+    {
+     "name": "基本知识-国防和军队",
+     "chapters": [
+      {
+       "id": "common-091",
+       "name": "国情国力",
+       "file": "data/common-091.json",
+       "count": 178,
+       "orig": "10411-国情国力-173571.pdf"
+      },
+      {
+       "id": "common-092",
+       "name": "国防和军队",
+       "file": "data/common-092.json",
+       "count": 84,
+       "orig": "10412-国防和军队-173572.pdf"
+      }
+     ]
+    },
+    {
+     "name": "岗位能力-言语理解与表达",
+     "chapters": [
+      {
+       "id": "common-093",
+       "name": "阅读理解",
+       "file": "data/common-093.json",
+       "count": 61,
+       "orig": "20100-阅读理解-173573.pdf"
+      },
+      {
+       "id": "common-094",
+       "name": "逻辑填空",
+       "file": "data/common-094.json",
+       "count": 33,
+       "orig": "20101-逻辑填空-173574.pdf"
+      },
+      {
+       "id": "common-095",
+       "name": "篇章阅读",
+       "file": "data/common-095.json",
+       "count": 8,
+       "orig": "20104-篇章阅读-173575.pdf"
+      },
+      {
+       "id": "common-096",
+       "name": "语句表达",
+       "file": "data/common-096.json",
+       "count": 72,
+       "orig": "20106-语句表达-173576.pdf"
+      },
+      {
+       "id": "common-097",
+       "name": "言语·强化训练",
+       "file": "data/common-097.json",
+       "count": 41,
+       "orig": "20108-强化训练-173577.pdf"
+      },
+      {
+       "id": "common-098",
+       "name": "第一章 选词填空",
+       "file": "data/common-098.json",
+       "count": 154,
+       "orig": "369001-第一章 选词填空-173594.pdf"
+      },
+      {
+       "id": "common-099",
+       "name": "第二章 片段阅读",
+       "file": "data/common-099.json",
+       "count": 159,
+       "orig": "369002-第二章 片段阅读-173595.pdf"
+      },
+      {
+       "id": "common-100",
+       "name": "第三章 文章阅读",
+       "file": "data/common-100.json",
+       "count": 50,
+       "orig": "369003-第三章 文章阅读-173596.pdf"
+      },
+      {
+       "id": "common-101",
+       "name": "言语·强化练习",
+       "file": "data/common-101.json",
+       "count": 890,
+       "orig": "369005-强化练习-173598.pdf"
+      }
+     ]
+    },
+    {
+     "name": "岗位能力-数量关系",
+     "chapters": [
+      {
+       "id": "common-102",
+       "name": "数学运算",
+       "file": "data/common-102.json",
+       "count": 143,
+       "orig": "20201-数学运算-173578.pdf"
+      },
+      {
+       "id": "common-103",
+       "name": "数字推理",
+       "file": "data/common-103.json",
+       "count": 86,
+       "orig": "20205-数字推理-173579.pdf"
+      },
+      {
+       "id": "common-104",
+       "name": "图形与几何",
+       "file": "data/common-104.json",
+       "count": 15,
+       "orig": "20212-图形与几何-173580.pdf"
+      },
+      {
+       "id": "common-105",
+       "name": "组合与概率",
+       "file": "data/common-105.json",
+       "count": 20,
+       "orig": "20213-组合与概率-173581.pdf"
+      },
+      {
+       "id": "common-106",
+       "name": "数量·应用与综合",
+       "file": "data/common-106.json",
+       "count": 24,
+       "orig": "20214-应用与综合-173582.pdf"
+      },
+      {
+       "id": "common-107",
+       "name": "数量·强化训练",
+       "file": "data/common-107.json",
+       "count": 44,
+       "orig": "20221-强化训练-173583.pdf"
+      },
+      {
+       "id": "common-108",
+       "name": "数量·强化练习",
+       "file": "data/common-108.json",
+       "count": 319,
+       "orig": "370005-强化练习-173601.pdf"
+      }
+     ]
+    },
+    {
+     "name": "岗位能力-判断推理",
+     "chapters": [
+      {
+       "id": "common-109",
+       "name": "图形推理",
+       "file": "data/common-109.json",
+       "count": 33,
+       "orig": "20301-图形推理-173584.pdf"
+      },
+      {
+       "id": "common-110",
+       "name": "定义判断",
+       "file": "data/common-110.json",
+       "count": 149,
+       "orig": "20302-定义判断-173585.pdf"
+      },
+      {
+       "id": "common-111",
+       "name": "类比推理",
+       "file": "data/common-111.json",
+       "count": 182,
+       "orig": "20303-类比推理-173586.pdf"
+      },
+      {
+       "id": "common-112",
+       "name": "逻辑判断",
+       "file": "data/common-112.json",
+       "count": 147,
+       "orig": "20304-逻辑判断-173587.pdf"
+      },
+      {
+       "id": "common-113",
+       "name": "判断·强化训练",
+       "file": "data/common-113.json",
+       "count": 40,
+       "orig": "20321-强化训练-173588.pdf"
+      },
+      {
+       "id": "common-114",
+       "name": "判断·强化练习",
+       "file": "data/common-114.json",
+       "count": 803,
+       "orig": "371008-强化练习-173606.pdf"
+      }
+     ]
+    },
+    {
+     "name": "岗位能力-资料分析",
+     "chapters": [
+      {
+       "id": "common-115",
+       "name": "文字型资料",
+       "file": "data/common-115.json",
+       "count": 33,
+       "orig": "20401-文字型资料-173589.pdf"
+      },
+      {
+       "id": "common-116",
+       "name": "图形型资料",
+       "file": "data/common-116.json",
+       "count": 9,
+       "orig": "20402-图形型资料-173590.pdf"
+      },
+      {
+       "id": "common-117",
+       "name": "表格型资料",
+       "file": "data/common-117.json",
+       "count": 19,
+       "orig": "20403-表格型资料-173591.pdf"
+      },
+      {
+       "id": "common-118",
+       "name": "资料·综合型资料",
+       "file": "data/common-118.json",
+       "count": 30,
+       "orig": "20404-综合型资料-173592.pdf"
+      },
+      {
+       "id": "common-119",
+       "name": "资料·强化训练",
+       "file": "data/common-119.json",
+       "count": 45,
+       "orig": "20422-强化训练-173593.pdf"
+      },
+      {
+       "id": "common-120",
+       "name": "第一章 文字资料",
+       "file": "data/common-120.json",
+       "count": 49,
+       "orig": "372001-第一章 文字资料-173607.pdf"
+      },
+      {
+       "id": "common-121",
+       "name": "第四章 混合资料",
+       "file": "data/common-121.json",
+       "count": 40,
+       "orig": "372004-第四章 混合资料-173610.pdf"
+      },
+      {
+       "id": "common-122",
+       "name": "资料·强化练习",
+       "file": "data/common-122.json",
+       "count": 140,
+       "orig": "372008-强化练习-173611.pdf"
+      }
+     ]
+    },
+    {
+     "name": "真题与模拟卷",
+     "chapters": [
+      {
+       "id": "common-123",
+       "name": "2024年军队文职统一考试（公共科目）真题",
+       "file": "data/common-123.json",
+       "count": 110,
+       "orig": "302-2024年军队文职统一考试（公共科目）真题-137170.pdf"
+      },
+      {
+       "id": "common-124",
+       "name": "2023年军队文职统一考试（公共科目）真题",
+       "file": "data/common-124.json",
+       "count": 106,
+       "orig": "303-2023年军队文职统一考试（公共科目）真题-137171.pdf"
+      },
+      {
+       "id": "common-125",
+       "name": "2022年(延考)军队文职统一考试（公共科目）真题",
+       "file": "data/common-125.json",
+       "count": 110,
+       "orig": "304-2022年(延考)军队文职统一考试（公共科目）真题-137172.pdf"
+      },
+      {
+       "id": "common-126",
+       "name": "2022年军队文职统一考试（公共科目）真题",
+       "file": "data/common-126.json",
+       "count": 110,
+       "orig": "305-2022年军队文职统一考试（公共科目）真题-137173.pdf"
+      },
+      {
+       "id": "common-127",
+       "name": "2021年军队文职统一考试（公共科目）真题",
+       "file": "data/common-127.json",
+       "count": 109,
+       "orig": "306-2021年军队文职统一考试（公共科目）真题-137174.pdf"
+      },
+      {
+       "id": "common-128",
+       "name": "2020年军队文职统一考试（公共科目）真题",
+       "file": "data/common-128.json",
+       "count": 110,
+       "orig": "307-2020年军队文职统一考试（公共科目）真题-137175.pdf"
+      },
+      {
+       "id": "common-129",
+       "name": "2019年军队文职统一考试（公共科目）真题",
+       "file": "data/common-129.json",
+       "count": 110,
+       "orig": "308-2019年军队文职统一考试（公共科目）真题-137176.pdf"
+      },
+      {
+       "id": "common-130",
+       "name": "2018年军队文职统一考试（公共科目）真题",
+       "file": "data/common-130.json",
+       "count": 110,
+       "orig": "309-2018年军队文职统一考试（公共科目）真题-137177.pdf"
+      },
+      {
+       "id": "common-131",
+       "name": "2016年军队文职统一考试（公共科目）真题",
+       "file": "data/common-131.json",
+       "count": 110,
+       "orig": "310-2016年军队文职统一考试（公共科目）真题-137178.pdf"
+      },
+      {
+       "id": "common-132",
+       "name": "2015年军队文职统一考试（公共科目）真题",
+       "file": "data/common-132.json",
+       "count": 109,
+       "orig": "311-2015年军队文职统一考试（公共科目）真题-137179.pdf"
+      },
+      {
+       "id": "common-133",
+       "name": "2013年军队文职统一考试（公共科目）真题",
+       "file": "data/common-133.json",
+       "count": 104,
+       "orig": "312-2013年军队文职统一考试（公共科目）真题-137180.pdf"
+      },
+      {
+       "id": "common-134",
+       "name": "2025年军队文职人员招聘考试《公共科目》模拟预测1",
+       "file": "data/common-134.json",
+       "count": 109,
+       "orig": "1601-2025年军队文职人员招聘考试《公共科目》模拟预测1-137181.pdf"
+      },
+      {
+       "id": "common-135",
+       "name": "2025年军队文职人员招聘考试《公共科目》模拟预测2",
+       "file": "data/common-135.json",
+       "count": 110,
+       "orig": "1603-2025年军队文职人员招聘考试《公共科目》模拟预测2-137182.pdf"
+      },
+      {
+       "id": "common-136",
+       "name": "2025年军队文职人员招聘考试《公共科目》模拟预测3",
+       "file": "data/common-136.json",
+       "count": 110,
+       "orig": "1801-2025年军队文职人员招聘考试《公共科目》模拟预测3-137183.pdf"
+      },
+      {
+       "id": "common-137",
+       "name": "2025年军队文职人员招聘考试《公共科目》模拟预测4",
+       "file": "data/common-137.json",
+       "count": 110,
+       "orig": "1802-2025年军队文职人员招聘考试《公共科目》模拟预测4-137184.pdf"
+      },
+      {
+       "id": "common-138",
+       "name": "2025年军队文职人员招聘考试《公共科目》模拟预测5",
+       "file": "data/common-138.json",
+       "count": 109,
+       "orig": "2614-2025年军队文职人员招聘考试《公共科目》模拟预测5-137185.pdf"
+      },
+      {
+       "id": "common-139",
+       "name": "2025年军队文职人员招聘考试《公共科目》模拟预测6",
+       "file": "data/common-139.json",
+       "count": 110,
+       "orig": "2618-2025年军队文职人员招聘考试《公共科目》模拟预测6-137186.pdf"
+      }
+     ]
+    }
+   ],
+   "code": "common"
+  },
+  {
+   "id": "数学1",
+   "name": "数学1",
+   "sections": [
+    {
+     "name": "高等数学",
+     "chapters": [
+      {
+       "id": "math1-001",
+       "name": "函数、极限、连续",
+       "file": "data/math1-001.json",
+       "count": 101,
+       "orig": "50101-第一章　函数、极限、连续-173997.pdf"
+      },
+      {
+       "id": "math1-002",
+       "name": "第二章　一元函数微分学",
+       "file": "data/math1-002.json",
+       "count": 186,
+       "orig": "50102-第二章　一元函数微分学-173998.pdf"
+      },
+      {
+       "id": "math1-003",
+       "name": "第三章　一元函数积分学",
+       "file": "data/math1-003.json",
+       "count": 130,
+       "orig": "50103-第三章　一元函数积分学-173999.pdf"
+      },
+      {
+       "id": "math1-004",
+       "name": "第五章　多元函数微分学",
+       "file": "data/math1-004.json",
+       "count": 64,
+       "orig": "50105-第五章　多元函数微分学-174001.pdf"
+      },
+      {
+       "id": "math1-005",
+       "name": "第六章　多元函数积分学",
+       "file": "data/math1-005.json",
+       "count": 91,
+       "orig": "50106-第六章　多元函数积分学-174002.pdf"
+      },
+      {
+       "id": "math1-006",
+       "name": "第七章　无穷级数",
+       "file": "data/math1-006.json",
+       "count": 6,
+       "orig": "50107-第七章　无穷级数-174003.pdf"
+      },
+      {
+       "id": "math1-007",
+       "name": "常微分方程",
+       "file": "data/math1-007.json",
+       "count": 83,
+       "orig": "50108-第八章　常微分方程-174004.pdf"
+      },
+      {
+       "id": "math1-008",
+       "name": "(六) 级数",
+       "file": "data/math1-008.json",
+       "count": 19,
+       "orig": "605007-(六) 级数-174024.pdf"
+      },
+      {
+       "id": "math1-009",
+       "name": "函数的概念、函数定义域的求法",
+       "file": "data/math1-009.json",
+       "count": 1,
+       "orig": "87050101-函数的概念、函数定义域的求法-194069.pdf"
+      },
+      {
+       "id": "math1-010",
+       "name": "函数的分类、特殊类型的函数",
+       "file": "data/math1-010.json",
+       "count": 3,
+       "orig": "87050102-函数的分类、特殊类型的函数-194070.pdf"
+      },
+      {
+       "id": "math1-011",
+       "name": "函数的基本性质",
+       "file": "data/math1-011.json",
+       "count": 5,
+       "orig": "87050103-函数的基本性质-194071.pdf"
+      },
+      {
+       "id": "math1-012",
+       "name": "数列极限的概念与性质",
+       "file": "data/math1-012.json",
+       "count": 5,
+       "orig": "87050105-数列极限的概念与性质-194072.pdf"
+      },
+      {
+       "id": "math1-013",
+       "name": "函数极限的概念与性质",
+       "file": "data/math1-013.json",
+       "count": 1,
+       "orig": "87050106-函数极限的概念与性质-194073.pdf"
+      },
+      {
+       "id": "math1-014",
+       "name": "复合函数的极限运算法则",
+       "file": "data/math1-014.json",
+       "count": 1,
+       "orig": "87050108-复合函数的极限运算法则-194074.pdf"
+      },
+      {
+       "id": "math1-015",
+       "name": "无穷小与无穷大的概念与关系",
+       "file": "data/math1-015.json",
+       "count": 8,
+       "orig": "87050109-无穷小与无穷大的概念与关系-194075.pdf"
+      },
+      {
+       "id": "math1-016",
+       "name": "极限的四则运算法则",
+       "file": "data/math1-016.json",
+       "count": 3,
+       "orig": "87050110-极限的四则运算法则-194076.pdf"
+      },
+      {
+       "id": "math1-017",
+       "name": "极限存在的两个准则",
+       "file": "data/math1-017.json",
+       "count": 3,
+       "orig": "87050111-极限存在的两个准则-194077.pdf"
+      },
+      {
+       "id": "math1-018",
+       "name": "两个重要极限",
+       "file": "data/math1-018.json",
+       "count": 1,
+       "orig": "87050112-两个重要极限-194078.pdf"
+      },
+      {
+       "id": "math1-019",
+       "name": "无穷小的比较",
+       "file": "data/math1-019.json",
+       "count": 6,
+       "orig": "87050113-无穷小的比较-194079.pdf"
+      },
+      {
+       "id": "math1-020",
+       "name": "函数连续性的概念及判断",
+       "file": "data/math1-020.json",
+       "count": 2,
+       "orig": "87050114-函数连续性的概念及判断-194080.pdf"
+      },
+      {
+       "id": "math1-021",
+       "name": "函数间断点的求法及分类",
+       "file": "data/math1-021.json",
+       "count": 8,
+       "orig": "87050115-函数间断点的求法及分类-194081.pdf"
+      },
+      {
+       "id": "math1-022",
+       "name": "闭区间上连续函数的性质",
+       "file": "data/math1-022.json",
+       "count": 1,
+       "orig": "87050116-闭区间上连续函数的性质-194082.pdf"
+      },
+      {
+       "id": "math1-023",
+       "name": "导数的概念",
+       "file": "data/math1-023.json",
+       "count": 9,
+       "orig": "87050201-导数的概念-194083.pdf"
+      },
+      {
+       "id": "math1-024",
+       "name": "复合函数的求导",
+       "file": "data/math1-024.json",
+       "count": 2,
+       "orig": "87050203-复合函数的求导-194084.pdf"
+      },
+      {
+       "id": "math1-025",
+       "name": "隐函数及参数方程的求导",
+       "file": "data/math1-025.json",
+       "count": 1,
+       "orig": "87050205-隐函数及参数方程的求导-194085.pdf"
+      },
+      {
+       "id": "math1-026",
+       "name": "微分的概念及运算",
+       "file": "data/math1-026.json",
+       "count": 1,
+       "orig": "87050206-微分的概念及运算-194086.pdf"
+      },
+      {
+       "id": "math1-027",
+       "name": "一元函数微分形式的不变性",
+       "file": "data/math1-027.json",
+       "count": 1,
+       "orig": "87050207-一元函数微分形式的不变性-194087.pdf"
+      },
+      {
+       "id": "math1-028",
+       "name": "按定义求导的题目类型",
+       "file": "data/math1-028.json",
+       "count": 5,
+       "orig": "87050209-按定义求导的题目类型-194088.pdf"
+      },
+      {
+       "id": "math1-029",
+       "name": "可导、可微与连续三个概念之间的关系",
+       "file": "data/math1-029.json",
+       "count": 1,
+       "orig": "87050210-可导、可微与连续三个概念之间的关系-194089.pdf"
+      },
+      {
+       "id": "math1-030",
+       "name": "用求导公式与法则求导数",
+       "file": "data/math1-030.json",
+       "count": 3,
+       "orig": "87050212-用求导公式与法则求导数-194090.pdf"
+      },
+      {
+       "id": "math1-031",
+       "name": "函数的高阶导数",
+       "file": "data/math1-031.json",
+       "count": 2,
+       "orig": "87050213-函数的高阶导数-194091.pdf"
+      },
+      {
+       "id": "math1-032",
+       "name": "罗尔定理、拉格朗日中值定理的应用",
+       "file": "data/math1-032.json",
+       "count": 2,
+       "orig": "87050301-罗尔定理、拉格朗日中值定理的应用-194092.pdf"
+      },
+      {
+       "id": "math1-033",
+       "name": "洛必达法则求极限",
+       "file": "data/math1-033.json",
+       "count": 1,
+       "orig": "87050304-洛必达法则求极限-194093.pdf"
+      },
+      {
+       "id": "math1-034",
+       "name": "求极限的方法总结",
+       "file": "data/math1-034.json",
+       "count": 4,
+       "orig": "87050305-求极限的方法总结-194094.pdf"
+      },
+      {
+       "id": "math1-035",
+       "name": "函数的零点（方程的根）个数的讨论",
+       "file": "data/math1-035.json",
+       "count": 1,
+       "orig": "87050307-函数的零点（方程的根）个数的讨论-194095.pdf"
+      },
+      {
+       "id": "math1-036",
+       "name": "函数的单调性及判别",
+       "file": "data/math1-036.json",
+       "count": 3,
+       "orig": "87050311-函数的单调性及判别-194096.pdf"
+      },
+      {
+       "id": "math1-037",
+       "name": "函数的极值及判别",
+       "file": "data/math1-037.json",
+       "count": 3,
+       "orig": "87050312-函数的极值及判别-194097.pdf"
+      },
+      {
+       "id": "math1-038",
+       "name": "渐近线的分类与求法",
+       "file": "data/math1-038.json",
+       "count": 4,
+       "orig": "87050314-渐近线的分类与求法-194098.pdf"
+      },
+      {
+       "id": "math1-039",
+       "name": "曲线的凸凹性和拐点",
+       "file": "data/math1-039.json",
+       "count": 2,
+       "orig": "87050315-曲线的凸凹性和拐点-194099.pdf"
+      },
+      {
+       "id": "math1-040",
+       "name": "曲率、曲率圆及曲率半径",
+       "file": "data/math1-040.json",
+       "count": 1,
+       "orig": "87050316-曲率、曲率圆及曲率半径-194100.pdf"
+      },
+      {
+       "id": "math1-041",
+       "name": "不定积分的概念与性质",
+       "file": "data/math1-041.json",
+       "count": 2,
+       "orig": "87050401-不定积分的概念与性质-194101.pdf"
+      },
+      {
+       "id": "math1-042",
+       "name": "定积分的概念与基本性质",
+       "file": "data/math1-042.json",
+       "count": 1,
+       "orig": "87050501-定积分的概念与基本性质-194102.pdf"
+      },
+      {
+       "id": "math1-043",
+       "name": "变上限的积分及其导数",
+       "file": "data/math1-043.json",
+       "count": 2,
+       "orig": "87050502-变上限的积分及其导数-194103.pdf"
+      },
+      {
+       "id": "math1-044",
+       "name": "定积分的换元积分法",
+       "file": "data/math1-044.json",
+       "count": 1,
+       "orig": "87050506-定积分的换元积分法-194104.pdf"
+      },
+      {
+       "id": "math1-045",
+       "name": "定积分的特殊计算方法的典型实例",
+       "file": "data/math1-045.json",
+       "count": 1,
+       "orig": "87050508-定积分的特殊计算方法的典型实例-194105.pdf"
+      },
+      {
+       "id": "math1-046",
+       "name": "无穷限的反常积分的概念与计算",
+       "file": "data/math1-046.json",
+       "count": 1,
+       "orig": "87050509-无穷限的反常积分的概念与计算-194106.pdf"
+      },
+      {
+       "id": "math1-047",
+       "name": "用定积分求平面图形的面积",
+       "file": "data/math1-047.json",
+       "count": 1,
+       "orig": "87050601-用定积分求平面图形的面积-194107.pdf"
+      },
+      {
+       "id": "math1-048",
+       "name": "偏导数的概念与常规计算",
+       "file": "data/math1-048.json",
+       "count": 1,
+       "orig": "87050704-偏导数的概念与常规计算-194108.pdf"
+      },
+      {
+       "id": "math1-049",
+       "name": "高阶偏导数",
+       "file": "data/math1-049.json",
+       "count": 1,
+       "orig": "87050705-高阶偏导数-194109.pdf"
+      },
+      {
+       "id": "math1-050",
+       "name": "多元复合函数的求导法则",
+       "file": "data/math1-050.json",
+       "count": 3,
+       "orig": "87050708-多元复合函数的求导法则-194110.pdf"
+      },
+      {
+       "id": "math1-051",
+       "name": "多元函数的极值问题",
+       "file": "data/math1-051.json",
+       "count": 2,
+       "orig": "87050710-多元函数的极值问题-194111.pdf"
+      },
+      {
+       "id": "math1-052",
+       "name": "多元函数的最值问题",
+       "file": "data/math1-052.json",
+       "count": 1,
+       "orig": "87050712-多元函数的最值问题-194112.pdf"
+      },
+      {
+       "id": "math1-053",
+       "name": "空间曲线的切线与法平面",
+       "file": "data/math1-053.json",
+       "count": 2,
+       "orig": "87050714-空间曲线的切线与法平面-194113.pdf"
+      },
+      {
+       "id": "math1-054",
+       "name": "重积分的概念与性质",
+       "file": "data/math1-054.json",
+       "count": 1,
+       "orig": "87050801-重积分的概念与性质-194114.pdf"
+      },
+      {
+       "id": "math1-055",
+       "name": "直角坐标下二重积分的定限与计算",
+       "file": "data/math1-055.json",
+       "count": 2,
+       "orig": "87050802-直角坐标下二重积分的定限与计算-194115.pdf"
+      },
+      {
+       "id": "math1-056",
+       "name": "极坐标下二重积分的定限与计算",
+       "file": "data/math1-056.json",
+       "count": 1,
+       "orig": "87050803-极坐标下二重积分的定限与计算-194116.pdf"
+      },
+      {
+       "id": "math1-057",
+       "name": "重积分积分次序的交换",
+       "file": "data/math1-057.json",
+       "count": 1,
+       "orig": "87050804-重积分积分次序的交换-194117.pdf"
+      },
+      {
+       "id": "math1-058",
+       "name": "利用积分区域的对称性及被积函数的奇偶性求重积分的技巧",
+       "file": "data/math1-058.json",
+       "count": 2,
+       "orig": "87050805-利用积分区域的对称性及被积函数的奇偶性求重积分的技巧-194118.pdf"
+      }
+     ]
+    },
+    {
+     "name": "线性代数",
+     "chapters": [
+      {
+       "id": "math1-059",
+       "name": "第四章　向量代数和空间解析几何",
+       "file": "data/math1-059.json",
+       "count": 31,
+       "orig": "50104-第四章　向量代数和空间解析几何-174000.pdf"
+      },
+      {
+       "id": "math1-060",
+       "name": "第一章　行列式",
+       "file": "data/math1-060.json",
+       "count": 9,
+       "orig": "50201-第一章　行列式-174005.pdf"
+      },
+      {
+       "id": "math1-061",
+       "name": "矩阵",
+       "file": "data/math1-061.json",
+       "count": 25,
+       "orig": "50202-第二章　矩阵-174006.pdf"
+      },
+      {
+       "id": "math1-062",
+       "name": "向量",
+       "file": "data/math1-062.json",
+       "count": 50,
+       "orig": "50203-第三章　向量-174007.pdf"
+      },
+      {
+       "id": "math1-063",
+       "name": "线性方程组",
+       "file": "data/math1-063.json",
+       "count": 29,
+       "orig": "50204-第四章　线性方程组-174008.pdf"
+      },
+      {
+       "id": "math1-064",
+       "name": "第五章　矩阵的相似化简",
+       "file": "data/math1-064.json",
+       "count": 3,
+       "orig": "50205-第五章　矩阵的相似化简-174009.pdf"
+      },
+      {
+       "id": "math1-065",
+       "name": "二次型",
+       "file": "data/math1-065.json",
+       "count": 16,
+       "orig": "50206-第六章　二次型-174010.pdf"
+      },
+      {
+       "id": "math1-066",
+       "name": "(一) 空间解析几何与向量代数",
+       "file": "data/math1-066.json",
+       "count": 16,
+       "orig": "605002-(一) 空间解析几何与向量代数-174019.pdf"
+      },
+      {
+       "id": "math1-067",
+       "name": "线性代数",
+       "file": "data/math1-067.json",
+       "count": 124,
+       "orig": "605009-(八) 线性代数-174026.pdf"
+      },
+      {
+       "id": "math1-068",
+       "name": "向量代数与空间解析几何",
+       "file": "data/math1-068.json",
+       "count": 16,
+       "orig": "870104-向量代数与空间解析几何-174031.pdf"
+      },
+      {
+       "id": "math1-069",
+       "name": "矩阵的特征值和特征向量",
+       "file": "data/math1-069.json",
+       "count": 17,
+       "orig": "870205-矩阵的特征值和特征向量-174036.pdf"
+      },
+      {
+       "id": "math1-070",
+       "name": "行列式、逆序数",
+       "file": "data/math1-070.json",
+       "count": 5,
+       "orig": "87040101-行列式、逆序数-194035.pdf"
+      },
+      {
+       "id": "math1-071",
+       "name": "余子式、代数余子式",
+       "file": "data/math1-071.json",
+       "count": 4,
+       "orig": "87040102-余子式、代数余子式-194036.pdf"
+      },
+      {
+       "id": "math1-072",
+       "name": "行列式的性质",
+       "file": "data/math1-072.json",
+       "count": 6,
+       "orig": "87040103-行列式的性质-194037.pdf"
+      },
+      {
+       "id": "math1-073",
+       "name": "行列式按一行（列）展开公式",
+       "file": "data/math1-073.json",
+       "count": 2,
+       "orig": "87040104-行列式按一行（列）展开公式-194038.pdf"
+      },
+      {
+       "id": "math1-074",
+       "name": "矩阵的概念、线性运算及运算律",
+       "file": "data/math1-074.json",
+       "count": 2,
+       "orig": "87040201-矩阵的概念、线性运算及运算律-194039.pdf"
+      },
+      {
+       "id": "math1-075",
+       "name": "矩阵的乘法运算及运算律",
+       "file": "data/math1-075.json",
+       "count": 5,
+       "orig": "87040202-矩阵的乘法运算及运算律-194040.pdf"
+      },
+      {
+       "id": "math1-076",
+       "name": "转置矩阵及运算律",
+       "file": "data/math1-076.json",
+       "count": 1,
+       "orig": "87040204-转置矩阵及运算律-194041.pdf"
+      },
+      {
+       "id": "math1-077",
+       "name": "伴随矩阵及其性质",
+       "file": "data/math1-077.json",
+       "count": 3,
+       "orig": "87040205-伴随矩阵及其性质-194042.pdf"
+      },
+      {
+       "id": "math1-078",
+       "name": "逆矩阵及运算律",
+       "file": "data/math1-078.json",
+       "count": 5,
+       "orig": "87040206-逆矩阵及运算律-194043.pdf"
+      },
+      {
+       "id": "math1-079",
+       "name": "矩阵可逆的判断",
+       "file": "data/math1-079.json",
+       "count": 4,
+       "orig": "87040207-矩阵可逆的判断-194044.pdf"
+      },
+      {
+       "id": "math1-080",
+       "name": "特殊类型的矩阵的运算",
+       "file": "data/math1-080.json",
+       "count": 2,
+       "orig": "87040208-特殊类型的矩阵的运算-194045.pdf"
+      },
+      {
+       "id": "math1-081",
+       "name": "初等方阵的概念",
+       "file": "data/math1-081.json",
+       "count": 5,
+       "orig": "87040211-初等方阵的概念-194046.pdf"
+      },
+      {
+       "id": "math1-082",
+       "name": "初等变换与初等方阵的关系",
+       "file": "data/math1-082.json",
+       "count": 9,
+       "orig": "87040212-初等变换与初等方阵的关系-194047.pdf"
+      },
+      {
+       "id": "math1-083",
+       "name": "等价矩阵的概念与判断",
+       "file": "data/math1-083.json",
+       "count": 7,
+       "orig": "87040213-等价矩阵的概念与判断-194048.pdf"
+      },
+      {
+       "id": "math1-084",
+       "name": "矩阵的子式与最高阶非零子式",
+       "file": "data/math1-084.json",
+       "count": 1,
+       "orig": "87040215-矩阵的子式与最高阶非零子式-194049.pdf"
+      },
+      {
+       "id": "math1-085",
+       "name": "矩阵的秩的概念与判断",
+       "file": "data/math1-085.json",
+       "count": 2,
+       "orig": "87040216-矩阵的秩的概念与判断-194050.pdf"
+      },
+      {
+       "id": "math1-086",
+       "name": "向量的线性组合与线性表示",
+       "file": "data/math1-086.json",
+       "count": 1,
+       "orig": "87040302-向量的线性组合与线性表示-194051.pdf"
+      },
+      {
+       "id": "math1-087",
+       "name": "向量组之间的线性表示及等价",
+       "file": "data/math1-087.json",
+       "count": 2,
+       "orig": "87040303-向量组之间的线性表示及等价-194052.pdf"
+      },
+      {
+       "id": "math1-088",
+       "name": "线性表示与线性相关性的关系",
+       "file": "data/math1-088.json",
+       "count": 2,
+       "orig": "87040305-线性表示与线性相关性的关系-194053.pdf"
+      },
+      {
+       "id": "math1-089",
+       "name": "关于线性相关性判别的条件",
+       "file": "data/math1-089.json",
+       "count": 5,
+       "orig": "87040306-关于线性相关性判别的条件-194054.pdf"
+      },
+      {
+       "id": "math1-090",
+       "name": "向量组的最大线性无关组和向量组的秩的概念",
+       "file": "data/math1-090.json",
+       "count": 2,
+       "orig": "87040308-向量组的最大线性无关组和向量组的秩的概念-194055.pdf"
+      },
+      {
+       "id": "math1-091",
+       "name": "向量组的线性无关与线性相关的定理",
+       "file": "data/math1-091.json",
+       "count": 1,
+       "orig": "87040309-向量组的线性无关与线性相关的定理-194056.pdf"
+      },
+      {
+       "id": "math1-092",
+       "name": "矩阵的秩与向量组的秩的关系",
+       "file": "data/math1-092.json",
+       "count": 1,
+       "orig": "87040310-矩阵的秩与向量组的秩的关系-194057.pdf"
+      },
+      {
+       "id": "math1-093",
+       "name": "齐次线性方程组解的结构",
+       "file": "data/math1-093.json",
+       "count": 2,
+       "orig": "87040402-齐次线性方程组解的结构-194058.pdf"
+      },
+      {
+       "id": "math1-094",
+       "name": "非齐次方程组解的性质及结构",
+       "file": "data/math1-094.json",
+       "count": 5,
+       "orig": "87040404-非齐次方程组解的性质及结构-194059.pdf"
+      },
+      {
+       "id": "math1-095",
+       "name": "非齐次线性方程组解的各种情形",
+       "file": "data/math1-095.json",
+       "count": 1,
+       "orig": "87040405-非齐次线性方程组解的各种情形-194060.pdf"
+      },
+      {
+       "id": "math1-096",
+       "name": "方程组、矩阵与向量之间的联系及其解题技巧总结",
+       "file": "data/math1-096.json",
+       "count": 2,
+       "orig": "87040410-方程组、矩阵与向量之间的联系及其解题技巧总结-194061.pdf"
+      },
+      {
+       "id": "math1-097",
+       "name": "特征值与特征向量的概念与性质",
+       "file": "data/math1-097.json",
+       "count": 4,
+       "orig": "87040501-特征值与特征向量的概念与性质-194062.pdf"
+      },
+      {
+       "id": "math1-098",
+       "name": "相似矩阵的概念及性质",
+       "file": "data/math1-098.json",
+       "count": 2,
+       "orig": "87040503-相似矩阵的概念及性质-194063.pdf"
+      },
+      {
+       "id": "math1-099",
+       "name": "实对称矩阵的相似对角化",
+       "file": "data/math1-099.json",
+       "count": 1,
+       "orig": "87040505-实对称矩阵的相似对角化-194064.pdf"
+      },
+      {
+       "id": "math1-100",
+       "name": "二次型及其矩阵表示",
+       "file": "data/math1-100.json",
+       "count": 1,
+       "orig": "87040507-二次型及其矩阵表示-194065.pdf"
+      },
+      {
+       "id": "math1-101",
+       "name": "矩阵的合同",
+       "file": "data/math1-101.json",
+       "count": 2,
+       "orig": "87040508-矩阵的合同-194066.pdf"
+      },
+      {
+       "id": "math1-102",
+       "name": "矩阵的等价、相似与合同的关系",
+       "file": "data/math1-102.json",
+       "count": 3,
+       "orig": "87040509-矩阵的等价、相似与合同的关系-194067.pdf"
+      },
+      {
+       "id": "math1-103",
+       "name": "二次型的标准形",
+       "file": "data/math1-103.json",
+       "count": 1,
+       "orig": "87040601-二次型的标准形-194068.pdf"
+      },
+      {
+       "id": "math1-104",
+       "name": "线性微分方程解的性质和结构",
+       "file": "data/math1-104.json",
+       "count": 2,
+       "orig": "87050910-线性微分方程解的性质和结构-194119.pdf"
+      },
+      {
+       "id": "math1-105",
+       "name": "二阶常系数齐次线性方程",
+       "file": "data/math1-105.json",
+       "count": 1,
+       "orig": "87050912-二阶常系数齐次线性方程-194120.pdf"
+      }
+     ]
+    },
+    {
+     "name": "概率论与数理统计",
+     "chapters": [
+      {
+       "id": "math1-106",
+       "name": "第一章　概率论的基本概念",
+       "file": "data/math1-106.json",
+       "count": 22,
+       "orig": "50301-第一章　概率论的基本概念-174011.pdf"
+      },
+      {
+       "id": "math1-107",
+       "name": "第二章　随机变量及其分布",
+       "file": "data/math1-107.json",
+       "count": 35,
+       "orig": "50302-第二章　随机变量及其分布-174012.pdf"
+      },
+      {
+       "id": "math1-108",
+       "name": "第三章　多维随机变量及其分布",
+       "file": "data/math1-108.json",
+       "count": 41,
+       "orig": "50303-第三章　多维随机变量及其分布-174013.pdf"
+      },
+      {
+       "id": "math1-109",
+       "name": "第四章　随机变量的数字特征",
+       "file": "data/math1-109.json",
+       "count": 34,
+       "orig": "50304-第四章　随机变量的数字特征-174014.pdf"
+      },
+      {
+       "id": "math1-110",
+       "name": "第五章　大数定律和中心极限定理",
+       "file": "data/math1-110.json",
+       "count": 4,
+       "orig": "50305-第五章　大数定律和中心极限定理-174015.pdf"
+      },
+      {
+       "id": "math1-111",
+       "name": "第六章　样本及抽样分布",
+       "file": "data/math1-111.json",
+       "count": 2,
+       "orig": "50306-第六章　样本及抽样分布-174016.pdf"
+      },
+      {
+       "id": "math1-112",
+       "name": "第七章　参数估计",
+       "file": "data/math1-112.json",
+       "count": 4,
+       "orig": "50307-第七章　参数估计-174017.pdf"
+      },
+      {
+       "id": "math1-113",
+       "name": "第八章　假设检验",
+       "file": "data/math1-113.json",
+       "count": 6,
+       "orig": "50308-第八章　假设检验-174018.pdf"
+      },
+      {
+       "id": "math1-114",
+       "name": "概率论与数理统计",
+       "file": "data/math1-114.json",
+       "count": 154,
+       "orig": "605010-(九) 概率论与数理统计-174027.pdf"
+      },
+      {
+       "id": "math1-115",
+       "name": "一、随机事件与概率",
+       "file": "data/math1-115.json",
+       "count": 9,
+       "orig": "870301-一、随机事件与概率-174038.pdf"
+      },
+      {
+       "id": "math1-116",
+       "name": "六、数理统计的基本概念",
+       "file": "data/math1-116.json",
+       "count": 13,
+       "orig": "870306-六、数理统计的基本概念-174043.pdf"
+      }
+     ]
+    },
+    {
+     "name": "综合强化",
+     "chapters": [
+      {
+       "id": "math1-117",
+       "name": "典型例题",
+       "file": "data/math1-117.json",
+       "count": 6,
+       "orig": "605011-典型例题-174028.pdf"
+      },
+      {
+       "id": "math1-118",
+       "name": "强化练习",
+       "file": "data/math1-118.json",
+       "count": 464,
+       "orig": "605012-强化练习-174029.pdf"
+      }
+     ]
+    },
+    {
+     "name": "真题与模拟卷",
+     "chapters": [
+      {
+       "id": "math1-119",
+       "name": "2024年军队文职考试《数学1》真题",
+       "file": "data/math1-119.json",
+       "count": 65,
+       "orig": "116-2024年军队文职考试《数学1》真题-137394.pdf"
+      },
+      {
+       "id": "math1-120",
+       "name": "2023年军队文职考试《数学1》真题",
+       "file": "data/math1-120.json",
+       "count": 64,
+       "orig": "117-2023年军队文职考试《数学1》真题-137395.pdf"
+      },
+      {
+       "id": "math1-121",
+       "name": "2021年军队文职考试《数学1》真题",
+       "file": "data/math1-121.json",
+       "count": 65,
+       "orig": "119-2021年军队文职考试《数学1》真题-137396.pdf"
+      },
+      {
+       "id": "math1-122",
+       "name": "2020年军队文职考试《数学1》真题",
+       "file": "data/math1-122.json",
+       "count": 140,
+       "orig": "120-2020年军队文职考试《数学1》真题-137397.pdf"
+      },
+      {
+       "id": "math1-123",
+       "name": "2019年军队文职考试《数学1》真题",
+       "file": "data/math1-123.json",
+       "count": 132,
+       "orig": "121-2019年军队文职考试《数学1》真题-137398.pdf"
+      },
+      {
+       "id": "math1-124",
+       "name": "2018年军队文职考试《数学1》真题",
+       "file": "data/math1-124.json",
+       "count": 138,
+       "orig": "122-2018年军队文职考试《数学1》真题-137399.pdf"
+      },
+      {
+       "id": "math1-125",
+       "name": "军队文职考试《数学1》模拟预测7",
+       "file": "data/math1-125.json",
+       "count": 70,
+       "orig": "0-军队文职考试《数学1》模拟预测7-325669.pdf"
+      },
+      {
+       "id": "math1-126",
+       "name": "军队文职考试《数学1》模拟预测8",
+       "file": "data/math1-126.json",
+       "count": 65,
+       "orig": "0-军队文职考试《数学1》模拟预测8-325670.pdf"
+      },
+      {
+       "id": "math1-127",
+       "name": "军队文职考试《数学1》模拟预测9",
+       "file": "data/math1-127.json",
+       "count": 65,
+       "orig": "0-军队文职考试《数学1》模拟预测9-325671.pdf"
+      },
+      {
+       "id": "math1-128",
+       "name": "军队文职考试《数学1》模拟预测10",
+       "file": "data/math1-128.json",
+       "count": 65,
+       "orig": "0-军队文职考试《数学1》模拟预测10-325672.pdf"
+      },
+      {
+       "id": "math1-129",
+       "name": "军队文职考试《数学1》模拟预测11",
+       "file": "data/math1-129.json",
+       "count": 66,
+       "orig": "0-军队文职考试《数学1》模拟预测11-325673.pdf"
+      },
+      {
+       "id": "math1-130",
+       "name": "军队文职考试《数学1》模拟预测12",
+       "file": "data/math1-130.json",
+       "count": 69,
+       "orig": "0-军队文职考试《数学1》模拟预测12-325674.pdf"
+      },
+      {
+       "id": "math1-131",
+       "name": "军队文职考试《数学1》模拟预测13",
+       "file": "data/math1-131.json",
+       "count": 69,
+       "orig": "0-军队文职考试《数学1》模拟预测13-325675.pdf"
+      },
+      {
+       "id": "math1-132",
+       "name": "军队文职考试《数学1》模拟预测14",
+       "file": "data/math1-132.json",
+       "count": 70,
+       "orig": "0-军队文职考试《数学1》模拟预测14-325676.pdf"
+      },
+      {
+       "id": "math1-133",
+       "name": "军队文职考试《数学1》模拟预测15",
+       "file": "data/math1-133.json",
+       "count": 69,
+       "orig": "0-军队文职考试《数学1》模拟预测15-325677.pdf"
+      },
+      {
+       "id": "math1-134",
+       "name": "军队文职考试《数学1》模拟预测16",
+       "file": "data/math1-134.json",
+       "count": 70,
+       "orig": "0-军队文职考试《数学1》模拟预测16-325678.pdf"
+      },
+      {
+       "id": "math1-135",
+       "name": "2025年军队文职人员招聘《数学1》模拟预测1",
+       "file": "data/math1-135.json",
+       "count": 65,
+       "orig": "1602-2025年军队文职人员招聘《数学1》模拟预测1-137400.pdf"
+      },
+      {
+       "id": "math1-136",
+       "name": "2025年军队文职人员招聘《数学1》模拟预测2",
+       "file": "data/math1-136.json",
+       "count": 65,
+       "orig": "1604-2025年军队文职人员招聘《数学1》模拟预测2-137401.pdf"
+      },
+      {
+       "id": "math1-137",
+       "name": "2025年军队文职人员招聘《数学1》模拟预测3",
+       "file": "data/math1-137.json",
+       "count": 65,
+       "orig": "1801-2025年军队文职人员招聘《数学1》模拟预测3-137402.pdf"
+      },
+      {
+       "id": "math1-138",
+       "name": "2025年军队文职人员招聘《数学1》模拟预测4",
+       "file": "data/math1-138.json",
+       "count": 65,
+       "orig": "1806-2025年军队文职人员招聘《数学1》模拟预测4-137403.pdf"
+      },
+      {
+       "id": "math1-139",
+       "name": "2025年军队文职人员招聘《数学1》模拟预测5",
+       "file": "data/math1-139.json",
+       "count": 65,
+       "orig": "2603-2025年军队文职人员招聘《数学1》模拟预测5-137404.pdf"
+      },
+      {
+       "id": "math1-140",
+       "name": "2025年军队文职人员招聘《数学1》模拟预测6",
+       "file": "data/math1-140.json",
+       "count": 65,
+       "orig": "2605-2025年军队文职人员招聘《数学1》模拟预测6-137405.pdf"
+      }
+     ]
+    }
+   ],
+   "code": "math1"
+  },
+  {
+   "id": "408",
+   "name": "408",
+   "sections": [
+    {
+     "name": "数据结构",
+     "chapters": [
+      {
+       "id": "408-ds1",
+       "name": "绪论",
+       "file": "data/408-ds1.json",
+       "count": 7
+      },
+      {
+       "id": "408-ds2",
+       "name": "线性表",
+       "file": "data/408-ds2.json",
+       "count": 9
+      },
+      {
+       "id": "408-ds3",
+       "name": "栈、队列和数组",
+       "file": "data/408-ds3.json",
+       "count": 26
+      },
+      {
+       "id": "408-ds4",
+       "name": "串",
+       "file": "data/408-ds4.json",
+       "count": 3
+      },
+      {
+       "id": "408-ds5",
+       "name": "树与二叉树",
+       "file": "data/408-ds5.json",
+       "count": 40
+      },
+      {
+       "id": "408-ds6",
+       "name": "图",
+       "file": "data/408-ds6.json",
+       "count": 33
+      },
+      {
+       "id": "408-ds7",
+       "name": "查找",
+       "file": "data/408-ds7.json",
+       "count": 39
+      },
+      {
+       "id": "408-ds8",
+       "name": "排序",
+       "file": "data/408-ds8.json",
+       "count": 40
+      }
+     ]
+    },
+    {
+     "name": "计算机组成原理",
+     "chapters": [
+      {
+       "id": "408-co1",
+       "name": "计算机系统概述",
+       "file": "data/408-co1.json",
+       "count": 17
+      },
+      {
+       "id": "408-co2",
+       "name": "数据的表示和运算",
+       "file": "data/408-co2.json",
+       "count": 41
+      },
+      {
+       "id": "408-co3",
+       "name": "存储系统",
+       "file": "data/408-co3.json",
+       "count": 41
+      },
+      {
+       "id": "408-co4",
+       "name": "指令系统",
+       "file": "data/408-co4.json",
+       "count": 19
+      },
+      {
+       "id": "408-co5",
+       "name": "中央处理器",
+       "file": "data/408-co5.json",
+       "count": 36
+      },
+      {
+       "id": "408-co6",
+       "name": "总线",
+       "file": "data/408-co6.json",
+       "count": 18
+      },
+      {
+       "id": "408-co7",
+       "name": "输入/输出系统",
+       "file": "data/408-co7.json",
+       "count": 27
+      }
+     ]
+    },
+    {
+     "name": "操作系统",
+     "chapters": [
+      {
+       "id": "408-os1",
+       "name": "计算机系统概述",
+       "file": "data/408-os1.json",
+       "count": 27
+      },
+      {
+       "id": "408-os2",
+       "name": "进程与线程",
+       "file": "data/408-os2.json",
+       "count": 62
+      },
+      {
+       "id": "408-os3",
+       "name": "内存管理",
+       "file": "data/408-os3.json",
+       "count": 37
+      },
+      {
+       "id": "408-os4",
+       "name": "文件管理",
+       "file": "data/408-os4.json",
+       "count": 37
+      },
+      {
+       "id": "408-os5",
+       "name": "输入/输出管理",
+       "file": "data/408-os5.json",
+       "count": 17
+      }
+     ]
+    },
+    {
+     "name": "计算机网络",
+     "chapters": [
+      {
+       "id": "408-cn1",
+       "name": "计算机网络体系结构",
+       "file": "data/408-cn1.json",
+       "count": 16
+      },
+      {
+       "id": "408-cn2",
+       "name": "物理层",
+       "file": "data/408-cn2.json",
+       "count": 15
+      },
+      {
+       "id": "408-cn3",
+       "name": "数据链路层",
+       "file": "data/408-cn3.json",
+       "count": 37
+      },
+      {
+       "id": "408-cn4",
+       "name": "网络层",
+       "file": "data/408-cn4.json",
+       "count": 34
+      },
+      {
+       "id": "408-cn5",
+       "name": "传输层",
+       "file": "data/408-cn5.json",
+       "count": 25
+      },
+      {
+       "id": "408-cn6",
+       "name": "应用层",
+       "file": "data/408-cn6.json",
+       "count": 17
+      }
+     ]
+    }
+   ],
+   "code": "408"
+  },
+  {
+   "id": "行测",
+   "name": "行测",
+   "sections": [
+    {
+     "name": "政治理论",
+     "chapters": [
+      {
+       "id": "civil-001",
+       "name": "新思想",
+       "file": "data/civil-001.json",
+       "count": 955
+      },
+      {
+       "id": "civil-002",
+       "name": "时事政治",
+       "file": "data/civil-002.json",
+       "count": 523
+      },
+      {
+       "id": "civil-003",
+       "name": "马克思主义",
+       "file": "data/civil-003.json",
+       "count": 125
+      },
+      {
+       "id": "civil-004",
+       "name": "毛中特",
+       "file": "data/civil-004.json",
+       "count": 49
+      }
+     ]
+    },
+    {
+     "name": "常识判断",
+     "chapters": [
+      {
+       "id": "civil-005",
+       "name": "人文常识",
+       "file": "data/civil-005.json",
+       "count": 1400
+      },
+      {
+       "id": "civil-006",
+       "name": "科技常识",
+       "file": "data/civil-006.json",
+       "count": 651
+      },
+      {
+       "id": "civil-007",
+       "name": "法律常识",
+       "file": "data/civil-007.json",
+       "count": 391
+      },
+      {
+       "id": "civil-008",
+       "name": "地理国情",
+       "file": "data/civil-008.json",
+       "count": 156
+      },
+      {
+       "id": "civil-009",
+       "name": "经济常识",
+       "file": "data/civil-009.json",
+       "count": 154
+      }
+     ]
+    },
+    {
+     "name": "言语理解与表达",
+     "chapters": [
+      {
+       "id": "civil-010",
+       "name": "片段阅读",
+       "file": "data/civil-010.json",
+       "count": 2555
+      },
+      {
+       "id": "civil-011",
+       "name": "逻辑填空",
+       "file": "data/civil-011.json",
+       "count": 2473
+      },
+      {
+       "id": "civil-012",
+       "name": "语句表达",
+       "file": "data/civil-012.json",
+       "count": 768
+      }
+     ]
+    },
+    {
+     "name": "数量关系",
+     "chapters": [
+      {
+       "id": "civil-013",
+       "name": "数学运算",
+       "file": "data/civil-013.json",
+       "count": 2498
+      }
+     ]
+    },
+    {
+     "name": "判断推理",
+     "chapters": [
+      {
+       "id": "civil-014",
+       "name": "类比推理",
+       "file": "data/civil-014.json",
+       "count": 1780
+      },
+      {
+       "id": "civil-015",
+       "name": "逻辑判断",
+       "file": "data/civil-015.json",
+       "count": 1713
+      },
+      {
+       "id": "civil-016",
+       "name": "定义判断",
+       "file": "data/civil-016.json",
+       "count": 1551
+      },
+      {
+       "id": "civil-017",
+       "name": "图形推理",
+       "file": "data/civil-017.json",
+       "count": 1380
+      }
+     ]
+    },
+    {
+     "name": "资料分析",
+     "chapters": [
+      {
+       "id": "civil-018",
+       "name": "综合",
+       "file": "data/civil-018.json",
+       "count": 1486
+      },
+      {
+       "id": "civil-019",
+       "name": "增长",
+       "file": "data/civil-019.json",
+       "count": 1048
+      },
+      {
+       "id": "civil-020",
+       "name": "比重",
+       "file": "data/civil-020.json",
+       "count": 380
+      },
+      {
+       "id": "civil-021",
+       "name": "平均数",
+       "file": "data/civil-021.json",
+       "count": 252
+      },
+      {
+       "id": "civil-022",
+       "name": "倍数",
+       "file": "data/civil-022.json",
+       "count": 10
+      }
+     ]
+    }
+   ],
+   "code": "civil"
+  },
+  {
+   "id": "法律",
+   "name": "法律",
+   "sections": [
+    {
+     "name": "宪法",
+     "chapters": [
+      {
+       "id": "law-001",
+       "name": "基础",
+       "file": "data/law-001.json",
+       "count": 358
+      },
+      {
+       "id": "law-002",
+       "name": "中等",
+       "file": "data/law-002.json",
+       "count": 107
+      },
+      {
+       "id": "law-003",
+       "name": "困难",
+       "file": "data/law-003.json",
+       "count": 10
+      }
+     ]
+    },
+    {
+     "name": "法理学",
+     "chapters": [
+      {
+       "id": "law-004",
+       "name": "基础",
+       "file": "data/law-004.json",
+       "count": 76
+      },
+      {
+       "id": "law-005",
+       "name": "中等",
+       "file": "data/law-005.json",
+       "count": 23
+      },
+      {
+       "id": "law-006",
+       "name": "困难",
+       "file": "data/law-006.json",
+       "count": 11
+      }
+     ]
+    },
+    {
+     "name": "法制史",
+     "chapters": [
+      {
+       "id": "law-007",
+       "name": "基础",
+       "file": "data/law-007.json",
+       "count": 29
+      },
+      {
+       "id": "law-008",
+       "name": "中等",
+       "file": "data/law-008.json",
+       "count": 8
+      },
+      {
+       "id": "law-009",
+       "name": "困难",
+       "file": "data/law-009.json",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "name": "国际法",
+     "chapters": [
+      {
+       "id": "law-010",
+       "name": "基础",
+       "file": "data/law-010.json",
+       "count": 93
+      },
+      {
+       "id": "law-011",
+       "name": "中等",
+       "file": "data/law-011.json",
+       "count": 70
+      },
+      {
+       "id": "law-012",
+       "name": "困难",
+       "file": "data/law-012.json",
+       "count": 27
+      }
+     ]
+    },
+    {
+     "name": "民法",
+     "chapters": [
+      {
+       "id": "law-013",
+       "name": "基础",
+       "file": "data/law-013.json",
+       "count": 1297
+      },
+      {
+       "id": "law-014",
+       "name": "中等",
+       "file": "data/law-014.json",
+       "count": 1038
+      },
+      {
+       "id": "law-015",
+       "name": "困难",
+       "file": "data/law-015.json",
+       "count": 455
+      }
+     ]
+    },
+    {
+     "name": "刑法",
+     "chapters": [
+      {
+       "id": "law-016",
+       "name": "基础",
+       "file": "data/law-016.json",
+       "count": 746
+      },
+      {
+       "id": "law-017",
+       "name": "中等",
+       "file": "data/law-017.json",
+       "count": 377
+      },
+      {
+       "id": "law-018",
+       "name": "困难",
+       "file": "data/law-018.json",
+       "count": 128
+      }
+     ]
+    },
+    {
+     "name": "行政法",
+     "chapters": [
+      {
+       "id": "law-019",
+       "name": "基础",
+       "file": "data/law-019.json",
+       "count": 523
+      },
+      {
+       "id": "law-020",
+       "name": "中等",
+       "file": "data/law-020.json",
+       "count": 347
+      },
+      {
+       "id": "law-021",
+       "name": "困难",
+       "file": "data/law-021.json",
+       "count": 139
+      }
+     ]
+    },
+    {
+     "name": "民诉法",
+     "chapters": [
+      {
+       "id": "law-022",
+       "name": "基础",
+       "file": "data/law-022.json",
+       "count": 493
+      },
+      {
+       "id": "law-023",
+       "name": "中等",
+       "file": "data/law-023.json",
+       "count": 331
+      },
+      {
+       "id": "law-024",
+       "name": "困难",
+       "file": "data/law-024.json",
+       "count": 133
+      }
+     ]
+    },
+    {
+     "name": "刑诉法",
+     "chapters": [
+      {
+       "id": "law-025",
+       "name": "基础",
+       "file": "data/law-025.json",
+       "count": 638
+      },
+      {
+       "id": "law-026",
+       "name": "中等",
+       "file": "data/law-026.json",
+       "count": 204
+      },
+      {
+       "id": "law-027",
+       "name": "困难",
+       "file": "data/law-027.json",
+       "count": 38
+      }
+     ]
+    },
+    {
+     "name": "商经法",
+     "chapters": [
+      {
+       "id": "law-028",
+       "name": "基础",
+       "file": "data/law-028.json",
+       "count": 595
+      },
+      {
+       "id": "law-029",
+       "name": "中等",
+       "file": "data/law-029.json",
+       "count": 455
+      },
+      {
+       "id": "law-030",
+       "name": "困难",
+       "file": "data/law-030.json",
+       "count": 310
+      }
+     ]
+    },
+    {
+     "name": "知识产权法",
+     "chapters": [
+      {
+       "id": "law-031",
+       "name": "基础",
+       "file": "data/law-031.json",
+       "count": 361
+      },
+      {
+       "id": "law-032",
+       "name": "中等",
+       "file": "data/law-032.json",
+       "count": 92
+      },
+      {
+       "id": "law-033",
+       "name": "困难",
+       "file": "data/law-033.json",
+       "count": 50
+      }
+     ]
+    },
+    {
+     "name": "司法制度与职业道德",
+     "chapters": [
+      {
+       "id": "law-034",
+       "name": "基础",
+       "file": "data/law-034.json",
+       "count": 117
+      },
+      {
+       "id": "law-035",
+       "name": "中等",
+       "file": "data/law-035.json",
+       "count": 21
+      },
+      {
+       "id": "law-036",
+       "name": "困难",
+       "file": "data/law-036.json",
+       "count": 3
+      }
+     ]
+    }
+   ],
+   "code": "law"
+  },
+  {
+   "id": "申论",
+   "name": "申论",
+   "sections": [
+    {
+     "name": "概括",
+     "chapters": [
+      {
+       "id": "essay-001",
+       "name": "2026",
+       "file": "data/essay-001.json",
+       "count": 6
+      },
+      {
+       "id": "essay-002",
+       "name": "2025",
+       "file": "data/essay-002.json",
+       "count": 10
+      },
+      {
+       "id": "essay-003",
+       "name": "2024",
+       "file": "data/essay-003.json",
+       "count": 6
+      },
+      {
+       "id": "essay-004",
+       "name": "2023",
+       "file": "data/essay-004.json",
+       "count": 6
+      },
+      {
+       "id": "essay-005",
+       "name": "2022",
+       "file": "data/essay-005.json",
+       "count": 4
+      },
+      {
+       "id": "essay-006",
+       "name": "2021",
+       "file": "data/essay-006.json",
+       "count": 3
+      },
+      {
+       "id": "essay-007",
+       "name": "2020",
+       "file": "data/essay-007.json",
+       "count": 4
+      },
+      {
+       "id": "essay-008",
+       "name": "2019",
+       "file": "data/essay-008.json",
+       "count": 6
+      },
+      {
+       "id": "essay-009",
+       "name": "2018",
+       "file": "data/essay-009.json",
+       "count": 1
+      },
+      {
+       "id": "essay-010",
+       "name": "2017",
+       "file": "data/essay-010.json",
+       "count": 3
+      },
+      {
+       "id": "essay-011",
+       "name": "2016",
+       "file": "data/essay-011.json",
+       "count": 5
+      }
+     ]
+    },
+    {
+     "name": "分析",
+     "chapters": [
+      {
+       "id": "essay-012",
+       "name": "2026",
+       "file": "data/essay-012.json",
+       "count": 3
+      },
+      {
+       "id": "essay-013",
+       "name": "2025",
+       "file": "data/essay-013.json",
+       "count": 1
+      },
+      {
+       "id": "essay-014",
+       "name": "2023",
+       "file": "data/essay-014.json",
+       "count": 3
+      },
+      {
+       "id": "essay-015",
+       "name": "2022",
+       "file": "data/essay-015.json",
+       "count": 3
+      },
+      {
+       "id": "essay-016",
+       "name": "2021",
+       "file": "data/essay-016.json",
+       "count": 5
+      },
+      {
+       "id": "essay-017",
+       "name": "2020",
+       "file": "data/essay-017.json",
+       "count": 3
+      },
+      {
+       "id": "essay-018",
+       "name": "2019",
+       "file": "data/essay-018.json",
+       "count": 2
+      },
+      {
+       "id": "essay-019",
+       "name": "2018",
+       "file": "data/essay-019.json",
+       "count": 7
+      },
+      {
+       "id": "essay-020",
+       "name": "2017",
+       "file": "data/essay-020.json",
+       "count": 1
+      },
+      {
+       "id": "essay-021",
+       "name": "2016",
+       "file": "data/essay-021.json",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "name": "对策",
+     "chapters": [
+      {
+       "id": "essay-022",
+       "name": "2026",
+       "file": "data/essay-022.json",
+       "count": 1
+      },
+      {
+       "id": "essay-023",
+       "name": "2025",
+       "file": "data/essay-023.json",
+       "count": 2
+      },
+      {
+       "id": "essay-024",
+       "name": "2023",
+       "file": "data/essay-024.json",
+       "count": 1
+      },
+      {
+       "id": "essay-025",
+       "name": "2022",
+       "file": "data/essay-025.json",
+       "count": 1
+      },
+      {
+       "id": "essay-026",
+       "name": "2021",
+       "file": "data/essay-026.json",
+       "count": 1
+      },
+      {
+       "id": "essay-027",
+       "name": "2020",
+       "file": "data/essay-027.json",
+       "count": 1
+      },
+      {
+       "id": "essay-028",
+       "name": "2019",
+       "file": "data/essay-028.json",
+       "count": 1
+      },
+      {
+       "id": "essay-029",
+       "name": "2017",
+       "file": "data/essay-029.json",
+       "count": 1
+      },
+      {
+       "id": "essay-030",
+       "name": "2016",
+       "file": "data/essay-030.json",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "name": "应用文",
+     "chapters": [
+      {
+       "id": "essay-031",
+       "name": "2026",
+       "file": "data/essay-031.json",
+       "count": 6
+      },
+      {
+       "id": "essay-032",
+       "name": "2025",
+       "file": "data/essay-032.json",
+       "count": 5
+      },
+      {
+       "id": "essay-033",
+       "name": "2024",
+       "file": "data/essay-033.json",
+       "count": 12
+      },
+      {
+       "id": "essay-034",
+       "name": "2023",
+       "file": "data/essay-034.json",
+       "count": 8
+      },
+      {
+       "id": "essay-035",
+       "name": "2022",
+       "file": "data/essay-035.json",
+       "count": 5
+      },
+      {
+       "id": "essay-036",
+       "name": "2021",
+       "file": "data/essay-036.json",
+       "count": 3
+      },
+      {
+       "id": "essay-037",
+       "name": "2020",
+       "file": "data/essay-037.json",
+       "count": 4
+      },
+      {
+       "id": "essay-038",
+       "name": "2019",
+       "file": "data/essay-038.json",
+       "count": 4
+      },
+      {
+       "id": "essay-039",
+       "name": "2018",
+       "file": "data/essay-039.json",
+       "count": 4
+      },
+      {
+       "id": "essay-040",
+       "name": "2017",
+       "file": "data/essay-040.json",
+       "count": 6
+      },
+      {
+       "id": "essay-041",
+       "name": "2016",
+       "file": "data/essay-041.json",
+       "count": 5
+      }
+     ]
+    },
+    {
+     "name": "大作文",
+     "chapters": [
+      {
+       "id": "essay-042",
+       "name": "2026",
+       "file": "data/essay-042.json",
+       "count": 5
+      },
+      {
+       "id": "essay-043",
+       "name": "2025",
+       "file": "data/essay-043.json",
+       "count": 6
+      },
+      {
+       "id": "essay-044",
+       "name": "2024",
+       "file": "data/essay-044.json",
+       "count": 6
+      },
+      {
+       "id": "essay-045",
+       "name": "2023",
+       "file": "data/essay-045.json",
+       "count": 6
+      },
+      {
+       "id": "essay-046",
+       "name": "2022",
+       "file": "data/essay-046.json",
+       "count": 2
+      },
+      {
+       "id": "essay-047",
+       "name": "2021",
+       "file": "data/essay-047.json",
+       "count": 4
+      },
+      {
+       "id": "essay-048",
+       "name": "2020",
+       "file": "data/essay-048.json",
+       "count": 2
+      },
+      {
+       "id": "essay-049",
+       "name": "2019",
+       "file": "data/essay-049.json",
+       "count": 4
+      },
+      {
+       "id": "essay-050",
+       "name": "2018",
+       "file": "data/essay-050.json",
+       "count": 4
+      },
+      {
+       "id": "essay-051",
+       "name": "2017",
+       "file": "data/essay-051.json",
+       "count": 4
+      },
+      {
+       "id": "essay-052",
+       "name": "2016",
+       "file": "data/essay-052.json",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "code": "essay"
+  },
+  {
+   "id": "系统分析师",
+   "name": "系统分析师",
+   "sections": [
+    {
+     "name": "计算机系统基础知识",
+     "chapters": [
+      {
+       "id": "analyst-001",
+       "name": "2023上",
+       "file": "data/analyst-001.json",
+       "count": 13
+      },
+      {
+       "id": "analyst-002",
+       "name": "2022下",
+       "file": "data/analyst-002.json",
+       "count": 12
+      },
+      {
+       "id": "analyst-003",
+       "name": "2023下",
+       "file": "data/analyst-003.json",
+       "count": 11
+      },
+      {
+       "id": "analyst-004",
+       "name": "2024上",
+       "file": "data/analyst-004.json",
+       "count": 9
+      },
+      {
+       "id": "analyst-005",
+       "name": "2022上",
+       "file": "data/analyst-005.json",
+       "count": 8
+      },
+      {
+       "id": "analyst-006",
+       "name": "2021下",
+       "file": "data/analyst-006.json",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "name": "数据库系统",
+     "chapters": [
+      {
+       "id": "analyst-007",
+       "name": "2023下",
+       "file": "data/analyst-007.json",
+       "count": 19
+      },
+      {
+       "id": "analyst-008",
+       "name": "2022上",
+       "file": "data/analyst-008.json",
+       "count": 5
+      },
+      {
+       "id": "analyst-009",
+       "name": "2023上",
+       "file": "data/analyst-009.json",
+       "count": 14
+      },
+      {
+       "id": "analyst-010",
+       "name": "2022下",
+       "file": "data/analyst-010.json",
+       "count": 10
+      },
+      {
+       "id": "analyst-011",
+       "name": "2024上",
+       "file": "data/analyst-011.json",
+       "count": 16
+      },
+      {
+       "id": "analyst-012",
+       "name": "2021下",
+       "file": "data/analyst-012.json",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "name": "系统规划与分析",
+     "chapters": [
+      {
+       "id": "analyst-013",
+       "name": "2023上",
+       "file": "data/analyst-013.json",
+       "count": 15
+      },
+      {
+       "id": "analyst-014",
+       "name": "2022下",
+       "file": "data/analyst-014.json",
+       "count": 13
+      },
+      {
+       "id": "analyst-015",
+       "name": "2022上",
+       "file": "data/analyst-015.json",
+       "count": 7
+      },
+      {
+       "id": "analyst-016",
+       "name": "2023下",
+       "file": "data/analyst-016.json",
+       "count": 14
+      },
+      {
+       "id": "analyst-017",
+       "name": "2021下",
+       "file": "data/analyst-017.json",
+       "count": 3
+      },
+      {
+       "id": "analyst-018",
+       "name": "2024上",
+       "file": "data/analyst-018.json",
+       "count": 8
+      }
+     ]
+    },
+    {
+     "name": "系统设计",
+     "chapters": [
+      {
+       "id": "analyst-019",
+       "name": "2023上",
+       "file": "data/analyst-019.json",
+       "count": 11
+      },
+      {
+       "id": "analyst-020",
+       "name": "2022下",
+       "file": "data/analyst-020.json",
+       "count": 7
+      },
+      {
+       "id": "analyst-021",
+       "name": "2022上",
+       "file": "data/analyst-021.json",
+       "count": 5
+      },
+      {
+       "id": "analyst-022",
+       "name": "2023下",
+       "file": "data/analyst-022.json",
+       "count": 19
+      },
+      {
+       "id": "analyst-023",
+       "name": "2024上",
+       "file": "data/analyst-023.json",
+       "count": 18
+      }
+     ]
+    },
+    {
+     "name": "软件工程与项目管理",
+     "chapters": [
+      {
+       "id": "analyst-024",
+       "name": "2023上",
+       "file": "data/analyst-024.json",
+       "count": 15
+      },
+      {
+       "id": "analyst-025",
+       "name": "2023下",
+       "file": "data/analyst-025.json",
+       "count": 14
+      },
+      {
+       "id": "analyst-026",
+       "name": "2022下",
+       "file": "data/analyst-026.json",
+       "count": 9
+      },
+      {
+       "id": "analyst-027",
+       "name": "2022上",
+       "file": "data/analyst-027.json",
+       "count": 1
+      },
+      {
+       "id": "analyst-028",
+       "name": "2024上",
+       "file": "data/analyst-028.json",
+       "count": 15
+      },
+      {
+       "id": "analyst-029",
+       "name": "2021下",
+       "file": "data/analyst-029.json",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "name": "系统可靠性、安全与运维",
+     "chapters": [
+      {
+       "id": "analyst-030",
+       "name": "2023上",
+       "file": "data/analyst-030.json",
+       "count": 9
+      },
+      {
+       "id": "analyst-031",
+       "name": "2022下",
+       "file": "data/analyst-031.json",
+       "count": 5
+      },
+      {
+       "id": "analyst-032",
+       "name": "2024上",
+       "file": "data/analyst-032.json",
+       "count": 20
+      },
+      {
+       "id": "analyst-033",
+       "name": "2022上",
+       "file": "data/analyst-033.json",
+       "count": 2
+      },
+      {
+       "id": "analyst-034",
+       "name": "2023下",
+       "file": "data/analyst-034.json",
+       "count": 19
+      }
+     ]
+    },
+    {
+     "name": "新技术与综合应用",
+     "chapters": [
+      {
+       "id": "analyst-035",
+       "name": "2023上",
+       "file": "data/analyst-035.json",
+       "count": 4
+      },
+      {
+       "id": "analyst-036",
+       "name": "2024上",
+       "file": "data/analyst-036.json",
+       "count": 29
+      },
+      {
+       "id": "analyst-037",
+       "name": "2023下",
+       "file": "data/analyst-037.json",
+       "count": 14
+      },
+      {
+       "id": "analyst-038",
+       "name": "2022下",
+       "file": "data/analyst-038.json",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "name": "案例分析",
+     "chapters": [
+      {
+       "id": "analyst-039",
+       "name": "系统规划与分析",
+       "file": "data/analyst-039.json",
+       "count": 10
+      },
+      {
+       "id": "analyst-040",
+       "name": "系统设计",
+       "file": "data/analyst-040.json",
+       "count": 10
+      },
+      {
+       "id": "analyst-041",
+       "name": "数据库系统",
+       "file": "data/analyst-041.json",
+       "count": 10
+      },
+      {
+       "id": "analyst-042",
+       "name": "软件工程与项目管理",
+       "file": "data/analyst-042.json",
+       "count": 10
+      },
+      {
+       "id": "analyst-043",
+       "name": "系统可靠性、安全与运维",
+       "file": "data/analyst-043.json",
+       "count": 4
+      },
+      {
+       "id": "analyst-044",
+       "name": "新技术与综合应用",
+       "file": "data/analyst-044.json",
+       "count": 6
+      }
+     ]
+    }
+   ],
+   "code": "analyst"
+  },
+  {
+   "id": "软件设计师",
+   "name": "软件设计师",
+   "sections": [
+    {
+     "name": "计算机组成与体系结构",
+     "chapters": [
+      {
+       "id": "dev-001",
+       "name": "数据表示：进制与码制",
+       "file": "data/dev-001.json",
+       "count": 12
+      },
+      {
+       "id": "dev-002",
+       "name": "校验码：奇偶、CRC 与海明码",
+       "file": "data/dev-002.json",
+       "count": 7
+      },
+      {
+       "id": "dev-003",
+       "name": "CPU 组成与指令系统",
+       "file": "data/dev-003.json",
+       "count": 11
+      },
+      {
+       "id": "dev-004",
+       "name": "总线、I/O 与体系结构分类",
+       "file": "data/dev-004.json",
+       "count": 7
+      },
+      {
+       "id": "dev-005",
+       "name": "存储系统与 Cache",
+       "file": "data/dev-005.json",
+       "count": 9
+      },
+      {
+       "id": "dev-006",
+       "name": "可靠性与性能指标",
+       "file": "data/dev-006.json",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "name": "操作系统",
+     "chapters": [
+      {
+       "id": "dev-007",
+       "name": "进程与线程",
+       "file": "data/dev-007.json",
+       "count": 9
+      },
+      {
+       "id": "dev-008",
+       "name": "文件管理",
+       "file": "data/dev-008.json",
+       "count": 4
+      },
+      {
+       "id": "dev-009",
+       "name": "信号量与 PV 操作",
+       "file": "data/dev-009.json",
+       "count": 5
+      },
+      {
+       "id": "dev-010",
+       "name": "死锁与银行家算法",
+       "file": "data/dev-010.json",
+       "count": 4
+      },
+      {
+       "id": "dev-011",
+       "name": "存储管理：分区、页式、段式",
+       "file": "data/dev-011.json",
+       "count": 9
+      },
+      {
+       "id": "dev-012",
+       "name": "设备管理与磁盘调度",
+       "file": "data/dev-012.json",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "name": "数据库系统",
+     "chapters": [
+      {
+       "id": "dev-013",
+       "name": "规范化理论：函数依赖与范式",
+       "file": "data/dev-013.json",
+       "count": 8
+      },
+      {
+       "id": "dev-014",
+       "name": "SQL 语言",
+       "file": "data/dev-014.json",
+       "count": 9
+      },
+      {
+       "id": "dev-015",
+       "name": "分布式数据库与数据仓库",
+       "file": "data/dev-015.json",
+       "count": 4
+      },
+      {
+       "id": "dev-016",
+       "name": "数据库体系结构",
+       "file": "data/dev-016.json",
+       "count": 3
+      },
+      {
+       "id": "dev-017",
+       "name": "E-R 模型与关系模式转换",
+       "file": "data/dev-017.json",
+       "count": 2
+      },
+      {
+       "id": "dev-018",
+       "name": "关系代数",
+       "file": "data/dev-018.json",
+       "count": 5
+      },
+      {
+       "id": "dev-019",
+       "name": "事务、并发控制与恢复",
+       "file": "data/dev-019.json",
+       "count": 6
+      }
+     ]
+    },
+    {
+     "name": "计算机网络",
+     "chapters": [
+      {
+       "id": "dev-020",
+       "name": "网络设备、拓扑与命令",
+       "file": "data/dev-020.json",
+       "count": 9
+      },
+      {
+       "id": "dev-021",
+       "name": "网络体系结构",
+       "file": "data/dev-021.json",
+       "count": 12
+      },
+      {
+       "id": "dev-022",
+       "name": "传输层：TCP 与 UDP",
+       "file": "data/dev-022.json",
+       "count": 8
+      },
+      {
+       "id": "dev-023",
+       "name": "IP 地址与子网划分",
+       "file": "data/dev-023.json",
+       "count": 10
+      },
+      {
+       "id": "dev-024",
+       "name": "应用层协议",
+       "file": "data/dev-024.json",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "name": "信息安全",
+     "chapters": [
+      {
+       "id": "dev-025",
+       "name": "恶意代码与访问控制",
+       "file": "data/dev-025.json",
+       "count": 11
+      },
+      {
+       "id": "dev-026",
+       "name": "安全要素与攻击类型",
+       "file": "data/dev-026.json",
+       "count": 4
+      },
+      {
+       "id": "dev-027",
+       "name": "网络安全防护",
+       "file": "data/dev-027.json",
+       "count": 8
+      },
+      {
+       "id": "dev-028",
+       "name": "加密技术",
+       "file": "data/dev-028.json",
+       "count": 8
+      },
+      {
+       "id": "dev-029",
+       "name": "认证、数字签名与 PKI",
+       "file": "data/dev-029.json",
+       "count": 6
+      }
+     ]
+    },
+    {
+     "name": "标准化与知识产权",
+     "chapters": [
+      {
+       "id": "dev-030",
+       "name": "知识产权",
+       "file": "data/dev-030.json",
+       "count": 25
+      },
+      {
+       "id": "dev-031",
+       "name": "标准化",
+       "file": "data/dev-031.json",
+       "count": 7
+      }
+     ]
+    },
+    {
+     "name": "程序设计语言与编译原理",
+     "chapters": [
+      {
+       "id": "dev-032",
+       "name": "程序设计语言的分类与特点",
+       "file": "data/dev-032.json",
+       "count": 8
+      },
+      {
+       "id": "dev-033",
+       "name": "编译过程",
+       "file": "data/dev-033.json",
+       "count": 7
+      },
+      {
+       "id": "dev-034",
+       "name": "表达式表示与参数传递",
+       "file": "data/dev-034.json",
+       "count": 7
+      },
+      {
+       "id": "dev-035",
+       "name": "文法、正规式与有限自动机",
+       "file": "data/dev-035.json",
+       "count": 7
+      }
+     ]
+    },
+    {
+     "name": "数据结构与算法",
+     "chapters": [
+      {
+       "id": "dev-036",
+       "name": "排序",
+       "file": "data/dev-036.json",
+       "count": 7
+      },
+      {
+       "id": "dev-037",
+       "name": "线性表、栈与队列",
+       "file": "data/dev-037.json",
+       "count": 7
+      },
+      {
+       "id": "dev-038",
+       "name": "查找",
+       "file": "data/dev-038.json",
+       "count": 9
+      },
+      {
+       "id": "dev-039",
+       "name": "树与二叉树",
+       "file": "data/dev-039.json",
+       "count": 13
+      },
+      {
+       "id": "dev-040",
+       "name": "图：存储、遍历与最短路径",
+       "file": "data/dev-040.json",
+       "count": 11
+      }
+     ]
+    },
+    {
+     "name": "算法设计与分析",
+     "chapters": [
+      {
+       "id": "dev-041",
+       "name": "动态规划",
+       "file": "data/dev-041.json",
+       "count": 4
+      },
+      {
+       "id": "dev-042",
+       "name": "贪心法",
+       "file": "data/dev-042.json",
+       "count": 6
+      },
+      {
+       "id": "dev-043",
+       "name": "回溯法与分支限界",
+       "file": "data/dev-043.json",
+       "count": 6
+      },
+      {
+       "id": "dev-044",
+       "name": "分治法",
+       "file": "data/dev-044.json",
+       "count": 3
+      },
+      {
+       "id": "dev-045",
+       "name": "四大算法策略对比",
+       "file": "data/dev-045.json",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "name": "面向对象技术",
+     "chapters": [
+      {
+       "id": "dev-046",
+       "name": "面向对象分析与设计",
+       "file": "data/dev-046.json",
+       "count": 1
+      },
+      {
+       "id": "dev-047",
+       "name": "面向对象基本概念",
+       "file": "data/dev-047.json",
+       "count": 7
+      },
+      {
+       "id": "dev-048",
+       "name": "UML 图与关系",
+       "file": "data/dev-048.json",
+       "count": 10
+      },
+      {
+       "id": "dev-049",
+       "name": "设计模式（23 种）",
+       "file": "data/dev-049.json",
+       "count": 12
+      },
+      {
+       "id": "dev-050",
+       "name": "设计原则",
+       "file": "data/dev-050.json",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "name": "软件工程",
+     "chapters": [
+      {
+       "id": "dev-051",
+       "name": "软件设计：耦合与内聚",
+       "file": "data/dev-051.json",
+       "count": 7
+      },
+      {
+       "id": "dev-052",
+       "name": "软件维护",
+       "file": "data/dev-052.json",
+       "count": 4
+      },
+      {
+       "id": "dev-053",
+       "name": "需求分析与数据流图",
+       "file": "data/dev-053.json",
+       "count": 4
+      },
+      {
+       "id": "dev-054",
+       "name": "项目管理",
+       "file": "data/dev-054.json",
+       "count": 7
+      },
+      {
+       "id": "dev-055",
+       "name": "软件生命周期与开发模型",
+       "file": "data/dev-055.json",
+       "count": 27
+      },
+      {
+       "id": "dev-056",
+       "name": "软件质量与软件过程",
+       "file": "data/dev-056.json",
+       "count": 3
+      },
+      {
+       "id": "dev-057",
+       "name": "软件测试",
+       "file": "data/dev-057.json",
+       "count": 8
+      }
+     ]
+    },
+    {
+     "name": "专业英语",
+     "chapters": [
+      {
+       "id": "dev-058",
+       "name": "高频词汇（按主题）",
+       "file": "data/dev-058.json",
+       "count": 10
+      },
+      {
+       "id": "dev-059",
+       "name": "题型与解题策略",
+       "file": "data/dev-059.json",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "name": "应用技术（案例分析）专题",
+     "chapters": [
+      {
+       "id": "dev-060",
+       "name": "第 1 题：数据流图（15 分）",
+       "file": "data/dev-060.json",
+       "count": 4
+      },
+      {
+       "id": "dev-061",
+       "name": "第 2 题：数据库设计（15 分）",
+       "file": "data/dev-061.json",
+       "count": 3
+      },
+      {
+       "id": "dev-062",
+       "name": "第 3 题：UML 建模（15 分）",
+       "file": "data/dev-062.json",
+       "count": 2
+      },
+      {
+       "id": "dev-063",
+       "name": "第 4 题：C 语言算法（15 分）",
+       "file": "data/dev-063.json",
+       "count": 2
+      },
+      {
+       "id": "dev-064",
+       "name": "题型结构与分值分布",
+       "file": "data/dev-064.json",
+       "count": 2
+      },
+      {
+       "id": "dev-065",
+       "name": "第 5 题：Java / C++ 程序设计（15 分）",
+       "file": "data/dev-065.json",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "code": "dev"
+  },
+  {
+   "id": "信息安全工程师",
+   "name": "信息安全工程师",
+   "sections": [
+    {
+     "name": "应用安全",
+     "chapters": [
+      {
+       "id": "sec-001",
+       "name": "web-attacks",
+       "file": "data/sec-001.json",
+       "count": 22
+      },
+      {
+       "id": "sec-002",
+       "name": "email-mobile",
+       "file": "data/sec-002.json",
+       "count": 2
+      },
+      {
+       "id": "sec-003",
+       "name": "database",
+       "file": "data/sec-003.json",
+       "count": 3
+      },
+      {
+       "id": "sec-004",
+       "name": "cloud-iot",
+       "file": "data/sec-004.json",
+       "count": 4
+      },
+      {
+       "id": "sec-005",
+       "name": "industrial-control-security",
+       "file": "data/sec-005.json",
+       "count": 5
+      }
+     ]
+    },
+    {
+     "name": "密码学",
+     "chapters": [
+      {
+       "id": "sec-006",
+       "name": "symmetric",
+       "file": "data/sec-006.json",
+       "count": 7
+      },
+      {
+       "id": "sec-007",
+       "name": "des",
+       "file": "data/sec-007.json",
+       "count": 3
+      },
+      {
+       "id": "sec-008",
+       "name": "asymmetric",
+       "file": "data/sec-008.json",
+       "count": 13
+      },
+      {
+       "id": "sec-009",
+       "name": "signature",
+       "file": "data/sec-009.json",
+       "count": 9
+      },
+      {
+       "id": "sec-010",
+       "name": "hash",
+       "file": "data/sec-010.json",
+       "count": 6
+      },
+      {
+       "id": "sec-011",
+       "name": "national-crypto",
+       "file": "data/sec-011.json",
+       "count": 4
+      },
+      {
+       "id": "sec-012",
+       "name": "pki",
+       "file": "data/sec-012.json",
+       "count": 5
+      },
+      {
+       "id": "sec-013",
+       "name": "classical",
+       "file": "data/sec-013.json",
+       "count": 3
+      },
+      {
+       "id": "sec-014",
+       "name": "engineering-detail",
+       "file": "data/sec-014.json",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "name": "网络安全",
+     "chapters": [
+      {
+       "id": "sec-015",
+       "name": "vpn-ipsec",
+       "file": "data/sec-015.json",
+       "count": 6
+      },
+      {
+       "id": "sec-016",
+       "name": "ids-ips",
+       "file": "data/sec-016.json",
+       "count": 4
+      },
+      {
+       "id": "sec-017",
+       "name": "tls-https",
+       "file": "data/sec-017.json",
+       "count": 3
+      },
+      {
+       "id": "sec-018",
+       "name": "protocol-security",
+       "file": "data/sec-018.json",
+       "count": 9
+      },
+      {
+       "id": "sec-019",
+       "name": "firewall",
+       "file": "data/sec-019.json",
+       "count": 5
+      },
+      {
+       "id": "sec-020",
+       "name": "security-assessment",
+       "file": "data/sec-020.json",
+       "count": 2
+      },
+      {
+       "id": "sec-021",
+       "name": "active-defense",
+       "file": "data/sec-021.json",
+       "count": 2
+      },
+      {
+       "id": "sec-022",
+       "name": "physical-security",
+       "file": "data/sec-022.json",
+       "count": 3
+      },
+      {
+       "id": "sec-023",
+       "name": "physical-isolation",
+       "file": "data/sec-023.json",
+       "count": 3
+      },
+      {
+       "id": "sec-024",
+       "name": "security-audit",
+       "file": "data/sec-024.json",
+       "count": 5
+      },
+      {
+       "id": "sec-025",
+       "name": "security-system-model",
+       "file": "data/sec-025.json",
+       "count": 3
+      },
+      {
+       "id": "sec-026",
+       "name": "security-architecture",
+       "file": "data/sec-026.json",
+       "count": 9
+      },
+      {
+       "id": "sec-027",
+       "name": "wireless-security",
+       "file": "data/sec-027.json",
+       "count": 6
+      }
+     ]
+    },
+    {
+     "name": "系统安全",
+     "chapters": [
+      {
+       "id": "sec-028",
+       "name": "access-control",
+       "file": "data/sec-028.json",
+       "count": 5
+      },
+      {
+       "id": "sec-029",
+       "name": "malware",
+       "file": "data/sec-029.json",
+       "count": 8
+      },
+      {
+       "id": "sec-030",
+       "name": "vulnerability-incident",
+       "file": "data/sec-030.json",
+       "count": 7
+      },
+      {
+       "id": "sec-031",
+       "name": "authentication",
+       "file": "data/sec-031.json",
+       "count": 11
+      },
+      {
+       "id": "sec-032",
+       "name": "os-security",
+       "file": "data/sec-032.json",
+       "count": 6
+      },
+      {
+       "id": "sec-033",
+       "name": "vulnerability-management",
+       "file": "data/sec-033.json",
+       "count": 5
+      }
+     ]
+    },
+    {
+     "name": "其他",
+     "chapters": [
+      {
+       "id": "sec-034",
+       "name": "models",
+       "file": "data/sec-034.json",
+       "count": 3
+      },
+      {
+       "id": "sec-035",
+       "name": "concepts",
+       "file": "data/sec-035.json",
+       "count": 4
+      },
+      {
+       "id": "sec-036",
+       "name": "level-protection",
+       "file": "data/sec-036.json",
+       "count": 7
+      },
+      {
+       "id": "sec-037",
+       "name": "bcp-drp",
+       "file": "data/sec-037.json",
+       "count": 9
+      },
+      {
+       "id": "sec-038",
+       "name": "engineering-detail",
+       "file": "data/sec-038.json",
+       "count": 12
+      },
+      {
+       "id": "sec-039",
+       "name": "risk-assessment",
+       "file": "data/sec-039.json",
+       "count": 8
+      },
+      {
+       "id": "sec-040",
+       "name": "security-management",
+       "file": "data/sec-040.json",
+       "count": 7
+      },
+      {
+       "id": "sec-041",
+       "name": "laws",
+       "file": "data/sec-041.json",
+       "count": 3
+      },
+      {
+       "id": "sec-042",
+       "name": "security-assessment",
+       "file": "data/sec-042.json",
+       "count": 2
+      }
+     ]
+    }
+   ],
+   "code": "sec"
+  },
+  {
+   "id": "系统架构设计师",
+   "name": "系统架构设计师",
+   "sections": [
+    {
+     "name": "系统架构设计",
+     "chapters": [
+      {
+       "id": "architect-001",
+       "name": "2026年5月 模拟卷1",
+       "file": "data/architect-001.json",
+       "count": 26
+      },
+      {
+       "id": "architect-002",
+       "name": "2026年5月 模拟卷2",
+       "file": "data/architect-002.json",
+       "count": 19
+      },
+      {
+       "id": "architect-003",
+       "name": "2026年5月 模拟卷3",
+       "file": "data/architect-003.json",
+       "count": 19
+      },
+      {
+       "id": "architect-004",
+       "name": "2026年5月 模拟卷4",
+       "file": "data/architect-004.json",
+       "count": 13
+      },
+      {
+       "id": "architect-005",
+       "name": "2026年5月 模拟卷5",
+       "file": "data/architect-005.json",
+       "count": 30
+      },
+      {
+       "id": "architect-006",
+       "name": "2026年5月 模拟卷6",
+       "file": "data/architect-006.json",
+       "count": 20
+      },
+      {
+       "id": "architect-007",
+       "name": "2026年5月 模拟卷7",
+       "file": "data/architect-007.json",
+       "count": 20
+      },
+      {
+       "id": "architect-008",
+       "name": "2009年下半年",
+       "file": "data/architect-008.json",
+       "count": 27
+      },
+      {
+       "id": "architect-009",
+       "name": "2010年下半年",
+       "file": "data/architect-009.json",
+       "count": 20
+      },
+      {
+       "id": "architect-010",
+       "name": "2011年下半年",
+       "file": "data/architect-010.json",
+       "count": 22
+      },
+      {
+       "id": "architect-011",
+       "name": "2012年下半年",
+       "file": "data/architect-011.json",
+       "count": 26
+      },
+      {
+       "id": "architect-012",
+       "name": "2013年下半年",
+       "file": "data/architect-012.json",
+       "count": 26
+      },
+      {
+       "id": "architect-013",
+       "name": "2014年下半年",
+       "file": "data/architect-013.json",
+       "count": 25
+      },
+      {
+       "id": "architect-014",
+       "name": "2015年下半年",
+       "file": "data/architect-014.json",
+       "count": 26
+      },
+      {
+       "id": "architect-015",
+       "name": "2016年下半年",
+       "file": "data/architect-015.json",
+       "count": 25
+      },
+      {
+       "id": "architect-016",
+       "name": "2017年下半年",
+       "file": "data/architect-016.json",
+       "count": 21
+      },
+      {
+       "id": "architect-017",
+       "name": "2018年下半年",
+       "file": "data/architect-017.json",
+       "count": 24
+      },
+      {
+       "id": "architect-018",
+       "name": "2020年下半年",
+       "file": "data/architect-018.json",
+       "count": 20
+      },
+      {
+       "id": "architect-019",
+       "name": "2021年下半年",
+       "file": "data/architect-019.json",
+       "count": 20
+      },
+      {
+       "id": "architect-020",
+       "name": "2022年下半年",
+       "file": "data/architect-020.json",
+       "count": 14
+      },
+      {
+       "id": "architect-021",
+       "name": "2023年下半年",
+       "file": "data/architect-021.json",
+       "count": 31
+      },
+      {
+       "id": "architect-022",
+       "name": "2024年上半年",
+       "file": "data/architect-022.json",
+       "count": 21
+      },
+      {
+       "id": "architect-023",
+       "name": "2024年下半年",
+       "file": "data/architect-023.json",
+       "count": 20
+      },
+      {
+       "id": "architect-024",
+       "name": "2025年上半年",
+       "file": "data/architect-024.json",
+       "count": 16
+      },
+      {
+       "id": "architect-025",
+       "name": "2025年下半年",
+       "file": "data/architect-025.json",
+       "count": 25
+      }
+     ]
+    },
+    {
+     "name": "软件工程",
+     "chapters": [
+      {
+       "id": "architect-026",
+       "name": "2026年5月 模拟卷1",
+       "file": "data/architect-026.json",
+       "count": 16
+      },
+      {
+       "id": "architect-027",
+       "name": "2026年5月 模拟卷2",
+       "file": "data/architect-027.json",
+       "count": 15
+      },
+      {
+       "id": "architect-028",
+       "name": "2026年5月 模拟卷3",
+       "file": "data/architect-028.json",
+       "count": 11
+      },
+      {
+       "id": "architect-029",
+       "name": "2026年5月 模拟卷4",
+       "file": "data/architect-029.json",
+       "count": 12
+      },
+      {
+       "id": "architect-030",
+       "name": "2026年5月 模拟卷5",
+       "file": "data/architect-030.json",
+       "count": 9
+      },
+      {
+       "id": "architect-031",
+       "name": "2026年5月 模拟卷6",
+       "file": "data/architect-031.json",
+       "count": 9
+      },
+      {
+       "id": "architect-032",
+       "name": "2026年5月 模拟卷7",
+       "file": "data/architect-032.json",
+       "count": 10
+      },
+      {
+       "id": "architect-033",
+       "name": "2009年下半年",
+       "file": "data/architect-033.json",
+       "count": 17
+      },
+      {
+       "id": "architect-034",
+       "name": "2010年下半年",
+       "file": "data/architect-034.json",
+       "count": 19
+      },
+      {
+       "id": "architect-035",
+       "name": "2011年下半年",
+       "file": "data/architect-035.json",
+       "count": 15
+      },
+      {
+       "id": "architect-036",
+       "name": "2012年下半年",
+       "file": "data/architect-036.json",
+       "count": 9
+      },
+      {
+       "id": "architect-037",
+       "name": "2013年下半年",
+       "file": "data/architect-037.json",
+       "count": 8
+      },
+      {
+       "id": "architect-038",
+       "name": "2014年下半年",
+       "file": "data/architect-038.json",
+       "count": 18
+      },
+      {
+       "id": "architect-039",
+       "name": "2015年下半年",
+       "file": "data/architect-039.json",
+       "count": 13
+      },
+      {
+       "id": "architect-040",
+       "name": "2016年下半年",
+       "file": "data/architect-040.json",
+       "count": 13
+      },
+      {
+       "id": "architect-041",
+       "name": "2017年下半年",
+       "file": "data/architect-041.json",
+       "count": 20
+      },
+      {
+       "id": "architect-042",
+       "name": "2018年下半年",
+       "file": "data/architect-042.json",
+       "count": 11
+      },
+      {
+       "id": "architect-043",
+       "name": "2020年下半年",
+       "file": "data/architect-043.json",
+       "count": 15
+      },
+      {
+       "id": "architect-044",
+       "name": "2021年下半年",
+       "file": "data/architect-044.json",
+       "count": 13
+      },
+      {
+       "id": "architect-045",
+       "name": "2022年下半年",
+       "file": "data/architect-045.json",
+       "count": 10
+      },
+      {
+       "id": "architect-046",
+       "name": "2023年下半年",
+       "file": "data/architect-046.json",
+       "count": 12
+      },
+      {
+       "id": "architect-047",
+       "name": "2024年上半年",
+       "file": "data/architect-047.json",
+       "count": 12
+      },
+      {
+       "id": "architect-048",
+       "name": "2024年下半年",
+       "file": "data/architect-048.json",
+       "count": 18
+      },
+      {
+       "id": "architect-049",
+       "name": "2025年上半年",
+       "file": "data/architect-049.json",
+       "count": 17
+      },
+      {
+       "id": "architect-050",
+       "name": "2025年下半年",
+       "file": "data/architect-050.json",
+       "count": 13
+      }
+     ]
+    },
+    {
+     "name": "其他",
+     "chapters": [
+      {
+       "id": "architect-051",
+       "name": "2026年5月 模拟卷1",
+       "file": "data/architect-051.json",
+       "count": 3
+      },
+      {
+       "id": "architect-052",
+       "name": "2026年5月 模拟卷2",
+       "file": "data/architect-052.json",
+       "count": 10
+      },
+      {
+       "id": "architect-053",
+       "name": "2026年5月 模拟卷3",
+       "file": "data/architect-053.json",
+       "count": 10
+      },
+      {
+       "id": "architect-054",
+       "name": "2026年5月 模拟卷4",
+       "file": "data/architect-054.json",
+       "count": 9
+      },
+      {
+       "id": "architect-055",
+       "name": "2026年5月 模拟卷5",
+       "file": "data/architect-055.json",
+       "count": 11
+      },
+      {
+       "id": "architect-056",
+       "name": "2026年5月 模拟卷6",
+       "file": "data/architect-056.json",
+       "count": 4
+      },
+      {
+       "id": "architect-057",
+       "name": "2026年5月 模拟卷7",
+       "file": "data/architect-057.json",
+       "count": 9
+      },
+      {
+       "id": "architect-058",
+       "name": "2009年下半年",
+       "file": "data/architect-058.json",
+       "count": 9
+      },
+      {
+       "id": "architect-059",
+       "name": "2010年下半年",
+       "file": "data/architect-059.json",
+       "count": 10
+      },
+      {
+       "id": "architect-060",
+       "name": "2011年下半年",
+       "file": "data/architect-060.json",
+       "count": 15
+      },
+      {
+       "id": "architect-061",
+       "name": "2012年下半年",
+       "file": "data/architect-061.json",
+       "count": 13
+      },
+      {
+       "id": "architect-062",
+       "name": "2013年下半年",
+       "file": "data/architect-062.json",
+       "count": 12
+      },
+      {
+       "id": "architect-063",
+       "name": "2014年下半年",
+       "file": "data/architect-063.json",
+       "count": 6
+      },
+      {
+       "id": "architect-064",
+       "name": "2015年下半年",
+       "file": "data/architect-064.json",
+       "count": 15
+      },
+      {
+       "id": "architect-065",
+       "name": "2016年下半年",
+       "file": "data/architect-065.json",
+       "count": 17
+      },
+      {
+       "id": "architect-066",
+       "name": "2017年下半年",
+       "file": "data/architect-066.json",
+       "count": 12
+      },
+      {
+       "id": "architect-067",
+       "name": "2018年下半年",
+       "file": "data/architect-067.json",
+       "count": 10
+      },
+      {
+       "id": "architect-068",
+       "name": "2020年下半年",
+       "file": "data/architect-068.json",
+       "count": 23
+      },
+      {
+       "id": "architect-069",
+       "name": "2021年下半年",
+       "file": "data/architect-069.json",
+       "count": 14
+      },
+      {
+       "id": "architect-070",
+       "name": "2022年下半年",
+       "file": "data/architect-070.json",
+       "count": 6
+      },
+      {
+       "id": "architect-071",
+       "name": "2023年下半年",
+       "file": "data/architect-071.json",
+       "count": 5
+      },
+      {
+       "id": "architect-072",
+       "name": "2024年上半年",
+       "file": "data/architect-072.json",
+       "count": 18
+      },
+      {
+       "id": "architect-073",
+       "name": "2024年下半年",
+       "file": "data/architect-073.json",
+       "count": 8
+      },
+      {
+       "id": "architect-074",
+       "name": "2025年上半年",
+       "file": "data/architect-074.json",
+       "count": 12
+      },
+      {
+       "id": "architect-075",
+       "name": "2025年下半年",
+       "file": "data/architect-075.json",
+       "count": 8
+      }
+     ]
+    },
+    {
+     "name": "计算机系统基础",
+     "chapters": [
+      {
+       "id": "architect-076",
+       "name": "2026年5月 模拟卷1",
+       "file": "data/architect-076.json",
+       "count": 4
+      },
+      {
+       "id": "architect-077",
+       "name": "2026年5月 模拟卷2",
+       "file": "data/architect-077.json",
+       "count": 6
+      },
+      {
+       "id": "architect-078",
+       "name": "2026年5月 模拟卷3",
+       "file": "data/architect-078.json",
+       "count": 12
+      },
+      {
+       "id": "architect-079",
+       "name": "2026年5月 模拟卷4",
+       "file": "data/architect-079.json",
+       "count": 8
+      },
+      {
+       "id": "architect-080",
+       "name": "2026年5月 模拟卷5",
+       "file": "data/architect-080.json",
+       "count": 6
+      },
+      {
+       "id": "architect-081",
+       "name": "2026年5月 模拟卷6",
+       "file": "data/architect-081.json",
+       "count": 8
+      },
+      {
+       "id": "architect-082",
+       "name": "2026年5月 模拟卷7",
+       "file": "data/architect-082.json",
+       "count": 7
+      },
+      {
+       "id": "architect-083",
+       "name": "2009年下半年",
+       "file": "data/architect-083.json",
+       "count": 9
+      },
+      {
+       "id": "architect-084",
+       "name": "2010年下半年",
+       "file": "data/architect-084.json",
+       "count": 9
+      },
+      {
+       "id": "architect-085",
+       "name": "2011年下半年",
+       "file": "data/architect-085.json",
+       "count": 6
+      },
+      {
+       "id": "architect-086",
+       "name": "2012年下半年",
+       "file": "data/architect-086.json",
+       "count": 6
+      },
+      {
+       "id": "architect-087",
+       "name": "2013年下半年",
+       "file": "data/architect-087.json",
+       "count": 10
+      },
+      {
+       "id": "architect-088",
+       "name": "2014年下半年",
+       "file": "data/architect-088.json",
+       "count": 3
+      },
+      {
+       "id": "architect-089",
+       "name": "2015年下半年",
+       "file": "data/architect-089.json",
+       "count": 7
+      },
+      {
+       "id": "architect-090",
+       "name": "2016年下半年",
+       "file": "data/architect-090.json",
+       "count": 3
+      },
+      {
+       "id": "architect-091",
+       "name": "2017年下半年",
+       "file": "data/architect-091.json",
+       "count": 7
+      },
+      {
+       "id": "architect-092",
+       "name": "2018年下半年",
+       "file": "data/architect-092.json",
+       "count": 9
+      },
+      {
+       "id": "architect-093",
+       "name": "2020年下半年",
+       "file": "data/architect-093.json",
+       "count": 4
+      },
+      {
+       "id": "architect-094",
+       "name": "2021年下半年",
+       "file": "data/architect-094.json",
+       "count": 5
+      },
+      {
+       "id": "architect-095",
+       "name": "2022年下半年",
+       "file": "data/architect-095.json",
+       "count": 2
+      },
+      {
+       "id": "architect-096",
+       "name": "2023年下半年",
+       "file": "data/architect-096.json",
+       "count": 6
+      },
+      {
+       "id": "architect-097",
+       "name": "2024年上半年",
+       "file": "data/architect-097.json",
+       "count": 3
+      },
+      {
+       "id": "architect-098",
+       "name": "2024年下半年",
+       "file": "data/architect-098.json",
+       "count": 8
+      },
+      {
+       "id": "architect-099",
+       "name": "2025年上半年",
+       "file": "data/architect-099.json",
+       "count": 6
+      },
+      {
+       "id": "architect-100",
+       "name": "2025年下半年",
+       "file": "data/architect-100.json",
+       "count": 13
+      }
+     ]
+    },
+    {
+     "name": "数据库系统",
+     "chapters": [
+      {
+       "id": "architect-101",
+       "name": "2026年5月 模拟卷1",
+       "file": "data/architect-101.json",
+       "count": 9
+      },
+      {
+       "id": "architect-102",
+       "name": "2026年5月 模拟卷2",
+       "file": "data/architect-102.json",
+       "count": 7
+      },
+      {
+       "id": "architect-103",
+       "name": "2026年5月 模拟卷3",
+       "file": "data/architect-103.json",
+       "count": 5
+      },
+      {
+       "id": "architect-104",
+       "name": "2026年5月 模拟卷4",
+       "file": "data/architect-104.json",
+       "count": 5
+      },
+      {
+       "id": "architect-105",
+       "name": "2026年5月 模拟卷5",
+       "file": "data/architect-105.json",
+       "count": 4
+      },
+      {
+       "id": "architect-106",
+       "name": "2026年5月 模拟卷6",
+       "file": "data/architect-106.json",
+       "count": 9
+      },
+      {
+       "id": "architect-107",
+       "name": "2026年5月 模拟卷7",
+       "file": "data/architect-107.json",
+       "count": 9
+      },
+      {
+       "id": "architect-108",
+       "name": "2009年下半年",
+       "file": "data/architect-108.json",
+       "count": 4
+      },
+      {
+       "id": "architect-109",
+       "name": "2010年下半年",
+       "file": "data/architect-109.json",
+       "count": 2
+      },
+      {
+       "id": "architect-110",
+       "name": "2011年下半年",
+       "file": "data/architect-110.json",
+       "count": 3
+      },
+      {
+       "id": "architect-111",
+       "name": "2012年下半年",
+       "file": "data/architect-111.json",
+       "count": 5
+      },
+      {
+       "id": "architect-112",
+       "name": "2013年下半年",
+       "file": "data/architect-112.json",
+       "count": 3
+      },
+      {
+       "id": "architect-113",
+       "name": "2014年下半年",
+       "file": "data/architect-113.json",
+       "count": 11
+      },
+      {
+       "id": "architect-114",
+       "name": "2015年下半年",
+       "file": "data/architect-114.json",
+       "count": 5
+      },
+      {
+       "id": "architect-115",
+       "name": "2016年下半年",
+       "file": "data/architect-115.json",
+       "count": 4
+      },
+      {
+       "id": "architect-116",
+       "name": "2017年下半年",
+       "file": "data/architect-116.json",
+       "count": 5
+      },
+      {
+       "id": "architect-117",
+       "name": "2018年下半年",
+       "file": "data/architect-117.json",
+       "count": 7
+      },
+      {
+       "id": "architect-118",
+       "name": "2020年下半年",
+       "file": "data/architect-118.json",
+       "count": 2
+      },
+      {
+       "id": "architect-119",
+       "name": "2021年下半年",
+       "file": "data/architect-119.json",
+       "count": 4
+      },
+      {
+       "id": "architect-120",
+       "name": "2022年下半年",
+       "file": "data/architect-120.json",
+       "count": 4
+      },
+      {
+       "id": "architect-121",
+       "name": "2023年下半年",
+       "file": "data/architect-121.json",
+       "count": 4
+      },
+      {
+       "id": "architect-122",
+       "name": "2024年上半年",
+       "file": "data/architect-122.json",
+       "count": 3
+      },
+      {
+       "id": "architect-123",
+       "name": "2024年下半年",
+       "file": "data/architect-123.json",
+       "count": 4
+      },
+      {
+       "id": "architect-124",
+       "name": "2025年上半年",
+       "file": "data/architect-124.json",
+       "count": 3
+      },
+      {
+       "id": "architect-125",
+       "name": "2025年下半年",
+       "file": "data/architect-125.json",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "name": "计算机网络",
+     "chapters": [
+      {
+       "id": "architect-126",
+       "name": "2026年5月 模拟卷1",
+       "file": "data/architect-126.json",
+       "count": 4
+      },
+      {
+       "id": "architect-127",
+       "name": "2026年5月 模拟卷2",
+       "file": "data/architect-127.json",
+       "count": 5
+      },
+      {
+       "id": "architect-128",
+       "name": "2026年5月 模拟卷3",
+       "file": "data/architect-128.json",
+       "count": 4
+      },
+      {
+       "id": "architect-129",
+       "name": "2026年5月 模拟卷4",
+       "file": "data/architect-129.json",
+       "count": 8
+      },
+      {
+       "id": "architect-130",
+       "name": "2026年5月 模拟卷5",
+       "file": "data/architect-130.json",
+       "count": 2
+      },
+      {
+       "id": "architect-131",
+       "name": "2026年5月 模拟卷6",
+       "file": "data/architect-131.json",
+       "count": 4
+      },
+      {
+       "id": "architect-132",
+       "name": "2026年5月 模拟卷7",
+       "file": "data/architect-132.json",
+       "count": 4
+      },
+      {
+       "id": "architect-133",
+       "name": "2009年下半年",
+       "file": "data/architect-133.json",
+       "count": 5
+      },
+      {
+       "id": "architect-134",
+       "name": "2010年下半年",
+       "file": "data/architect-134.json",
+       "count": 3
+      },
+      {
+       "id": "architect-135",
+       "name": "2011年下半年",
+       "file": "data/architect-135.json",
+       "count": 5
+      },
+      {
+       "id": "architect-136",
+       "name": "2012年下半年",
+       "file": "data/architect-136.json",
+       "count": 6
+      },
+      {
+       "id": "architect-137",
+       "name": "2013年下半年",
+       "file": "data/architect-137.json",
+       "count": 2
+      },
+      {
+       "id": "architect-138",
+       "name": "2014年下半年",
+       "file": "data/architect-138.json",
+       "count": 2
+      },
+      {
+       "id": "architect-139",
+       "name": "2015年下半年",
+       "file": "data/architect-139.json",
+       "count": 2
+      },
+      {
+       "id": "architect-140",
+       "name": "2016年下半年",
+       "file": "data/architect-140.json",
+       "count": 5
+      },
+      {
+       "id": "architect-141",
+       "name": "2017年下半年",
+       "file": "data/architect-141.json",
+       "count": 4
+      },
+      {
+       "id": "architect-142",
+       "name": "2018年下半年",
+       "file": "data/architect-142.json",
+       "count": 3
+      },
+      {
+       "id": "architect-143",
+       "name": "2020年下半年",
+       "file": "data/architect-143.json",
+       "count": 5
+      },
+      {
+       "id": "architect-144",
+       "name": "2021年下半年",
+       "file": "data/architect-144.json",
+       "count": 4
+      },
+      {
+       "id": "architect-145",
+       "name": "2022年下半年",
+       "file": "data/architect-145.json",
+       "count": 3
+      },
+      {
+       "id": "architect-146",
+       "name": "2023年下半年",
+       "file": "data/architect-146.json",
+       "count": 4
+      },
+      {
+       "id": "architect-147",
+       "name": "2024年上半年",
+       "file": "data/architect-147.json",
+       "count": 2
+      },
+      {
+       "id": "architect-148",
+       "name": "2024年下半年",
+       "file": "data/architect-148.json",
+       "count": 3
+      },
+      {
+       "id": "architect-149",
+       "name": "2025年上半年",
+       "file": "data/architect-149.json",
+       "count": 2
+      },
+      {
+       "id": "architect-150",
+       "name": "2025年下半年",
+       "file": "data/architect-150.json",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "name": "信息安全",
+     "chapters": [
+      {
+       "id": "architect-151",
+       "name": "2026年5月 模拟卷1",
+       "file": "data/architect-151.json",
+       "count": 5
+      },
+      {
+       "id": "architect-152",
+       "name": "2026年5月 模拟卷2",
+       "file": "data/architect-152.json",
+       "count": 5
+      },
+      {
+       "id": "architect-153",
+       "name": "2026年5月 模拟卷3",
+       "file": "data/architect-153.json",
+       "count": 6
+      },
+      {
+       "id": "architect-154",
+       "name": "2026年5月 模拟卷4",
+       "file": "data/architect-154.json",
+       "count": 5
+      },
+      {
+       "id": "architect-155",
+       "name": "2026年5月 模拟卷5",
+       "file": "data/architect-155.json",
+       "count": 6
+      },
+      {
+       "id": "architect-156",
+       "name": "2026年5月 模拟卷6",
+       "file": "data/architect-156.json",
+       "count": 6
+      },
+      {
+       "id": "architect-157",
+       "name": "2026年5月 模拟卷7",
+       "file": "data/architect-157.json",
+       "count": 6
+      },
+      {
+       "id": "architect-158",
+       "name": "2009年下半年",
+       "file": "data/architect-158.json",
+       "count": 1
+      },
+      {
+       "id": "architect-159",
+       "name": "2010年下半年",
+       "file": "data/architect-159.json",
+       "count": 1
+      },
+      {
+       "id": "architect-160",
+       "name": "2012年下半年",
+       "file": "data/architect-160.json",
+       "count": 2
+      },
+      {
+       "id": "architect-161",
+       "name": "2013年下半年",
+       "file": "data/architect-161.json",
+       "count": 3
+      },
+      {
+       "id": "architect-162",
+       "name": "2014年下半年",
+       "file": "data/architect-162.json",
+       "count": 1
+      },
+      {
+       "id": "architect-163",
+       "name": "2015年下半年",
+       "file": "data/architect-163.json",
+       "count": 1
+      },
+      {
+       "id": "architect-164",
+       "name": "2016年下半年",
+       "file": "data/architect-164.json",
+       "count": 3
+      },
+      {
+       "id": "architect-165",
+       "name": "2017年下半年",
+       "file": "data/architect-165.json",
+       "count": 1
+      },
+      {
+       "id": "architect-166",
+       "name": "2018年下半年",
+       "file": "data/architect-166.json",
+       "count": 2
+      },
+      {
+       "id": "architect-167",
+       "name": "2020年下半年",
+       "file": "data/architect-167.json",
+       "count": 2
+      },
+      {
+       "id": "architect-168",
+       "name": "2021年下半年",
+       "file": "data/architect-168.json",
+       "count": 7
+      },
+      {
+       "id": "architect-169",
+       "name": "2022年下半年",
+       "file": "data/architect-169.json",
+       "count": 3
+      },
+      {
+       "id": "architect-170",
+       "name": "2023年下半年",
+       "file": "data/architect-170.json",
+       "count": 2
+      },
+      {
+       "id": "architect-171",
+       "name": "2024年上半年",
+       "file": "data/architect-171.json",
+       "count": 5
+      },
+      {
+       "id": "architect-172",
+       "name": "2024年下半年",
+       "file": "data/architect-172.json",
+       "count": 1
+      },
+      {
+       "id": "architect-173",
+       "name": "2025年上半年",
+       "file": "data/architect-173.json",
+       "count": 2
+      },
+      {
+       "id": "architect-174",
+       "name": "2025年下半年",
+       "file": "data/architect-174.json",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "name": "项目管理",
+     "chapters": [
+      {
+       "id": "architect-175",
+       "name": "2026年5月 模拟卷1",
+       "file": "data/architect-175.json",
+       "count": 1
+      },
+      {
+       "id": "architect-176",
+       "name": "2026年5月 模拟卷2",
+       "file": "data/architect-176.json",
+       "count": 2
+      },
+      {
+       "id": "architect-177",
+       "name": "2026年5月 模拟卷3",
+       "file": "data/architect-177.json",
+       "count": 3
+      },
+      {
+       "id": "architect-178",
+       "name": "2026年5月 模拟卷4",
+       "file": "data/architect-178.json",
+       "count": 6
+      },
+      {
+       "id": "architect-179",
+       "name": "2026年5月 模拟卷5",
+       "file": "data/architect-179.json",
+       "count": 2
+      },
+      {
+       "id": "architect-180",
+       "name": "2026年5月 模拟卷6",
+       "file": "data/architect-180.json",
+       "count": 4
+      },
+      {
+       "id": "architect-181",
+       "name": "2026年5月 模拟卷7",
+       "file": "data/architect-181.json",
+       "count": 2
+      },
+      {
+       "id": "architect-182",
+       "name": "2009年下半年",
+       "file": "data/architect-182.json",
+       "count": 2
+      },
+      {
+       "id": "architect-183",
+       "name": "2010年下半年",
+       "file": "data/architect-183.json",
+       "count": 4
+      },
+      {
+       "id": "architect-184",
+       "name": "2011年下半年",
+       "file": "data/architect-184.json",
+       "count": 5
+      },
+      {
+       "id": "architect-185",
+       "name": "2012年下半年",
+       "file": "data/architect-185.json",
+       "count": 3
+      },
+      {
+       "id": "architect-186",
+       "name": "2013年下半年",
+       "file": "data/architect-186.json",
+       "count": 4
+      },
+      {
+       "id": "architect-187",
+       "name": "2016年下半年",
+       "file": "data/architect-187.json",
+       "count": 2
+      },
+      {
+       "id": "architect-188",
+       "name": "2017年下半年",
+       "file": "data/architect-188.json",
+       "count": 2
+      },
+      {
+       "id": "architect-189",
+       "name": "2018年下半年",
+       "file": "data/architect-189.json",
+       "count": 3
+      },
+      {
+       "id": "architect-190",
+       "name": "2020年下半年",
+       "file": "data/architect-190.json",
+       "count": 3
+      },
+      {
+       "id": "architect-191",
+       "name": "2021年下半年",
+       "file": "data/architect-191.json",
+       "count": 3
+      },
+      {
+       "id": "architect-192",
+       "name": "2022年下半年",
+       "file": "data/architect-192.json",
+       "count": 2
+      },
+      {
+       "id": "architect-193",
+       "name": "2023年下半年",
+       "file": "data/architect-193.json",
+       "count": 3
+      },
+      {
+       "id": "architect-194",
+       "name": "2024年上半年",
+       "file": "data/architect-194.json",
+       "count": 1
+      },
+      {
+       "id": "architect-195",
+       "name": "2024年下半年",
+       "file": "data/architect-195.json",
+       "count": 4
+      },
+      {
+       "id": "architect-196",
+       "name": "2025年上半年",
+       "file": "data/architect-196.json",
+       "count": 6
+      },
+      {
+       "id": "architect-197",
+       "name": "2025年下半年",
+       "file": "data/architect-197.json",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "name": "专业英语",
+     "chapters": [
+      {
+       "id": "architect-198",
+       "name": "2026年5月 模拟卷1",
+       "file": "data/architect-198.json",
+       "count": 5
+      },
+      {
+       "id": "architect-199",
+       "name": "2026年5月 模拟卷2",
+       "file": "data/architect-199.json",
+       "count": 5
+      },
+      {
+       "id": "architect-200",
+       "name": "2026年5月 模拟卷3",
+       "file": "data/architect-200.json",
+       "count": 5
+      },
+      {
+       "id": "architect-201",
+       "name": "2026年5月 模拟卷4",
+       "file": "data/architect-201.json",
+       "count": 3
+      },
+      {
+       "id": "architect-202",
+       "name": "2026年5月 模拟卷5",
+       "file": "data/architect-202.json",
+       "count": 4
+      },
+      {
+       "id": "architect-203",
+       "name": "2026年5月 模拟卷6",
+       "file": "data/architect-203.json",
+       "count": 6
+      },
+      {
+       "id": "architect-204",
+       "name": "2026年5月 模拟卷7",
+       "file": "data/architect-204.json",
+       "count": 6
+      },
+      {
+       "id": "architect-205",
+       "name": "2010年下半年",
+       "file": "data/architect-205.json",
+       "count": 5
+      },
+      {
+       "id": "architect-206",
+       "name": "2012年下半年",
+       "file": "data/architect-206.json",
+       "count": 2
+      },
+      {
+       "id": "architect-207",
+       "name": "2013年下半年",
+       "file": "data/architect-207.json",
+       "count": 3
+      },
+      {
+       "id": "architect-208",
+       "name": "2014年下半年",
+       "file": "data/architect-208.json",
+       "count": 7
+      },
+      {
+       "id": "architect-209",
+       "name": "2015年下半年",
+       "file": "data/architect-209.json",
+       "count": 3
+      },
+      {
+       "id": "architect-210",
+       "name": "2018年下半年",
+       "file": "data/architect-210.json",
+       "count": 2
+      },
+      {
+       "id": "architect-211",
+       "name": "2021年下半年",
+       "file": "data/architect-211.json",
+       "count": 2
+      },
+      {
+       "id": "architect-212",
+       "name": "2022年下半年",
+       "file": "data/architect-212.json",
+       "count": 1
+      },
+      {
+       "id": "architect-213",
+       "name": "2023年下半年",
+       "file": "data/architect-213.json",
+       "count": 4
+      },
+      {
+       "id": "architect-214",
+       "name": "2024年下半年",
+       "file": "data/architect-214.json",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "name": "法律法规与知识产权",
+     "chapters": [
+      {
+       "id": "architect-215",
+       "name": "2026年5月 模拟卷1",
+       "file": "data/architect-215.json",
+       "count": 1
+      },
+      {
+       "id": "architect-216",
+       "name": "2026年5月 模拟卷4",
+       "file": "data/architect-216.json",
+       "count": 3
+      },
+      {
+       "id": "architect-217",
+       "name": "2026年5月 模拟卷6",
+       "file": "data/architect-217.json",
+       "count": 4
+      },
+      {
+       "id": "architect-218",
+       "name": "2026年5月 模拟卷7",
+       "file": "data/architect-218.json",
+       "count": 2
+      },
+      {
+       "id": "architect-219",
+       "name": "2009年下半年",
+       "file": "data/architect-219.json",
+       "count": 1
+      },
+      {
+       "id": "architect-220",
+       "name": "2011年下半年",
+       "file": "data/architect-220.json",
+       "count": 3
+      },
+      {
+       "id": "architect-221",
+       "name": "2012年下半年",
+       "file": "data/architect-221.json",
+       "count": 1
+      },
+      {
+       "id": "architect-222",
+       "name": "2013年下半年",
+       "file": "data/architect-222.json",
+       "count": 3
+      },
+      {
+       "id": "architect-223",
+       "name": "2014年下半年",
+       "file": "data/architect-223.json",
+       "count": 2
+      },
+      {
+       "id": "architect-224",
+       "name": "2015年下半年",
+       "file": "data/architect-224.json",
+       "count": 2
+      },
+      {
+       "id": "architect-225",
+       "name": "2016年下半年",
+       "file": "data/architect-225.json",
+       "count": 2
+      },
+      {
+       "id": "architect-226",
+       "name": "2017年下半年",
+       "file": "data/architect-226.json",
+       "count": 2
+      },
+      {
+       "id": "architect-227",
+       "name": "2018年下半年",
+       "file": "data/architect-227.json",
+       "count": 3
+      },
+      {
+       "id": "architect-228",
+       "name": "2020年下半年",
+       "file": "data/architect-228.json",
+       "count": 1
+      },
+      {
+       "id": "architect-229",
+       "name": "2021年下半年",
+       "file": "data/architect-229.json",
+       "count": 2
+      },
+      {
+       "id": "architect-230",
+       "name": "2022年下半年",
+       "file": "data/architect-230.json",
+       "count": 2
+      },
+      {
+       "id": "architect-231",
+       "name": "2023年下半年",
+       "file": "data/architect-231.json",
+       "count": 3
+      },
+      {
+       "id": "architect-232",
+       "name": "2024年上半年",
+       "file": "data/architect-232.json",
+       "count": 2
+      },
+      {
+       "id": "architect-233",
+       "name": "2024年下半年",
+       "file": "data/architect-233.json",
+       "count": 3
+      },
+      {
+       "id": "architect-234",
+       "name": "2025年上半年",
+       "file": "data/architect-234.json",
+       "count": 2
+      },
+      {
+       "id": "architect-235",
+       "name": "2025年下半年",
+       "file": "data/architect-235.json",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "name": "新技术应用",
+     "chapters": [
+      {
+       "id": "architect-236",
+       "name": "2026年5月 模拟卷1",
+       "file": "data/architect-236.json",
+       "count": 1
+      },
+      {
+       "id": "architect-237",
+       "name": "2026年5月 模拟卷2",
+       "file": "data/architect-237.json",
+       "count": 1
+      },
+      {
+       "id": "architect-238",
+       "name": "2026年5月 模拟卷4",
+       "file": "data/architect-238.json",
+       "count": 2
+      },
+      {
+       "id": "architect-239",
+       "name": "2026年5月 模拟卷5",
+       "file": "data/architect-239.json",
+       "count": 1
+      },
+      {
+       "id": "architect-240",
+       "name": "2026年5月 模拟卷6",
+       "file": "data/architect-240.json",
+       "count": 1
+      },
+      {
+       "id": "architect-241",
+       "name": "2022年下半年",
+       "file": "data/architect-241.json",
+       "count": 1
+      },
+      {
+       "id": "architect-242",
+       "name": "2023年下半年",
+       "file": "data/architect-242.json",
+       "count": 1
+      },
+      {
+       "id": "architect-243",
+       "name": "2024年上半年",
+       "file": "data/architect-243.json",
+       "count": 3
+      },
+      {
+       "id": "architect-244",
+       "name": "2024年下半年",
+       "file": "data/architect-244.json",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "name": "嵌入式系统",
+     "chapters": [
+      {
+       "id": "architect-245",
+       "name": "2026年5月 模拟卷4",
+       "file": "data/architect-245.json",
+       "count": 1
+      },
+      {
+       "id": "architect-246",
+       "name": "2010年下半年",
+       "file": "data/architect-246.json",
+       "count": 1
+      },
+      {
+       "id": "architect-247",
+       "name": "2012年下半年",
+       "file": "data/architect-247.json",
+       "count": 1
+      },
+      {
+       "id": "architect-248",
+       "name": "2013年下半年",
+       "file": "data/architect-248.json",
+       "count": 1
+      },
+      {
+       "id": "architect-249",
+       "name": "2015年下半年",
+       "file": "data/architect-249.json",
+       "count": 1
+      },
+      {
+       "id": "architect-250",
+       "name": "2021年下半年",
+       "file": "data/architect-250.json",
+       "count": 1
+      },
+      {
+       "id": "architect-251",
+       "name": "2024年上半年",
+       "file": "data/architect-251.json",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "name": "案例分析",
+     "chapters": [
+      {
+       "id": "architect-252",
+       "name": "2026年5月 模拟卷1",
+       "file": "data/architect-252.json",
+       "count": 14
+      },
+      {
+       "id": "architect-253",
+       "name": "2026年5月 模拟卷2",
+       "file": "data/architect-253.json",
+       "count": 14
+      },
+      {
+       "id": "architect-254",
+       "name": "2026年5月 模拟卷3",
+       "file": "data/architect-254.json",
+       "count": 14
+      },
+      {
+       "id": "architect-255",
+       "name": "2026年5月 模拟卷4",
+       "file": "data/architect-255.json",
+       "count": 14
+      },
+      {
+       "id": "architect-256",
+       "name": "2026年5月 模拟卷5",
+       "file": "data/architect-256.json",
+       "count": 14
+      },
+      {
+       "id": "architect-257",
+       "name": "2026年5月 模拟卷6",
+       "file": "data/architect-257.json",
+       "count": 14
+      },
+      {
+       "id": "architect-258",
+       "name": "2026年5月 模拟卷7",
+       "file": "data/architect-258.json",
+       "count": 14
+      },
+      {
+       "id": "architect-259",
+       "name": "2020年下半年",
+       "file": "data/architect-259.json",
+       "count": 23
+      },
+      {
+       "id": "architect-260",
+       "name": "2021年下半年",
+       "file": "data/architect-260.json",
+       "count": 28
+      },
+      {
+       "id": "architect-261",
+       "name": "2022年下半年",
+       "file": "data/architect-261.json",
+       "count": 14
+      },
+      {
+       "id": "architect-262",
+       "name": "2023年下半年",
+       "file": "data/architect-262.json",
+       "count": 15
+      },
+      {
+       "id": "architect-263",
+       "name": "2024年上半年",
+       "file": "data/architect-263.json",
+       "count": 13
+      },
+      {
+       "id": "architect-264",
+       "name": "2024年下半年",
+       "file": "data/architect-264.json",
+       "count": 7
+      },
+      {
+       "id": "architect-265",
+       "name": "2025年上半年",
+       "file": "data/architect-265.json",
+       "count": 11
+      },
+      {
+       "id": "architect-266",
+       "name": "2025年下半年",
+       "file": "data/architect-266.json",
+       "count": 22
+      }
+     ]
+    },
+    {
+     "name": "论文",
+     "chapters": [
+      {
+       "id": "architect-267",
+       "name": "2026年5月 模拟卷1",
+       "file": "data/architect-267.json",
+       "count": 4
+      },
+      {
+       "id": "architect-268",
+       "name": "2026年5月 模拟卷2",
+       "file": "data/architect-268.json",
+       "count": 4
+      },
+      {
+       "id": "architect-269",
+       "name": "2026年5月 模拟卷3",
+       "file": "data/architect-269.json",
+       "count": 4
+      },
+      {
+       "id": "architect-270",
+       "name": "2026年5月 模拟卷4",
+       "file": "data/architect-270.json",
+       "count": 4
+      },
+      {
+       "id": "architect-271",
+       "name": "2026年5月 模拟卷5",
+       "file": "data/architect-271.json",
+       "count": 4
+      },
+      {
+       "id": "architect-272",
+       "name": "2026年5月 模拟卷6",
+       "file": "data/architect-272.json",
+       "count": 4
+      },
+      {
+       "id": "architect-273",
+       "name": "2026年5月 模拟卷7",
+       "file": "data/architect-273.json",
+       "count": 4
+      },
+      {
+       "id": "architect-274",
+       "name": "2020年下半年",
+       "file": "data/architect-274.json",
+       "count": 4
+      },
+      {
+       "id": "architect-275",
+       "name": "2021年下半年",
+       "file": "data/architect-275.json",
+       "count": 4
+      },
+      {
+       "id": "architect-276",
+       "name": "2022年下半年",
+       "file": "data/architect-276.json",
+       "count": 4
+      },
+      {
+       "id": "architect-277",
+       "name": "2023年下半年",
+       "file": "data/architect-277.json",
+       "count": 4
+      },
+      {
+       "id": "architect-278",
+       "name": "2024年上半年",
+       "file": "data/architect-278.json",
+       "count": 4
+      },
+      {
+       "id": "architect-279",
+       "name": "2024年下半年",
+       "file": "data/architect-279.json",
+       "count": 4
+      },
+      {
+       "id": "architect-280",
+       "name": "2025年上半年",
+       "file": "data/architect-280.json",
+       "count": 4
+      },
+      {
+       "id": "architect-281",
+       "name": "2025年下半年",
+       "file": "data/architect-281.json",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "code": "architect"
+  },
+  {
+   "id": "信息系统项目管理师",
+   "name": "信息系统项目管理师",
+   "sections": [
+    {
+     "name": "信息化发展",
+     "chapters": [
+      {
+       "id": "pm-001",
+       "name": "信息与信息化",
+       "file": "data/pm-001.json",
+       "count": 16
+      },
+      {
+       "id": "pm-002",
+       "name": "现代化基础设施",
+       "file": "data/pm-002.json",
+       "count": 14
+      },
+      {
+       "id": "pm-003",
+       "name": "现代化创新发展",
+       "file": "data/pm-003.json",
+       "count": 11
+      },
+      {
+       "id": "pm-004",
+       "name": "数字中国",
+       "file": "data/pm-004.json",
+       "count": 16
+      },
+      {
+       "id": "pm-005",
+       "name": "数字化转型与元宇宙",
+       "file": "data/pm-005.json",
+       "count": 10
+      }
+     ]
+    },
+    {
+     "name": "真题与模拟卷",
+     "chapters": [
+      {
+       "id": "pm-006",
+       "name": "历年真题",
+       "file": "data/pm-006.json",
+       "count": 989
+      },
+      {
+       "id": "pm-007",
+       "name": "模拟密卷",
+       "file": "data/pm-007.json",
+       "count": 177
+      },
+      {
+       "id": "pm-008",
+       "name": "《信息系统项目管理师》综合知识模拟题3",
+       "file": "data/pm-008.json",
+       "count": 22
+      },
+      {
+       "id": "pm-009",
+       "name": "《信息系统项目管理师》综合知识模拟题1",
+       "file": "data/pm-009.json",
+       "count": 67
+      },
+      {
+       "id": "pm-010",
+       "name": "2025年5月信息系统项目管理师选择题",
+       "file": "data/pm-010.json",
+       "count": 42
+      },
+      {
+       "id": "pm-011",
+       "name": "2023年11月信息系统项目管理师",
+       "file": "data/pm-011.json",
+       "count": 9
+      },
+      {
+       "id": "pm-012",
+       "name": "《信息系统项目管理师》综合知识模拟题2",
+       "file": "data/pm-012.json",
+       "count": 62
+      }
+     ]
+    },
+    {
+     "name": "信息技术发展",
+     "chapters": [
+      {
+       "id": "pm-013",
+       "name": "信息技术及其发展",
+       "file": "data/pm-013.json",
+       "count": 54
+      },
+      {
+       "id": "pm-014",
+       "name": "新一代信息技术及应用",
+       "file": "data/pm-014.json",
+       "count": 72
+      }
+     ]
+    },
+    {
+     "name": "信息系统治理",
+     "chapters": [
+      {
+       "id": "pm-015",
+       "name": "IT治理",
+       "file": "data/pm-015.json",
+       "count": 21
+      },
+      {
+       "id": "pm-016",
+       "name": "IT审计",
+       "file": "data/pm-016.json",
+       "count": 21
+      }
+     ]
+    },
+    {
+     "name": "信息系统管理",
+     "chapters": [
+      {
+       "id": "pm-017",
+       "name": "管理方法",
+       "file": "data/pm-017.json",
+       "count": 22
+      },
+      {
+       "id": "pm-018",
+       "name": "管理要点",
+       "file": "data/pm-018.json",
+       "count": 35
+      }
+     ]
+    },
+    {
+     "name": "项目管理概论",
+     "chapters": [
+      {
+       "id": "pm-019",
+       "name": "PMBOK的发展",
+       "file": "data/pm-019.json",
+       "count": 2
+      },
+      {
+       "id": "pm-020",
+       "name": "项目基本要素",
+       "file": "data/pm-020.json",
+       "count": 45
+      },
+      {
+       "id": "pm-021",
+       "name": "项目经理的角色",
+       "file": "data/pm-021.json",
+       "count": 22
+      },
+      {
+       "id": "pm-022",
+       "name": "价值驱动的项目管理知识体系",
+       "file": "data/pm-022.json",
+       "count": 40
+      }
+     ]
+    },
+    {
+     "name": "信息系统工程",
+     "chapters": [
+      {
+       "id": "pm-023",
+       "name": "软件工程",
+       "file": "data/pm-023.json",
+       "count": 87
+      },
+      {
+       "id": "pm-024",
+       "name": "数据工程",
+       "file": "data/pm-024.json",
+       "count": 31
+      },
+      {
+       "id": "pm-025",
+       "name": "系统集成",
+       "file": "data/pm-025.json",
+       "count": 10
+      },
+      {
+       "id": "pm-026",
+       "name": "安全工程",
+       "file": "data/pm-026.json",
+       "count": 17
+      }
+     ]
+    },
+    {
+     "name": "项目立项管理",
+     "chapters": [
+      {
+       "id": "pm-027",
+       "name": "项目建议与立项申请",
+       "file": "data/pm-027.json",
+       "count": 7
+      },
+      {
+       "id": "pm-028",
+       "name": "项目可行性研究",
+       "file": "data/pm-028.json",
+       "count": 49
+      },
+      {
+       "id": "pm-029",
+       "name": "项目评估与决策",
+       "file": "data/pm-029.json",
+       "count": 13
+      }
+     ]
+    },
+    {
+     "name": "项目整合管理",
+     "chapters": [
+      {
+       "id": "pm-030",
+       "name": "管理基础",
+       "file": "data/pm-030.json",
+       "count": 15
+      },
+      {
+       "id": "pm-031",
+       "name": "项目整合管理过程",
+       "file": "data/pm-031.json",
+       "count": 5
+      },
+      {
+       "id": "pm-032",
+       "name": "制定项目章程",
+       "file": "data/pm-032.json",
+       "count": 17
+      },
+      {
+       "id": "pm-033",
+       "name": "制订项目管理计划",
+       "file": "data/pm-033.json",
+       "count": 15
+      },
+      {
+       "id": "pm-034",
+       "name": "指导与管理项目工作",
+       "file": "data/pm-034.json",
+       "count": 9
+      },
+      {
+       "id": "pm-035",
+       "name": "管理项目知识",
+       "file": "data/pm-035.json",
+       "count": 11
+      },
+      {
+       "id": "pm-036",
+       "name": "监控项目工作",
+       "file": "data/pm-036.json",
+       "count": 9
+      },
+      {
+       "id": "pm-037",
+       "name": "实施整体变更控制",
+       "file": "data/pm-037.json",
+       "count": 11
+      },
+      {
+       "id": "pm-038",
+       "name": "结束项目或阶段",
+       "file": "data/pm-038.json",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "name": "项目范围管理",
+     "chapters": [
+      {
+       "id": "pm-039",
+       "name": "管理基础",
+       "file": "data/pm-039.json",
+       "count": 8
+      },
+      {
+       "id": "pm-040",
+       "name": "项目范围管理过程",
+       "file": "data/pm-040.json",
+       "count": 4
+      },
+      {
+       "id": "pm-041",
+       "name": "规划范围管理",
+       "file": "data/pm-041.json",
+       "count": 15
+      },
+      {
+       "id": "pm-042",
+       "name": "收集需求",
+       "file": "data/pm-042.json",
+       "count": 29
+      },
+      {
+       "id": "pm-043",
+       "name": "定义范围",
+       "file": "data/pm-043.json",
+       "count": 16
+      },
+      {
+       "id": "pm-044",
+       "name": "创建WBS",
+       "file": "data/pm-044.json",
+       "count": 25
+      },
+      {
+       "id": "pm-045",
+       "name": "确认范围",
+       "file": "data/pm-045.json",
+       "count": 20
+      },
+      {
+       "id": "pm-046",
+       "name": "控制范围",
+       "file": "data/pm-046.json",
+       "count": 8
+      }
+     ]
+    },
+    {
+     "name": "项目进度管理",
+     "chapters": [
+      {
+       "id": "pm-047",
+       "name": "管理基础",
+       "file": "data/pm-047.json",
+       "count": 4
+      },
+      {
+       "id": "pm-048",
+       "name": "项目进度管理过程",
+       "file": "data/pm-048.json",
+       "count": 1
+      },
+      {
+       "id": "pm-049",
+       "name": "规划进度管理",
+       "file": "data/pm-049.json",
+       "count": 10
+      },
+      {
+       "id": "pm-050",
+       "name": "定义活动",
+       "file": "data/pm-050.json",
+       "count": 16
+      },
+      {
+       "id": "pm-051",
+       "name": "排列活动顺序",
+       "file": "data/pm-051.json",
+       "count": 24
+      },
+      {
+       "id": "pm-052",
+       "name": "估算活动持续时间",
+       "file": "data/pm-052.json",
+       "count": 30
+      },
+      {
+       "id": "pm-053",
+       "name": "制订进度计划",
+       "file": "data/pm-053.json",
+       "count": 49
+      },
+      {
+       "id": "pm-054",
+       "name": "控制进度",
+       "file": "data/pm-054.json",
+       "count": 11
+      }
+     ]
+    },
+    {
+     "name": "项目成本管理",
+     "chapters": [
+      {
+       "id": "pm-055",
+       "name": "管理基础",
+       "file": "data/pm-055.json",
+       "count": 45
+      },
+      {
+       "id": "pm-056",
+       "name": "项目成本管理过程",
+       "file": "data/pm-056.json",
+       "count": 2
+      },
+      {
+       "id": "pm-057",
+       "name": "规划成本管理",
+       "file": "data/pm-057.json",
+       "count": 7
+      },
+      {
+       "id": "pm-058",
+       "name": "估算成本",
+       "file": "data/pm-058.json",
+       "count": 28
+      },
+      {
+       "id": "pm-059",
+       "name": "制定预算",
+       "file": "data/pm-059.json",
+       "count": 21
+      },
+      {
+       "id": "pm-060",
+       "name": "控制成本",
+       "file": "data/pm-060.json",
+       "count": 31
+      }
+     ]
+    },
+    {
+     "name": "项目质量管理",
+     "chapters": [
+      {
+       "id": "pm-061",
+       "name": "管理基础",
+       "file": "data/pm-061.json",
+       "count": 18
+      },
+      {
+       "id": "pm-062",
+       "name": "项目质量管理过程",
+       "file": "data/pm-062.json",
+       "count": 2
+      },
+      {
+       "id": "pm-063",
+       "name": "规划质量管理",
+       "file": "data/pm-063.json",
+       "count": 13
+      },
+      {
+       "id": "pm-064",
+       "name": "管理质量",
+       "file": "data/pm-064.json",
+       "count": 24
+      },
+      {
+       "id": "pm-065",
+       "name": "控制质量",
+       "file": "data/pm-065.json",
+       "count": 27
+      }
+     ]
+    },
+    {
+     "name": "项目资源管理",
+     "chapters": [
+      {
+       "id": "pm-066",
+       "name": "管理基础",
+       "file": "data/pm-066.json",
+       "count": 59
+      },
+      {
+       "id": "pm-067",
+       "name": "项目资源管理过程",
+       "file": "data/pm-067.json",
+       "count": 5
+      },
+      {
+       "id": "pm-068",
+       "name": "规划资源管理",
+       "file": "data/pm-068.json",
+       "count": 20
+      },
+      {
+       "id": "pm-069",
+       "name": "估算活动资源",
+       "file": "data/pm-069.json",
+       "count": 8
+      },
+      {
+       "id": "pm-070",
+       "name": "获取资源",
+       "file": "data/pm-070.json",
+       "count": 22
+      },
+      {
+       "id": "pm-071",
+       "name": "建设团队",
+       "file": "data/pm-071.json",
+       "count": 15
+      },
+      {
+       "id": "pm-072",
+       "name": "管理团队",
+       "file": "data/pm-072.json",
+       "count": 22
+      },
+      {
+       "id": "pm-073",
+       "name": "控制资源",
+       "file": "data/pm-073.json",
+       "count": 8
+      }
+     ]
+    },
+    {
+     "name": "项目沟通管理",
+     "chapters": [
+      {
+       "id": "pm-074",
+       "name": "管理基础",
+       "file": "data/pm-074.json",
+       "count": 17
+      },
+      {
+       "id": "pm-075",
+       "name": "项目沟通管理过程",
+       "file": "data/pm-075.json",
+       "count": 2
+      },
+      {
+       "id": "pm-076",
+       "name": "规划沟通管理",
+       "file": "data/pm-076.json",
+       "count": 15
+      },
+      {
+       "id": "pm-077",
+       "name": "管理沟通",
+       "file": "data/pm-077.json",
+       "count": 4
+      },
+      {
+       "id": "pm-078",
+       "name": "监督沟通",
+       "file": "data/pm-078.json",
+       "count": 10
+      }
+     ]
+    },
+    {
+     "name": "项目风险管理",
+     "chapters": [
+      {
+       "id": "pm-079",
+       "name": "管理基础",
+       "file": "data/pm-079.json",
+       "count": 35
+      },
+      {
+       "id": "pm-080",
+       "name": "项目风险管理过程",
+       "file": "data/pm-080.json",
+       "count": 6
+      },
+      {
+       "id": "pm-081",
+       "name": "规划风险管理",
+       "file": "data/pm-081.json",
+       "count": 12
+      },
+      {
+       "id": "pm-082",
+       "name": "识别风险",
+       "file": "data/pm-082.json",
+       "count": 20
+      },
+      {
+       "id": "pm-083",
+       "name": "实施定性风险分析",
+       "file": "data/pm-083.json",
+       "count": 20
+      },
+      {
+       "id": "pm-084",
+       "name": "实施定量风险分析",
+       "file": "data/pm-084.json",
+       "count": 25
+      },
+      {
+       "id": "pm-085",
+       "name": "规划风险应对",
+       "file": "data/pm-085.json",
+       "count": 34
+      },
+      {
+       "id": "pm-086",
+       "name": "实施风险应对",
+       "file": "data/pm-086.json",
+       "count": 8
+      },
+      {
+       "id": "pm-087",
+       "name": "监督风险",
+       "file": "data/pm-087.json",
+       "count": 3
+      }
+     ]
+    },
+    {
+     "name": "项目采购管理",
+     "chapters": [
+      {
+       "id": "pm-088",
+       "name": "管理基础",
+       "file": "data/pm-088.json",
+       "count": 1
+      },
+      {
+       "id": "pm-089",
+       "name": "项目采购管理过程",
+       "file": "data/pm-089.json",
+       "count": 9
+      },
+      {
+       "id": "pm-090",
+       "name": "规划采购管理",
+       "file": "data/pm-090.json",
+       "count": 20
+      },
+      {
+       "id": "pm-091",
+       "name": "实施采购",
+       "file": "data/pm-091.json",
+       "count": 13
+      },
+      {
+       "id": "pm-092",
+       "name": "控制采购",
+       "file": "data/pm-092.json",
+       "count": 9
+      },
+      {
+       "id": "pm-093",
+       "name": "项目合同管理",
+       "file": "data/pm-093.json",
+       "count": 31
+      }
+     ]
+    },
+    {
+     "name": "项目干系人管理",
+     "chapters": [
+      {
+       "id": "pm-094",
+       "name": "管理基础",
+       "file": "data/pm-094.json",
+       "count": 2
+      },
+      {
+       "id": "pm-095",
+       "name": "项目干系人管理过程",
+       "file": "data/pm-095.json",
+       "count": 11
+      },
+      {
+       "id": "pm-096",
+       "name": "识别干系人",
+       "file": "data/pm-096.json",
+       "count": 25
+      },
+      {
+       "id": "pm-097",
+       "name": "规划干系人参与",
+       "file": "data/pm-097.json",
+       "count": 15
+      },
+      {
+       "id": "pm-098",
+       "name": "管理干系人参与",
+       "file": "data/pm-098.json",
+       "count": 9
+      },
+      {
+       "id": "pm-099",
+       "name": "监督干系人参与",
+       "file": "data/pm-099.json",
+       "count": 7
+      }
+     ]
+    },
+    {
+     "name": "项目绩效域",
+     "chapters": [
+      {
+       "id": "pm-100",
+       "name": "干系人绩效域",
+       "file": "data/pm-100.json",
+       "count": 5
+      },
+      {
+       "id": "pm-101",
+       "name": "团队绩效域",
+       "file": "data/pm-101.json",
+       "count": 7
+      },
+      {
+       "id": "pm-102",
+       "name": "开发方法和生命周期绩效域",
+       "file": "data/pm-102.json",
+       "count": 10
+      },
+      {
+       "id": "pm-103",
+       "name": "规划绩效域",
+       "file": "data/pm-103.json",
+       "count": 7
+      },
+      {
+       "id": "pm-104",
+       "name": "项目工作绩效域",
+       "file": "data/pm-104.json",
+       "count": 4
+      },
+      {
+       "id": "pm-105",
+       "name": "交付绩效域",
+       "file": "data/pm-105.json",
+       "count": 7
+      },
+      {
+       "id": "pm-106",
+       "name": "度量绩效域",
+       "file": "data/pm-106.json",
+       "count": 13
+      },
+      {
+       "id": "pm-107",
+       "name": "不确定性绩效域",
+       "file": "data/pm-107.json",
+       "count": 8
+      }
+     ]
+    },
+    {
+     "name": "高级项目管理",
+     "chapters": [
+      {
+       "id": "pm-108",
+       "name": "项目集管理",
+       "file": "data/pm-108.json",
+       "count": 25
+      },
+      {
+       "id": "pm-109",
+       "name": "项目组合管理",
+       "file": "data/pm-109.json",
+       "count": 23
+      },
+      {
+       "id": "pm-110",
+       "name": "组织级项目管理",
+       "file": "data/pm-110.json",
+       "count": 13
+      },
+      {
+       "id": "pm-111",
+       "name": "量化项目管理",
+       "file": "data/pm-111.json",
+       "count": 16
+      },
+      {
+       "id": "pm-112",
+       "name": "项目管理实践模型",
+       "file": "data/pm-112.json",
+       "count": 18
+      }
+     ]
+    },
+    {
+     "name": "配置与变更管理",
+     "chapters": [
+      {
+       "id": "pm-113",
+       "name": "配置管理",
+       "file": "data/pm-113.json",
+       "count": 46
+      },
+      {
+       "id": "pm-114",
+       "name": "变更管理",
+       "file": "data/pm-114.json",
+       "count": 34
+      },
+      {
+       "id": "pm-115",
+       "name": "项目文档管理",
+       "file": "data/pm-115.json",
+       "count": 18
+      }
+     ]
+    },
+    {
+     "name": "项目管理科学基础",
+     "chapters": [
+      {
+       "id": "pm-116",
+       "name": "工程经济学",
+       "file": "data/pm-116.json",
+       "count": 22
+      },
+      {
+       "id": "pm-117",
+       "name": "运筹学",
+       "file": "data/pm-117.json",
+       "count": 59
+      }
+     ]
+    },
+    {
+     "name": "组织通用治理",
+     "chapters": [
+      {
+       "id": "pm-118",
+       "name": "组织战略",
+       "file": "data/pm-118.json",
+       "count": 16
+      },
+      {
+       "id": "pm-119",
+       "name": "绩效考核",
+       "file": "data/pm-119.json",
+       "count": 21
+      },
+      {
+       "id": "pm-120",
+       "name": "转型升级",
+       "file": "data/pm-120.json",
+       "count": 8
+      }
+     ]
+    },
+    {
+     "name": "组织通用管理",
+     "chapters": [
+      {
+       "id": "pm-121",
+       "name": "人力资源管理",
+       "file": "data/pm-121.json",
+       "count": 23
+      },
+      {
+       "id": "pm-122",
+       "name": "流程管理",
+       "file": "data/pm-122.json",
+       "count": 14
+      },
+      {
+       "id": "pm-123",
+       "name": "知识管理",
+       "file": "data/pm-123.json",
+       "count": 12
+      },
+      {
+       "id": "pm-124",
+       "name": "市场营销",
+       "file": "data/pm-124.json",
+       "count": 8
+      }
+     ]
+    },
+    {
+     "name": "法律法规与标准规范",
+     "chapters": [
+      {
+       "id": "pm-125",
+       "name": "法律法规",
+       "file": "data/pm-125.json",
+       "count": 33
+      },
+      {
+       "id": "pm-126",
+       "name": "标准规范",
+       "file": "data/pm-126.json",
+       "count": 23
+      }
+     ]
+    }
+   ],
+   "code": "pm"
+  }
+ ]
+}

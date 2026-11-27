@@ -1,0 +1,185 @@
+{
+  "updated": "2026-11-23",
+  "repos": {
+    "ItsNotRexed/Leonida": {
+      "cat": "游戏静态重编译",
+      "does": "把 GTA VI 的 Xbox Series 版静态重编译成 Windows 原生程序，用你自己的游戏副本构建。",
+      "problem": "主机独占游戏在 PC 上跑，且不走模拟器路线。",
+      "pain": "真实",
+      "innov": "高",
+      "invest": "低（版权灰区，靠社区）",
+      "impact": "3 天 16k★，把「Xbox 重编译」做成一个赛道；但游戏尚不能启动，1,621 个未关 issue。"
+    },
+    "erkamyaman/rust-anything": {
+      "cat": "代码迁移 · Agent 工具",
+      "does": "逐块把应用重写成 Rust，每块先录制原程序行为、再校验等价才继续。",
+      "problem": "重写之后行为是否一致，无法证明。",
+      "pain": "真实",
+      "innov": "中高",
+      "invest": "中高",
+      "impact": "两周 8k★；Prettier 移植快 19 倍且输出逐字节一致，crates.io / npm / MCP 已上架。"
+    },
+    "bookwjitchieni1986/blender-ai-mcp-addon": {
+      "cat": "3D 创作 · MCP 插件",
+      "does": "Blender 里的 AI 助手，能看场景、建物体、改材质，带 21 个场景工具与多角色 agent 链。",
+      "problem": "bpy 脚本门槛高、重复建模费时。",
+      "pain": "真实但小众",
+      "innov": "中",
+      "invest": "中低",
+      "impact": "4 天 2.7k★，但仓库仅 345KB、61 个 issue，热度大于成熟度。"
+    },
+    "iamajmeena/neonclipping": {
+      "cat": "视频内容工具",
+      "does": "贴链接 2 分钟出 9:16 带字幕切片，全本地，只下音频和选中的片段。",
+      "problem": "云剪辑收费、上传隐私，长视频人工切片成本高。",
+      "pain": "真实",
+      "innov": "中",
+      "invest": "高",
+      "impact": "4 天 2.1k★；85 分钟流处理 97 秒，创作者工具里商业路径最清晰。"
+    },
+    "EL4CTEO/fast-anything": {
+      "cat": "性能优化 · Agent 工具",
+      "does": "只把 profile 出的热点函数移植成 Rust，用最多 500 条真实调用验证后原位换入。",
+      "problem": "全量重写太贵，手写 C 扩展难维护。",
+      "pain": "真实",
+      "innov": "中高",
+      "invest": "中高",
+      "impact": "2 天 2k★；可逆开关 + 录制回放验证，与 rust-anything 同一赛道。"
+    },
+    "sybil-solutions/inference-optimisation-skill": {
+      "cat": "AI 基础设施 · Agent 技能",
+      "does": "把本地 LLM 服务调优固化成技能：算理论天花板、单变量改动、交错对照测量。",
+      "problem": "本地推理调优靠玄学，缺可复现方法。",
+      "pain": "真实",
+      "innov": "中高",
+      "invest": "低",
+      "impact": "32KB 纯文本 1.9k★；附 Arc B390、RTX 3090、4×H200 的实测数据。"
+    },
+    "omonkeyz/xbox-emulator": {
+      "cat": "主机模拟器",
+      "does": "在 PC 上跑 Xbox Series X|S 游戏的通用运行时（TomBox 延续）。",
+      "problem": "主机独占，需要一个不绑单款游戏的平台层。",
+      "pain": "真实但窄",
+      "innov": "高",
+      "invest": "低",
+      "impact": "7 天 1.3k★；Fortnite 已进 BR 大厅但不可玩，GTA VI 尚未跑起来。"
+    },
+    "R0Y00/Xbox2Windows": {
+      "cat": "静态重编译研究",
+      "does": "Xbox Series → x64 Windows 的静态重编译研究，机器码翻 C++、着色器翻 DXIL。",
+      "problem": "主机代码怎么落到 PC，且每条结论都要可复现。",
+      "pain": "偏研究",
+      "innov": "中高",
+      "invest": "低",
+      "impact": "3 天 1.3k★；851/12,101 个像素着色器已与 RTX 4060 和 WARP 输出一致。"
+    },
+    "Lemxy/WinRust": {
+      "cat": "系统工具",
+      "does": "Rust 写的 Windows shell 替代：任务栏、文件管理器、全盘搜索、任务管理器。",
+      "problem": "Windows 自带 shell 慢而臃肿。",
+      "pain": "真实但小众",
+      "innov": "中",
+      "invest": "中低",
+      "impact": "6 天 1.2k★；需管理员权限、exe 未签名会触发 SmartScreen。"
+    },
+    "chuanqisun/spaceship": {
+      "cat": "交互研究",
+      "does": "MIT Media Lab 的 LLM 实时交互实验：焦点监视、注意力锁定、未来向量操控。",
+      "problem": "AI 生成是一次性的、慢的，实时交互范式还没建立。",
+      "pain": "超前（现在还不痛）",
+      "innov": "高",
+      "invest": "低",
+      "impact": "1k★，论文前置 Demo；社区已派生出 VSCode 插件和本地模型版。"
+    },
+    "public-apis/public-apis": {
+      "cat": "目录 · 开发者资源",
+      "does": "免费 API 清单，5.6 万 fork。",
+      "problem": "去哪儿找免费可用的 API。",
+      "pain": "真实",
+      "innov": "低",
+      "invest": "无（赞助维持）",
+      "impact": "十年老牌，目录型仓库的天花板之一。"
+    },
+    "morluto/rea": {
+      "cat": "逆向工程 · MCP",
+      "does": "一个 MCP 让 agent 逆向原生二进制、Electron、.NET 和网站，结论必须带证据。",
+      "problem": "看懂闭源软件怎么实现，并把功能迁移进自己的项目。",
+      "pain": "真实",
+      "innov": "中高",
+      "invest": "中",
+      "impact": "有官网、npm 包与 Discord 社区；星数虚高，按运营看是真项目。"
+    },
+    "openclaw/openclaw": {
+      "cat": "AI 助手平台",
+      "does": "本地运行的私人 AI 助手，接 20+ 聊天渠道，模型与 harness 全部可插拔。",
+      "problem": "云端助手的数据归属，以及聊天渠道碎片化。",
+      "pain": "真实",
+      "innov": "中高",
+      "invest": "无（非营利基金会，无付费层）",
+      "impact": "生态价值巨大，是本地助手方向最活跃的项目之一。"
+    },
+    "nilbuild/developer-roadmap": {
+      "cat": "开发者教育",
+      "does": "roadmap.sh 的交互式学习路线。",
+      "problem": "学什么、按什么顺序学。",
+      "pain": "真实但非技术问题",
+      "innov": "低",
+      "invest": "中（赞助 / 广告）",
+      "impact": "开发者教育的基础设施级存在。"
+    },
+    "awesome-selfhosted/awesome-selfhosted": {
+      "cat": "目录 · 自托管",
+      "does": "可自托管的自由软件清单。",
+      "problem": "替代云服务、拿回数据自主权。",
+      "pain": "真实",
+      "innov": "低",
+      "invest": "无",
+      "impact": "自托管运动的核心索引，十年积累。"
+    },
+    "deepseek-ai/deepseek-harness": {
+      "cat": "Agent 框架",
+      "does": "DeepSeek 官方 agent harness，「一切都是插件」，本地 Web UI 起服务。",
+      "problem": "agent 能力的组合与工程化。",
+      "pain": "真实",
+      "innov": "高",
+      "invest": "厂商基础设施（不适用投资逻辑）",
+      "impact": "3 个月 28 万★；可能成为 DeepSeek 生态的标准入口，仍是 developer preview。"
+    },
+    "NousResearch/hermes-agent": {
+      "cat": "Agent 框架",
+      "does": "会自我改进的 agent：经验自建技能、跨会话记忆、cron 调度、子 agent、6 种终端后端。",
+      "problem": "agent 没记忆、不会学习、绑在本机上。",
+      "pain": "真实",
+      "innov": "高",
+      "invest": "研究机构驱动（不追商业）",
+      "impact": "与 OpenClaw 正面竞争；5 美元 VPS 可跑，模型可任意切换。"
+    },
+    "torvalds/linux": {
+      "cat": "操作系统内核",
+      "does": "Linux 内核源码树。",
+      "problem": "现代计算的基础层。",
+      "pain": "真实",
+      "innov": "持续演进",
+      "invest": "不适用",
+      "impact": "整个行业的地基。"
+    },
+    "react/react": {
+      "cat": "前端 UI 库",
+      "does": "React，Web 与原生界面的组件库。",
+      "problem": "构建可组合的用户界面。",
+      "pain": "真实",
+      "innov": "持续演进",
+      "invest": "不适用（Meta 维护）",
+      "impact": "Web 前端的事实标准。"
+    },
+    "anomalyco/opencode": {
+      "cat": "AI 编程工具",
+      "does": "开源 coding agent，终端 TUI + 桌面 app。",
+      "problem": "闭源 coding agent 的开源替代。",
+      "pain": "真实，且竞争最激烈",
+      "innov": "中",
+      "invest": "高",
+      "impact": "红海中占稳定份额，已有 opencode.ai 商业路径。"
+    }
+  }
+}

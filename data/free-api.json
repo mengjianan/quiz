@@ -1,0 +1,223 @@
+{
+  "updated": "2026-11-26",
+  "groups": [
+    {
+      "name": "社区自建 / 免费中转站（New API / One API 生态）",
+      "desc": "社区开发者基于 OneAPI/NewAPI 搭建的聚合中转，多支持标准 OpenAI 格式，常有注册赠金或每日签到送额度",
+      "items": [
+        {
+          "name": "公益 AI 中转站 (Linux.do 社区源)",
+          "tag": "社区自建",
+          "free_info": "注册送 5~10 刀额度 / 每日签到领额度",
+          "models": "Claude 3.5 / GPT-4o / DeepSeek-V3 / Gemini 1.5",
+          "base_url": "https://api.linux.do/v1 (或自建镜像)",
+          "url": "https://linux.do",
+          "req": "需论坛账号登录或邀请码",
+          "note": "社区公益项目，稳定性由作者维护，适合尝鲜与本地调试"
+        },
+        {
+          "name": "Free-OneAPI 社区聚合站",
+          "tag": "社区自建",
+          "free_info": "新用户送 $2~$5 体验金，支持每日签到",
+          "models": "OpenAI 兼容接口 / Qwen / Llama 3 / DeepSeek",
+          "base_url": "标准 /v1 接口",
+          "url": "https://github.com/songquanpeng/one-api",
+          "req": "邮箱注册即可",
+          "note": "开源 OneAPI 官方生态节点，常驻免费测试通道"
+        },
+        {
+          "name": "ChatANY / FreeGpt35 免费反代群",
+          "tag": "开源反代",
+          "free_info": "完全免费，无须充值，免 API Key 或固定 Key",
+          "models": "GPT-3.5-Turbo / GLM-4-Flash",
+          "base_url": "https://free.chatany.top/v1",
+          "url": "https://github.com/aurora-develop/Aurora",
+          "req": "无门槛即用",
+          "note": "基于 Web 逆向或开源 Aurora 搭建的公益池，仅供学习"
+        },
+        {
+          "name": "EazyData / 中转福利站",
+          "tag": "自建中转",
+          "free_info": "新注册送测试额度，低倍率跑国内大模型",
+          "models": "GLM-4 / DeepSeek-V3 / Qwen-2.5-72B",
+          "base_url": "https://api.eazydata.com/v1",
+          "url": "https://eazydata.com",
+          "req": "手机号或微信注册",
+          "note": "高并发国内聚合通道，支持标准 OpenAI SDK 直连"
+        },
+        {
+          "name": "API2D / OneAPI 镜像站",
+          "tag": "社区镜像",
+          "free_info": "注册送 $5~$10，支持微信/支付宝充值，价格便宜",
+          "models": "GPT-4o / Claude 3.5 / DeepSeek-V3 / 通义千问",
+          "base_url": "https://api2d.com/v1",
+          "url": "https://api2d.com",
+          "req": "邮箱注册",
+          "note": "官方 OneAPI 镜像站，价格仅为 1/10，适合长期使用"
+        },
+        {
+          "name": "FastGPT 自建版",
+          "tag": "开源自建",
+          "free_info": "完全开源自建，零成本部署，支持本地大模型",
+          "models": "Qwen / ChatGLM / 本地模型",
+          "base_url": "http://localhost:3000/api/openai",
+          "url": "https://github.com/labring/FastGPT",
+          "req": "Docker 一键部署",
+          "note": "支持 RAG 知识库，适合企业内部部署和私有数据"
+        },
+        {
+          "name": "Ollama + OpenWebUI",
+          "tag": "本地部署",
+          "free_info": "完全免费，本地运行，无需联网",
+          "models": "Llama 3.1 / Mistral / Qwen2.5 等开源模型",
+          "base_url": "http://localhost:11434",
+          "url": "https://github.com/ollama/ollama",
+          "req": "本地安装",
+          "note": "开发者首选，模型完全本地化，数据安全无顾虑"
+        },
+        {
+          "name": "NewAPI 生态节点",
+          "tag": "开源生态",
+          "free_info": "社区节点汇总，多个站点共享额度池",
+          "models": "Claude / GPT-4 / DeepSeek 多模型支持",
+          "base_url": "根据节点不同而异",
+          "url": "https://github.com/songquanpeng/one-api",
+          "req": "寻找活跃的 NewAPI 节点",
+          "note": "开源生态活跃，可以自建节点分享给社区"
+        },
+        {
+          "name": "AIProxy 中转",
+          "tag": "企业级中转",
+          "free_info": "提供免费额度，支持微信支付，价格优惠",
+          "models": "OpenAI / Claude / 通义千问 / DeepSeek",
+          "base_url": "https://api.aiproxy.io/v1",
+          "url": "https://aiproxy.io",
+          "req": "邮箱注册",
+          "note": "稳定的企业级服务，提供详细的使用统计和报表"
+        },
+        {
+          "name": "UltrACloud 中转",
+          "tag": "高性价比",
+          "free_info": "新用户送 $1，首充 $10 送 $30，价格极低",
+          "models": "GPT-4o / Claude 3.5 / Gemini Pro",
+          "base_url": "https://api.ultracloud.io/v1",
+          "url": "https://ultracloud.io",
+          "req": "邮箱注册",
+          "note": "价格仅为官方的 1/20，适合大量调用和项目生产环境"
+        }
+      ]
+    },
+    {
+      "name": "国内主流厂商（官方注册即送 / 长期免费用）",
+      "desc": "大厂官方开发者平台，服务极度稳定，注册即送大额免费 Token 包",
+      "items": [
+        {
+          "name": "硅基流动 (SiliconFlow)",
+          "tag": "官方首推",
+          "free_info": "注册送 14~20 元（上千万 Token），Qwen/DeepSeek/GLM 多款模型永久免费",
+          "models": "DeepSeek-V3/R1、Qwen2.5-7B/14B/72B、FLUX 生图、Whisper",
+          "base_url": "https://api.siliconflow.cn/v1",
+          "url": "https://cloud.siliconflow.cn",
+          "req": "手机号注册即可",
+          "note": "目前国内体验最好的开发者平台之一，全面兼容 OpenAI 格式"
+        },
+        {
+          "name": "DeepSeek 官方开放平台",
+          "tag": "官方平台",
+          "free_info": "新注册用户赠送 500 万 Tokens（全模型通用）",
+          "models": "DeepSeek-V3 (Chat)、DeepSeek-Coder、DeepSeek-R1",
+          "base_url": "https://api.deepseek.com",
+          "url": "https://platform.deepseek.com",
+          "req": "手机号或微信快捷登录",
+          "note": "极致性价比（1元约百万Token），代码能力与数学推理极强"
+        },
+        {
+          "name": "智谱 AI 开放平台 (BigModel)",
+          "tag": "官方大厂",
+          "free_info": "注册赠送 2500 万 Token；GLM-4-Flash 永久免费开放调用",
+          "models": "GLM-4-Flash（免费）、GLM-4-Plus、CogView",
+          "base_url": "https://open.bigmodel.cn/api/paas/v4",
+          "url": "https://open.bigmodel.cn",
+          "req": "实名认证（个人/企业均可快速开通）",
+          "note": "GLM-4-Flash 速度极快，长期免费，适合写脚本做自动化"
+        },
+        {
+          "name": "百度千帆大模型平台",
+          "tag": "官方大厂",
+          "free_info": "ERNIE-Speed / ERNIE-Lite 等轻量级模型永久免费无限次调用",
+          "models": "ERNIE-Speed-8K/128K、ERNIE-Lite-8K",
+          "base_url": "https://qianfan.baidubce.com",
+          "url": "https://cloud.baidu.com/product/wenxinworkshop",
+          "req": "百度账号 + 实名认证",
+          "note": "企业级稳定性，轻量模型完全零元免费跑批量分析"
+        },
+        {
+          "name": "阿里百炼平台 (通义千问)",
+          "tag": "官方大厂",
+          "free_info": "各新模型分别赠送数百万至千万 Token（百炼新手专享大礼包）",
+          "models": "Qwen-Plus、Qwen-Turbo、Qwen-Max、通义万相",
+          "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+          "url": "https://bailian.console.aliyun.com",
+          "req": "阿里云实名认证",
+          "note": "阿里云原生基础设施，百炼兼容模式直接支持 OpenAI 客户端"
+        },
+        {
+          "name": "月之暗面 (Moonshot AI)",
+          "tag": "官方大厂",
+          "free_info": "新注册送 15 元体验代金券",
+          "models": "Moonshot-v1-8k / 32k / 128k 超长上下文",
+          "base_url": "https://api.moonshot.cn/v1",
+          "url": "https://platform.moonshot.cn",
+          "req": "手机号注册",
+          "note": "长文本处理先驱，中文阅读与多文件分析能力出色"
+        }
+      ]
+    },
+    {
+      "name": "海外免绑卡 / 全球开源聚合平台",
+      "desc": "支持全球开源前沿模型，多数免绑定海外信用卡即可获得充足免费配额",
+      "items": [
+        {
+          "name": "OpenRouter",
+          "tag": "全球聚合",
+          "free_info": "带 :free 标签的大量模型完全免费调用（0成本）",
+          "models": "Llama 3.3 70B:free、Mistral 7B:free、Gemma 2:free、DeepSeek:free",
+          "base_url": "https://openrouter.ai/api/v1",
+          "url": "https://openrouter.ai",
+          "req": "Google / GitHub / 邮箱登录",
+          "note": "AI 聚合站龙头，切换模型只需改 model 参数，免绑卡"
+        },
+        {
+          "name": "Groq Cloud",
+          "tag": "极速推理",
+          "free_info": "免费提供超高速度的公共并发额度（LPUs 硬件加速）",
+          "models": "Llama 3.1 / 3.3、Mixtral 8x7B、Whisper-large-v3",
+          "base_url": "https://api.groq.com/openai/v1",
+          "url": "https://console.groq.com",
+          "req": "Google 或 GitHub 授权",
+          "note": "每秒 300~500 Tokens 的逆天推理速度，语音识别极佳"
+        },
+        {
+          "name": "GitHub Models",
+          "tag": "微软生态",
+          "free_info": "面向 GitHub 开发者提供免费高规格 API 调试限额",
+          "models": "GPT-4o、o1-mini、Claude 3.5 Sonnet、Phi-3、Llama 3.2",
+          "base_url": "https://models.inference.ai.azure.com",
+          "url": "https://github.com/marketplace/models",
+          "req": "GitHub 账号生成 Personal Access Token (PAT)",
+          "note": "由 Azure AI 支撑，免去繁琐外币充值直接体验顶尖闭源模型"
+        },
+        {
+          "name": "Cloudflare Workers AI",
+          "tag": "边缘计算",
+          "free_info": "每日赠送 10,000 次免费 Neurons 计算额度",
+          "models": "Llama 3、Qwen 1.5、Mistral、Embedding、BGE",
+          "base_url": "https://api.cloudflare.com/client/v4/accounts/{account}/ai/run",
+          "url": "https://dash.cloudflare.com",
+          "req": "Cloudflare 账号（免绑卡）",
+          "note": "全球边缘网络节点，延迟低，适合部署在 Serverless 自动化中"
+        }
+      ]
+    }
+  ]
+}

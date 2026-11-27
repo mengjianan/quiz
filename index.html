@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hamster</title>
+<meta name="theme-color" content="#fafafa">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-hamster.svg">
+<link rel="apple-touch-icon" href="icon-hamster.svg">
+<style>
+:root{--bg:#fafafa;--card:#fff;--fg:#222;--sub:#888;--line:#e8e8e8;--acc:#111;--ok:#2e7d32;--bad:#c62828;--okbg:#eaf5eb;--badbg:#fbecec}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font:15px/1.7 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--fg)}
+#app{max-width:640px;margin:0 auto;min-height:100vh;padding-bottom:64px}
+.topbar{position:sticky;top:0;background:var(--bg);z-index:10;padding:14px 16px 10px;border-bottom:1px solid var(--line)}
+.topbar h1{font-size:19px;font-weight:600}
+.topbar .row{display:flex;align-items:center;gap:10px}
+.topbar .back{background:none;border:none;font-size:20px;color:var(--fg);cursor:pointer;padding:0 4px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 16px}
+h2{font-size:16px;font-weight:600;margin:16px 16px 4px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--acc);background:var(--acc);color:#fff;border-radius:8px;padding:10px 18px;font-size:15px;cursor:pointer;user-select:none}
+.btn.ghost{background:var(--card);color:var(--fg);border-color:var(--line)}
+.btn.block{display:flex;width:100%}
+.btn:disabled{opacity:.4;pointer-events:none}
+.link{color:var(--fg);text-decoration:none}
+.muted{color:var(--sub);font-size:13px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.statnum{font-size:26px;font-weight:600}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin:6px 0}
+.bar>i{display:block;height:100%;background:var(--acc)}
+.chip{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:13px;margin:3px 4px 3px 0;cursor:pointer;background:var(--card)}
+.chip.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+/* 答题 */
+.qstem{font-size:16px;font-weight:500;margin:10px 0 14px;white-space:pre-wrap}
+.qimg{width:100%;border:1px solid var(--line);border-radius:8px;cursor:zoom-in;background:#fff}
+.opt{display:flex;align-items:flex-start;gap:10px;border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0;cursor:pointer;background:var(--card)}
+.opt .tag{flex:0 0 22px;height:22px;border-radius:50%;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--sub)}
+.opt.sel{border-color:var(--acc)}
+.opt.sel .tag{background:var(--acc);color:#fff;border-color:var(--acc)}
+.opt.ok{border-color:var(--ok);background:var(--okbg)}
+.opt.ok .tag{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.bad{border-color:var(--bad);background:var(--badbg)}
+.opt.bad .tag{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opttext{flex:1;white-space:pre-wrap}
+.expl{border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:8px;padding:12px 14px;margin:14px 0;background:var(--card);font-size:14px;white-space:pre-wrap}
+.qnav{display:flex;gap:10px;margin:16px}
+.qnav .btn{flex:1}
+.pill{display:inline-block;font-size:12px;color:var(--sub);border:1px solid var(--line);border-radius:6px;padding:1px 8px;margin-right:6px}
+.chips{display:flex;flex-wrap:wrap;gap:4px 6px;margin-top:7px}
+.chips .pill{margin-right:0;max-width:100%}
+.answerline{margin:12px 16px;font-size:15px}
+/* 列表行 */
+.row-item{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line);cursor:pointer;background:var(--card)}
+.row-item .arrow{margin-left:auto;color:var(--sub)}
+/* 知识点卡片 */
+.kpcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 13px;cursor:pointer;display:flex;flex-direction:column;gap:3px}
+.kpcard:hover{border-color:var(--acc)}
+.kpcard .t{font-size:15px;font-weight:600;line-height:1.4}
+.kpcard .m{font-size:12px;color:var(--sub)}
+.kpcard .bar{margin:3px 0 0}
+.kphead{display:flex;align-items:center;gap:8px;padding:10px 16px 4px}
+.kphead .bk{font-size:20px;line-height:1;color:var(--sub);cursor:pointer;padding:0 4px}
+.kphead .tt{flex:1;font-size:15px;font-weight:600}
+.kpgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:6px 16px 16px}
+.kplist{padding:6px 16px 16px}
+.kpfull{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 15px;margin:0 0 12px}
+.kpfull .t{font-size:15px;font-weight:600;line-height:1.55}
+.kpfull .sech{font-size:12px;font-weight:600;color:var(--acc);letter-spacing:.5px;margin:12px 0 3px}
+.kpfull .pl{font-size:14px;line-height:1.8;white-space:pre-wrap}
+.kpfull .fml{font-size:13px;line-height:1.9;background:var(--bg);border-left:2px solid var(--acc);border-radius:4px;padding:6px 9px;margin:4px 0;white-space:pre-wrap;font-family:ui-monospace,Consolas,"Courier New",monospace;overflow-x:auto}
+.kmath{font-size:14px}
+.kmath.d{display:block;margin:5px 0;padding:2px 0;overflow-x:auto;overflow-y:hidden;white-space:normal;text-align:center}
+.kmath.raw{font-family:ui-monospace,Consolas,"Courier New",monospace;white-space:pre-wrap;word-break:break-word}
+.kmath .katex{font-size:1.05em}
+.tag-ok{color:var(--ok)}.tag-bad{color:var(--bad)}
+/* 底部导航 */
+.nav{position:fixed;bottom:0;left:0;right:0;max-width:640px;margin:0 auto;background:var(--card);border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom)}
+.nav a{flex:1;text-align:center;padding:9px 0;font-size:11px;color:var(--sub);text-decoration:none}
+.nav a.on{color:var(--acc);font-weight:600}
+.nav .ic{display:block;font-size:19px;line-height:1.2}
+/* 模拟考 */
+.timer{font-variant-numeric:tabular-nums;font-size:17px;font-weight:600}
+.cardgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:8px;margin:10px 0}
+.cardgrid .cell{aspect-ratio:1;border:1px solid var(--line);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;background:var(--card)}
+.cardgrid .cell.done{background:var(--acc);color:#fff;border-color:var(--acc)}
+.cardgrid .cell.flag{border-color:var(--bad);color:var(--bad)}
+.cardgrid .cell.cur{outline:2px solid var(--acc);outline-offset:1px}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;z-index:100;cursor:zoom-out;padding:12px}
+.overlay img{max-width:100%;max-height:100%}
+.sect{font-size:13px;color:var(--sub);margin:18px 16px 2px;text-transform:none}
+.prog{display:flex;gap:3px;height:5px;margin:8px 0}
+.prog>i{flex:1;background:var(--line);border-radius:2px}
+.prog>i.ok{background:var(--ok)}.prog>i.bad{background:var(--bad)}
+textarea,input[type=number],input[type=password]{width:100%;border:1px solid var(--line);border-radius:8px;padding:10px;font:inherit;background:var(--card);color:var(--fg)}
+table.mini{width:100%;border-collapse:collapse;font-size:13px}
+table.mini td{padding:5px 2px;border-bottom:1px solid var(--line)}
+table.mini td:last-child{text-align:right;color:var(--sub)}
+/* 手写板 */
+.fab{position:fixed;right:14px;bottom:78px;width:48px;height:48px;border-radius:50%;background:var(--acc);color:#fff;font-size:21px;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(0,0,0,.3);z-index:60;cursor:pointer;user-select:none}
+#pad{position:fixed;z-index:120;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 34px rgba(0,0,0,.2);display:none;flex-direction:column;overflow:hidden}
+#pad.on{display:flex}
+#pad .ph{display:flex;align-items:center;gap:8px;padding:6px 10px;background:#f5f5f5;border-bottom:1px solid var(--line);font-size:13px;cursor:move;user-select:none;touch-action:none;-webkit-user-select:none}
+#pad .ph b{font-weight:600}
+#pad .ph button{border:1px solid var(--line);background:#fff;border-radius:6px;font-size:12px;padding:3px 10px;cursor:pointer;color:var(--fg)}
+#pad canvas{flex:1;display:block;background:#fff;touch-action:none;cursor:crosshair}
+#pad .grip{position:absolute;right:0;bottom:0;width:26px;height:26px;cursor:nwse-resize;z-index:2;background:linear-gradient(135deg,transparent 50%,#bbb 50%);border-top-left-radius:4px;touch-action:none}
+</style>
+</head>
+<body>
+<div id="app">
+  <header class="topbar" id="topbar"></header>
+  <main id="main"></main>
+</div>
+<nav class="nav" id="nav"></nav>
+<script>
+"use strict";
+const LOGIN_PWD = "cat"; // 入口密码：改这里（注：静态页的门槛密码，防路过的访客，防不了看源码）
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const Store = {
+  get(k, d) { try { const v = JSON.parse(localStorage.getItem("jwz_" + k)); return v == null ? d : v; } catch { return d; } },
+  set(k, v) { localStorage.setItem("jwz_" + k, JSON.stringify(v)); }
+};
+
+// ---------- 数据 ----------
+let INDEX = null;                       // data/index.json
+const CHAP_CACHE = {};                  // chapterId -> questions[]
+const POOL = {};                        // subjectId -> 题池（开始考试/随机练习用，单文件）
+async function loadIndex() {
+  if (!INDEX) INDEX = await (await fetch("data/index.json")).json();
+  return INDEX;
+}
+async function loadChapter(id) {
+  if (!CHAP_CACHE[id]) {
+    const meta = findChapter(id);
+    CHAP_CACHE[id] = (await (await fetch(meta.file)).json()).questions;
+  }
+  return CHAP_CACHE[id];
+}
+function findChapter(id) {
+  for (const s of INDEX.subjects) for (const sec of s.sections) for (const c of sec.chapters)
+    if (c.id === id) return { ...c, subjectId: s.id, subjectName: s.name, sectionName: sec.name };
+  return null;
+}
+function subjectChapters(sid) {
+  const out = [];
+  for (const s of INDEX.subjects) if (s.id === sid) for (const sec of s.sections)
+    for (const c of sec.chapters) out.push({ ...c, sectionName: sec.name });
+  return out;
+}
+
+// ---------- 记录 ----------
+// rec: {qid:{n:做题数,c:答对数}}  wrong:{qid:{count}}  fav:[qid]  stats:{date:{n,c}}
+function bump(qid, correct) {
+  const rec = Store.get("rec", {});
+  const r = rec[qid] || (rec[qid] = { n: 0, c: 0 });
+  r.n++; if (correct) r.c++;
+  Store.set("rec", rec);
+  const today = new Date().toISOString().slice(0, 10);
+  const st = Store.get("stats", {});
+  const d = st[today] || (st[today] = { n: 0, c: 0 });
+  d.n++; if (correct) d.c++;
+  Store.set("stats", st);
+  const wrong = Store.get("wrong", {});
+  if (!correct) { const w = wrong[qid] || (wrong[qid] = { count: 0 }); w.count++; Store.set("wrong", wrong); }
+  else if (wrong[qid]) { delete wrong[qid]; Store.set("wrong", wrong); }
+}
+
+// ---------- 视图 ----------
+const state = { view: "home", q: null };
+const NAV = [["home","首页","⌂"],["catalog","练习","✎"],["wrong","错题","⚑"],["stats","统计","▤"],["me","我","☰"]];
+function render() {
+  // 入口登录门（auth 标志存 localStorage）
+  if (!Store.get("auth", false)) {
+    $("#nav").innerHTML = "";
+    $("#topbar").innerHTML = `<div class="row"><h1>hamster</h1></div>`;
+    $("#main").innerHTML = `
+      <div class="card" style="margin-top:40px">
+        <div style="text-align:center;margin-bottom:14px"><img src="icon-hamster.svg" alt="" style="width:84px;height:84px;display:block;margin:0 auto 6px"><div style="font-size:17px;font-weight:600">hamster</div>
+        <div class="muted">公共科目 · 数学1</div></div>
+        <input type="password" id="pwd" placeholder="访问密码" autocomplete="current-password"
+          onkeydown="if(event.key==='Enter')login()">
+        <div id="pwderr" style="color:var(--bad);text-align:center;font-size:13px;min-height:22px;padding-top:6px"></div>
+        <button class="btn block" onclick="login()">登录</button>
+      </div>`;
+    const p = document.getElementById("pwd");
+    if (p) p.focus();
+    return;
+  }
+  // nav
+  $("#nav").innerHTML = NAV.map(([v,t,ic]) =>
+    `<a href="#" class="${state.view===v||(v==="catalog"&&["quiz","mock","report","catalog2"].includes(state.view))?"on":""}" onclick="go('${v}')"><span class="ic">${ic}</span>${t}</a>`).join("");
+  ({ home, catalog, catalog2, quiz, wrong, stats, me, mock, report, quizMock, links, hotspot, exams, kp, gh: ghrank, ai: aihot, apifree })[state.view](state.arg);
+  window.scrollTo(0, 0);
+}
+function login() {
+  const v = document.getElementById("pwd").value;
+  if (v === LOGIN_PWD) { Store.set("auth", true); state.view = "home"; render(); }
+  else document.getElementById("pwderr").textContent = "密码不对";
+}
+function logout() { Store.set("auth", false); render(); }
+
+// ===== 手写板（数学1/岗位能力做题页显示入口；可拖动、右下角调大小、清空）=====
+const PAD = { open: false, x: 16, y: 110, w: 320, h: 260, strokes: [], cur: null };
+function needScratch(qid) {
+  try {
+    const c = findChapter(String(qid).split("#")[0]);
+    return !!c && (c.subjectName === "数学1" || c.subjectName === "408" || c.subjectName === "行测" || c.subjectName === "申论" || c.sectionName.indexOf("岗位能力") === 0);
+  } catch (e) { return false; }
+}
+function togglePad() {
+  PAD.open = !PAD.open;
+  if (PAD.open) { padInit(); document.getElementById("pad").classList.add("on"); padPlace(); }
+  else document.getElementById("pad").classList.remove("on");
+}
+function padClear() { PAD.strokes = []; redrawPad(); }
+function padInit() {
+  if (document.getElementById("pad")) return;
+  const el = document.createElement("div");
+  el.id = "pad";
+  el.innerHTML = `<div class="ph" id="padH"><b>手写板</b><span style="flex:1"></span>
+    <button onclick="padClear()">清空</button><button onclick="togglePad()">×</button></div>
+    <canvas id="padC"></canvas><div class="grip" id="padG"></div>`;
+  document.body.appendChild(el);
+  const c = document.getElementById("padC");
+  const pos = e => { const r = c.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+  c.addEventListener("pointerdown", e => {
+    c.setPointerCapture(e.pointerId);
+    PAD.cur = [pos(e)];
+    PAD.strokes.push(PAD.cur);
+    const ctx = c.getContext("2d");
+    ctx.beginPath(); ctx.moveTo(PAD.cur[0][0], PAD.cur[0][1]); ctx.lineTo(PAD.cur[0][0] + .01, PAD.cur[0][1] + .01); ctx.stroke();
+    e.preventDefault();
+  });
+  c.addEventListener("pointermove", e => {
+    if (!PAD.cur) return;
+    const p = pos(e), last = PAD.cur[PAD.cur.length - 1];
+    PAD.cur.push(p);
+    const ctx = c.getContext("2d");
+    ctx.beginPath(); ctx.moveTo(last[0], last[1]); ctx.lineTo(p[0], p[1]); ctx.stroke();
+  });
+  ["pointerup", "pointercancel"].forEach(t => c.addEventListener(t, () => { PAD.cur = null; }));
+  // 标题栏拖动
+  const h = document.getElementById("padH");
+  let drag = null;
+  h.addEventListener("pointerdown", e => {
+    if (e.target.tagName === "BUTTON") return;
+    drag = { x: e.clientX - PAD.x, y: e.clientY - PAD.y };
+    h.setPointerCapture(e.pointerId);
+  });
+  h.addEventListener("pointermove", e => {
+    if (!drag) return;
+    PAD.x = e.clientX - drag.x; PAD.y = e.clientY - drag.y;
+    padPlace();
+  });
+  h.addEventListener("pointerup", () => { drag = null; });
+  // 右下角调大小
+  const g = document.getElementById("padG");
+  let rs = null;
+  g.addEventListener("pointerdown", e => {
+    rs = { x: e.clientX, y: e.clientY, w: PAD.w, h: PAD.h };
+    g.setPointerCapture(e.pointerId);
+    e.preventDefault(); e.stopPropagation();
+  });
+  g.addEventListener("pointermove", e => {
+    if (!rs) return;
+    PAD.w = Math.max(180, Math.min(innerWidth - 8, rs.w + e.clientX - rs.x));
+    PAD.h = Math.max(140, Math.min(innerHeight - 8, rs.h + e.clientY - rs.y));
+    padPlace();
+  });
+  g.addEventListener("pointerup", () => { rs = null; });
+}
+function padPlace() {
+  const el = document.getElementById("pad");
+  if (!el) return;
+  PAD.x = Math.max(0, Math.min(PAD.x, innerWidth - PAD.w));
+  PAD.y = Math.max(0, Math.min(PAD.y, innerHeight - PAD.h));
+  el.style.left = PAD.x + "px"; el.style.top = PAD.y + "px";
+  el.style.width = PAD.w + "px"; el.style.height = PAD.h + "px";
+  padCanvasSize();
+}
+function padCanvasSize() {
+  const c = document.getElementById("padC");
+  if (!c || !c.clientWidth) return;
+  const dpr = devicePixelRatio || 1;
+  c.width = Math.round(c.clientWidth * dpr);
+  c.height = Math.round(c.clientHeight * dpr);
+  const ctx = c.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.lineWidth = 2.5; ctx.strokeStyle = "#111";
+  redrawPad();
+}
+function redrawPad() {
+  const c = document.getElementById("padC");
+  if (!c || !c.width) return;
+  const ctx = c.getContext("2d");
+  ctx.clearRect(0, 0, c.width, c.height);
+  ctx.lineWidth = 2.5; ctx.strokeStyle = "#111";
+  for (const s of PAD.strokes) {
+    if (!s.length) continue;
+    if (s.length === 1) {
+      ctx.beginPath(); ctx.arc(s[0][0], s[0][1], 1.5, 0, 7); ctx.fillStyle = "#111"; ctx.fill();
+      continue;
+    }
+    ctx.beginPath(); ctx.moveTo(s[0][0], s[0][1]);
+    for (let i = 1; i < s.length; i++) ctx.lineTo(s[i][0], s[i][1]);
+    ctx.stroke();
+  }
+}
+// 图片预取：当前题解析图 + 下一题整题，消除切换等待
+function prefetchQ(q) {
+  if (!q) return;
+  [].concat(q.img || [], q.expl_img || []).forEach(src => {
+    if (src) { const i = new Image(); i.src = src; }
+  });
+}
+function go(view, arg) { state.view = view; state.arg = arg; render(); }
+
+function header(title, back) {
+  $("#topbar").innerHTML = `<div class="row">${back ? `<button class="back" onclick="go('${back}')">‹</button>` : ""}<h1>${esc(title)}</h1></div>`;
+}
+
+// 首页
+async function home() {
+  await loadIndex();
+  header("首页");
+  const st = Store.get("stats", {});
+  const today = st[new Date().toISOString().slice(0, 10)] || { n: 0, c: 0 };
+  const rec = Store.get("rec", {});
+  const wrong = Store.get("wrong", {});
+  const totalN = Object.values(rec).reduce((a, r) => a + r.n, 0);
+  const totalC = Object.values(rec).reduce((a, r) => a + r.c, 0);
+  // 连续天数
+  let streak = 0;
+  for (let i = 0; ; i++) {
+    const d = new Date(Date.now() - i * 864e5).toISOString().slice(0, 10);
+    if (st[d] && st[d].n > 0) streak++; else if (i > 0) break; else if (!st[d]) break;
+  }
+  const last = Store.get("last", null);
+  let html = "";
+  // ① 考试倒计时条（置顶，点击进考试中心——即「考试中心」按钮的入口）
+  try {
+    const exd = await (await fetch("data/exams.json")).json();
+    const t0 = new Date(new Date().toDateString());
+    const upcoming = (exd.exams || []).filter(e => !e.done && e.exam_iso)
+      .map(e => ({ e, days: Math.ceil((new Date(e.exam_iso + "T00:00:00") - t0) / 86400000) }))
+      .filter(x => x.days >= 0)
+      .sort((a, b) => a.days - b.days)[0];
+    if (upcoming) {
+      html += `<div class="card" style="cursor:pointer;display:flex;gap:12px;align-items:center" onclick="go('exams')">
+        <div class="statnum" style="color:${upcoming.days <= 14 ? "var(--bad)" : "var(--fg)"}">D-${upcoming.days}</div>
+        <div style="flex:1"><div><b>${esc(upcoming.e.name)}</b></div>
+        <div class="muted">${esc(upcoming.e.exam_text || "")} · 报名入口与全部考试 →</div></div></div>`;
+    }
+  } catch (e) { /* 倒计时失败不影响首页其余内容 */ }
+  // ② 统计单行
+  html += `<div class="card" style="display:grid;grid-template-columns:repeat(4,1fr);text-align:center;padding:12px 6px">
+    <div><div style="font-weight:600;font-size:19px">${today.n}</div><div class="muted" style="font-size:12px">今日做题</div></div>
+    <div><div style="font-weight:600;font-size:19px">${streak}</div><div class="muted" style="font-size:12px">连续天</div></div>
+    <div><div style="font-weight:600;font-size:19px">${totalN}</div><div class="muted" style="font-size:12px">累计做题</div></div>
+    <div><div style="font-weight:600;font-size:19px">${totalN ? Math.round(totalC / totalN * 100) : 0}%</div><div class="muted" style="font-size:12px">总正确率</div></div>
+  </div>`;
+  // ③ 继续上次
+  if (last && last.qid) {
+    html += `<div class="card" style="cursor:pointer" onclick="resumeLast()"><b>继续上次练习</b><div class="muted">${esc(last.label || "")} ${last.idx + 1}/${last.total}</div></div>`;
+  }
+  // ④ 时政/408/知识点各占整行（考试中心由顶部倒计时条承担）
+  html += `<div class="card"><div class="grid2">
+    <button class="btn ghost" style="grid-column:1/-1" onclick="go('hotspot')">时政热点 · 每日更新</button>
+    <button class="btn ghost" style="grid-column:1/-1" onclick="go('gh')">GitHub 排行 · 每日更新</button>
+    <button class="btn ghost" style="grid-column:1/-1" onclick="go('ai')">AI 热点 · 软件赛事</button>
+    <button class="btn ghost" style="grid-column:1/-1" onclick="go('apifree')">免费 API 额度 · 领 Key 福利</button>
+    <button class="btn ghost" style="grid-column:1/-1" onclick="go('links')">408 备考资料</button>
+    <button class="btn ghost" style="grid-column:1/-1" onclick="go('kp')">知识点 · 背诵</button>
+  </div></div>`;
+  // ⑤ 错题本 + 模拟考试 并一行
+  html += `<div class="card"><div class="grid2">
+    <button class="btn ghost" onclick="go('wrong')">错题本 ${Object.keys(wrong).length}</button>
+    <button class="btn" onclick="go('mock')">模拟考试</button>
+  </div></div>`;
+  $("#main").innerHTML = html;
+}
+
+// 练习入口
+async function catalog() {
+  await loadIndex();
+  header("练习");
+  $("#main").innerHTML = INDEX.subjects.map(s =>
+    `<div class="row-item" onclick="go('catalog2','${s.id}')"><div><b>${esc(s.name)}</b><div class="muted">${subjectChapters(s.id).length} 章可练</div></div><span class="arrow">›</span></div>`
+  ).join("") + `<div class="card"><button class="btn block" onclick="go('mock')">随机抽题 / 模拟考试</button></div>`;
+}
+
+// 章节列表
+async function catalog2(sid) {
+  await loadIndex();
+  sid = sid || INDEX.subjects[0].id;
+  const s = INDEX.subjects.find(x => x.id === sid);
+  header(s.name, "catalog");
+  const rec = Store.get("rec", {});
+  let html = "", secName = "";
+  for (const c of subjectChapters(sid)) {
+    if (c.sectionName !== secName) { secName = c.sectionName; html += `<div class="sect">${esc(secName)}</div>`; }
+    const meta = CHAPTER_STATS(c.id, rec);
+    html += `<div class="row-item" onclick="startChapter('${c.id}')">
+      <div style="flex:1"><div>${esc(c.name)}</div><div class="muted">${c.count} 题${meta ? ` · 已做 ${meta.n} · 正确率 ${meta.pct}%` : ""}</div>
+      ${meta ? `<div class="bar"><i style="width:${meta.pct}%"></i></div>` : ""}</div>
+      <span class="arrow">›</span></div>`;
+  }
+  $("#main").innerHTML = html;
+}
+function CHAPTER_STATS(cid, rec) {
+  const qs = CHAP_CACHE[cid];
+  if (!qs) return null;
+  let n = 0, c = 0;
+  for (const q of qs) { const r = rec[q.id]; if (r) { n += r.n; c += r.c; } }
+  return n ? { n, pct: Math.round(c / n * 100) } : null;
+}
+
+// ---------- 答题引擎 ----------
+async function startChapter(cid) {
+  const qs = await loadChapter(cid);
+  const meta = findChapter(cid);
+  startQuiz("chapter", qs, `${meta.subjectName}·${meta.name}`, { chapterId: cid });
+}
+async function startWrong() {
+  const wrong = Store.get("wrong", {});
+  const ids = Object.keys(wrong);
+  if (!ids.length) return;
+  // 按章节分组加载
+  const byChap = {};
+  for (const id of ids) { const [cid] = id.split("#"); (byChap[cid] = byChap[cid] || []).push(id); }
+  const qs = [];
+  for (const cid of Object.keys(byChap)) {
+    const arr = await loadChapter(cid);
+    for (const q of arr) if (wrong[q.id]) qs.push(q);
+  }
+  startQuiz("wrong", qs, "错题重做");
+}
+async function startRandom(n) {
+  try {
+    await loadIndex();
+    const sid = state.arg || INDEX.subjects[0].id;
+    // ponytail: 题池单文件加载（旧版串行拉全部310个章节=13.3MB导致卡死）
+    if (!POOL[sid]) {
+      const subj = INDEX.subjects.find(s => s.id === sid);
+      POOL[sid] = (await (await fetch(`data/pool/${(subj && subj.code) || sid}.json`)).json()).questions;
+    }
+    if (!POOL[sid].length) { alert("该科目为主观题练习（申论），请从章节进入；随机/模拟考仅支持客观题科目。"); return; }
+    const qs = shuffle([...POOL[sid]]).slice(0, n);
+    startQuiz("random", qs, `随机练习·${INDEX.subjects.find(s => s.id === sid).name}`);
+  } catch (e) {
+    alert("题库加载失败，请重试：" + e.message);
+  }
+}
+function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+
+function startQuiz(mode, qs, label, extra = {}) {
+  state.q = { mode, qs, label, idx: 0, judged: {}, picked: {}, flags: new Set(), start: Date.now(), ...extra };
+  if (mode === "chapter" && extra.chapterId) {
+    const last = Store.get("last", null);
+    if (last && last.chapterId === extra.chapterId && last.idx < qs.length - 1) state.q.idx = last.idx;
+  }
+  go("quiz");
+}
+
+function quiz() {
+  const Q = state.q;
+  if (!Q) return go("home");
+  const q = Q.qs[Q.idx];
+  const judged = Q.judged[q.id];
+  const isMulti = q.type === "multi";
+  const isSubj = q.type === "subjective" || !(q.options && q.options.length);
+  const picked = Q.picked[q.id] || (isMulti ? [] : null);
+  header(Q.label, Q.mode === "wrong" ? "wrong" : (Q.mode === "random" ? "catalog" : "catalog2"));
+  $("#topbar").innerHTML += `<div class="prog">${Q.qs.map((x, i) => `<i class="${Q.judged[x.id] ? (Q.judged[x.id].correct ? "ok" : "bad") : ""}"></i>`).join("")}</div>`;
+
+  const tags = [`<span class="pill">${Q.idx + 1} / ${Q.qs.length}</span>`,
+    `<span class="pill">${isSubj ? "主观题" : isMulti ? "多选" : "单选"}</span>`];
+  let html = `<div class="card">`;
+  html += tags.join("");
+  if (q.img) {
+    html += `<div class="qstem">${esc(q.stem || "")}</div>${imgHTML(q.img, "题目图片")}`;
+  } else {
+    html += `<div class="qstem">${esc(q.stem)}</div>`;
+  }
+  if (isSubj) {
+    // 主观题（申论）：阅读材料 → 查看参考答案 → 自评（接入统计/错题本）
+    if (judged) {
+      html += `<div class="answerline"><b class="${judged.correct ? "tag-ok" : "tag-bad"}">${judged.correct ? "✓ 已掌握" : "✗ 未掌握"}</b> · <span class="muted">自评已计入统计与错题本</span></div>`;
+      if (q.explanation) html += `<div class="expl"><b>机构参考答案</b>\n${esc(q.explanation)}</div>`;
+      if (q.expl_img) html += imgHTML(q.expl_img, "参考答案图片");
+    } else if (Q.showAns && Q.showAns[q.id]) {
+      if (q.explanation) html += `<div class="expl"><b>机构参考答案</b>\n${esc(q.explanation)}</div>`;
+      if (q.expl_img) html += imgHTML(q.expl_img, "参考答案图片");
+      html += `<div class="grid2" style="margin-top:12px">
+        <button class="btn ghost" onclick="subjJudge(true)">✓ 已掌握</button>
+        <button class="btn" onclick="subjJudge(false)">✗ 未掌握</button></div>`;
+    } else {
+      html += `<div class="muted" style="margin-top:8px">读完给定资料与作答要求，自己先动笔作答，再看参考答案自评。</div>`;
+      html += `<button class="btn block" onclick="showAnswer()" style="margin-top:10px">查看参考答案</button>`;
+    }
+  } else {
+    const letters = ["A","B","C","D","E","F"];
+    q.options.forEach((o, i) => {
+      const L = letters[i];
+      const isRight = q.answer.includes(L);
+      let cls = "opt";
+      if (judged) cls += isRight ? " ok" : (picked.includes?.(L) || picked === L ? " bad" : "");
+      else if (isMulti ? picked.includes(L) : picked === L) cls += " sel";
+      html += `<div class="${cls}" onclick="pick('${q.id}',${i})">
+        <div class="tag">${L}</div>
+        <div class="opttext">${q.img && q.textOptions ? esc(o) : esc(o)}</div></div>`;
+    });
+    if (judged) {
+      html += `<div class="answerline"><b class="${judged.correct ? "tag-ok" : "tag-bad"}">${judged.correct ? "✓ 回答正确" : "✗ 回答错误"}</b> · 正确答案：<b>${esc(q.answer)}</b></div>`;
+      if (q.explanation) html += `<div class="expl"><b>解析</b>\n${esc(q.explanation)}</div>`;
+      if (q.expl_img) html += imgHTML(q.expl_img, "解析图片");
+    } else if (isMulti) {
+      html += `<button class="btn block" onclick="judge('${q.id}')" style="margin-top:8px">确认答案</button>`;
+    }
+  }
+  html += `</div>`;
+  html += `<div class="qnav">
+    <button class="btn ghost" onclick="moveQ(-1)" ${Q.idx === 0 ? "disabled" : ""}>上一题</button>
+    <button class="btn ghost" onclick="toggleFav('${q.id}')">${isFav(q.id) ? "★ 已收藏" : "☆ 收藏"}</button>
+    <button class="btn" onclick="moveQ(1)">${Q.idx === Q.qs.length - 1 ? (Q.mode === "wrong" ? "完成" : "完成") : "下一题"}</button>
+  </div>`;
+  if (needScratch(q.id)) html += `<div class="fab" onclick="togglePad()" title="手写板">✎</div>`;
+  $("#main").innerHTML = html;
+  prefetchQ(q);            // 当前题解析图提前拉
+  prefetchQ(Q.qs[Q.idx + 1]); // 下一题整题提前拉
+
+  // 继续上次
+  if (Q.mode === "chapter") {
+    const last = { qid: q.id, idx: Q.idx, total: Q.qs.length, chapterId: Q.chapterId, label: Q.label };
+    Store.set("last", last);
+  }
+}
+function isFav(id) { return Store.get("fav", []).includes(id); }
+function toggleFav(id) {
+  let fav = Store.get("fav", []);
+  fav = fav.includes(id) ? fav.filter(x => x !== id) : [...fav, id];
+  Store.set("fav", fav); render();
+}
+function resumeLast() {
+  const last = Store.get("last", null);
+  if (last && last.chapterId) startChapter(last.chapterId);
+}
+function pick(qid, i) {
+  const Q = state.q, q = Q.qs[Q.idx];
+  if (Q.judged[qid]) return;
+  const L = "ABCDEF"[i];
+  if (q.type === "multi") {
+    const arr = Q.picked[qid] || [];
+    Q.picked[qid] = arr.includes(L) ? arr.filter(x => x !== L) : [...arr, L];
+    render();
+  } else {
+    Q.picked[qid] = L;
+    judge(qid);
+  }
+}
+function judge(qid) {
+  const Q = state.q, q = Q.qs.find(x => x.id === qid);
+  const picked = Q.picked[qid];
+  if (!picked || (q.type === "multi" && !picked.length)) return;
+  const correct = q.type === "multi"
+    ? [...picked].sort().join("") === [...q.answer].sort().join("")
+    : picked === q.answer;
+  Q.judged[qid] = { correct, picked };
+  bump(qid, correct);
+  render();
+}
+function moveQ(d) {
+  const Q = state.q;
+  if (Q.idx + d >= Q.qs.length) return finishQuiz();
+  Q.idx = Math.max(0, Q.idx + d);
+  render();
+}
+// 主观题（申论）
+function showAnswer() {
+  const Q = state.q;
+  (Q.showAns = Q.showAns || {})[Q.qs[Q.idx].id] = true;
+  render();
+}
+function subjJudge(ok) {
+  const Q = state.q;
+  const q = Q.qs[Q.idx];
+  Q.judged[q.id] = { correct: !!ok, self: true };
+  bump(q.id, !!ok);
+  render();
+}
+function finishQuiz() {
+  const Q = state.q;
+  const n = Object.keys(Q.judged).length;
+  const c = Object.values(Q.judged).filter(j => j.correct).length;
+  alert(`完成！共做 ${n} 题，答对 ${c} 题，正确率 ${n ? Math.round(c / n * 100) : 0}%`);
+  Store.set("last", null);
+  go(Q.mode === "wrong" ? "wrong" : "home");
+}
+function zoom(src) {
+  const d = document.createElement("div");
+  d.className = "overlay";
+  d.innerHTML = `<img src="${esc(src)}">`;
+  d.onclick = () => d.remove();
+  document.body.appendChild(d);
+}
+function imgHTML(v, alt) {
+  // v: string | [string] | null；跨页题多段图竖排；预取+懒加载减小切换等待
+  if (!v) return "";
+  return [].concat(v).map(src => `<img class="qimg" src="${esc(src)}" loading="lazy" decoding="async" onclick="zoom(this.src)" alt="${esc(alt)}" style="margin:4px 0">`).join("");
+}
+
+// 错题本
+function wrong() {
+  header("错题本");
+  const w = Store.get("wrong", {});
+  const ids = Object.keys(w);
+  if (!ids.length) { $("#main").innerHTML = `<div class="card muted">暂无错题。答错的题会自动收录到这里。</div>`; return; }
+  let html = `<div class="card"><button class="btn block" onclick="startWrong()">重做全部错题（${ids.length}）</button>
+    <button class="btn ghost block" style="margin-top:10px" onclick="if(confirm('清空全部错题？')){Store.set('wrong',{});render()}">清空错题本</button></div>`;
+  // 按章节展示（同步读缓存，未加载的章节先只列 id）
+  const byChap = {};
+  for (const id of ids) { const [cid] = id.split("#"); (byChap[cid] = byChap[cid] || []).push(id); }
+  for (const cid of Object.keys(byChap)) {
+    const meta = findChapter(cid);
+    html += `<div class="sect">${esc(meta ? meta.name : cid)}（${byChap[cid].length}）</div>`;
+    for (const qid of byChap[cid]) {
+      const q = findQ(qid);
+      html += `<div class="row-item" onclick="redoOne('${qid}')">
+        <div style="flex:1"><div>${esc(q ? (q.stem || "[图片题]").slice(0, 40) : qid)}</div>
+        <div class="muted">错 ${w[qid].count} 次${q ? ` · 答案 ${esc(q.answer)}` : ""}</div></div>
+        <span class="arrow">›</span></div>`;
+    }
+  }
+  $("#main").innerHTML = html;
+}
+function findQ(qid) {
+  const [cid] = qid.split("#");
+  const arr = CHAP_CACHE[cid];
+  return arr ? arr.find(x => x.id === qid) : null;
+}
+async function redoOne(qid) {
+  const [cid] = qid.split("#");
+  const arr = await loadChapter(cid);
+  const q = arr.find(x => x.id === qid);
+  if (q) startQuiz("wrong", [q], "错题重做");
+}
+
+// 统计
+function stats() {
+  header("学习统计");
+  const rec = Store.get("rec", {});
+  const st = Store.get("stats", {});
+  let n = 0, c = 0;
+  for (const r of Object.values(rec)) { n += r.n; c += r.c; }
+  // 近 7 日
+  const days = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date(Date.now() - i * 864e5).toISOString().slice(0, 10);
+    days.push([d.slice(5), st[d]?.n || 0]);
+  }
+  const maxN = Math.max(1, ...days.map(x => x[1]));
+  let html = `<div class="card"><div class="grid2">
+    <div><div class="statnum">${n}</div><div class="muted">累计做题</div></div>
+    <div><div class="statnum">${n ? Math.round(c / n * 100) : 0}%</div><div class="muted">总正确率</div></div>
+  </div>
+  <div class="muted" style="margin-top:12px">近 7 日做题量</div>
+  <div style="display:flex;align-items:flex-end;gap:8px;height:90px;margin-top:6px">
+    ${days.map(([d, v]) => `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px">
+      <div style="width:100%;background:var(--acc);border-radius:4px 4px 0 0;height:${Math.round(v / maxN * 64)}px"></div>
+      <span class="muted" style="font-size:10px">${d}</span></div>`).join("")}
+  </div></div>`;
+  // 章节掌握度
+  html += `<h2>章节掌握度</h2><div class="card">`;
+  const rows = [];
+  if (INDEX) for (const s of INDEX.subjects) for (const cid of subjectChapters(s.id).map(c => c.id)) {
+    const arr = CHAP_CACHE[cid];
+    if (!arr) continue;
+    let cn = 0, cc = 0;
+    for (const q of arr) { const r = rec[q.id]; if (r) { cn += r.n; cc += r.c; } }
+    if (cn) rows.push([findChapter(cid).name, Math.round(cc / cn * 100), cn]);
+  }
+  rows.sort((a, b) => a[1] - b[1]);
+  html += rows.length ? rows.map(([name, pct, cn]) =>
+    `<div style="margin:10px 0"><div style="display:flex;justify-content:space-between"><span>${esc(name)}</span><span class="muted">${pct}%（${cn}题）</span></div>
+     <div class="bar"><i style="width:${pct}%"></i></div></div>`).join("")
+    : `<div class="muted">做题后这里会显示各章正确率。</div>`;
+  html += `</div>`;
+  $("#main").innerHTML = html;
+}
+
+// 我（备份/恢复）
+function me() {
+  header("我");
+  $("#main").innerHTML = `
+  <div class="card">
+    <div class="muted">数据全部保存在本浏览器，换设备可导出/导入备份。</div>
+    <div class="grid2" style="margin-top:12px">
+      <button class="btn ghost" onclick="exportData()">导出数据</button>
+      <button class="btn ghost" onclick="document.getElementById('impfile').click()">导入数据</button>
+    </div>
+    <input type="file" id="impfile" accept=".json" style="display:none" onchange="importData(this.files[0])">
+    <button class="btn ghost block" style="margin-top:10px;color:var(--bad);border-color:var(--bad)"
+      onclick="if(confirm('确定清空全部学习记录？')){Object.keys(localStorage).filter(k=>k.startsWith('jwz_')).forEach(k=>localStorage.removeItem(k));render()}">清空全部数据</button>
+    <button class="btn ghost block" style="margin-top:10px" onclick="logout()">退出登录</button>
+  </div>`;
+}
+function exportData() {
+  const data = {};
+  Object.keys(localStorage).filter(k => k.startsWith("jwz_")).forEach(k => data[k] = JSON.parse(localStorage.getItem(k)));
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(data)], { type: "application/json" }));
+  a.download = "hamster-备份.json";
+  a.click();
+}
+function importData(f) {
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const data = JSON.parse(r.result);
+      for (const [k, v] of Object.entries(data)) localStorage.setItem(k, JSON.stringify(v));
+      alert("导入成功"); render();
+    } catch { alert("文件格式不对"); }
+  };
+  r.readAsText(f);
+}
+
+// ---------- 模拟考试 ----------
+function mock() {
+  header("模拟考试", "home");
+  const lastM = Store.get("mocks", [])[0];
+  $("#main").innerHTML = `
+  <div class="card">
+    <div class="muted">按真题结构随机组卷，计时作答，交卷后出成绩报告。</div>
+    <div style="margin-top:12px">科目</div>
+    <div>${INDEX.subjects.map((s, i) => `<span class="chip ${i === 0 ? "on" : ""}" data-sid="${s.id}" onclick="mockSel(this,'sid')">${esc(s.name)}</span>`).join("")}</div>
+    <div style="margin-top:10px">题量</div>
+    <div>${[20, 50, 110].map((n, i) => `<span class="chip ${i === 1 ? "on" : ""}" data-n="${n}" onclick="mockSel(this,'n')">${n} 题</span>`).join("")}</div>
+    <div style="margin-top:10px">时长</div>
+    <div>${[30, 60, 120].map((t, i) => `<span class="chip ${i === 1 ? "on" : ""}" data-t="${t}" onclick="mockSel(this,'t')">${t} 分钟</span>`).join("")}</div>
+    <button class="btn block" style="margin-top:16px" onclick="startMock()">开始考试</button>
+  </div>
+  <h2>随机练习</h2>
+  <div class="card"><div class="grid2">
+    <button class="btn ghost" onclick="startRandom(10)">随机 10 题</button>
+    <button class="btn ghost" onclick="startRandom(20)">随机 20 题</button>
+  </div></div>
+  ${lastM ? `<h2>最近成绩</h2><div class="card">${mocksHTML()}</div>` : ""}`;
+}
+function mockSel(el, key) {
+  el.parentElement.querySelectorAll(".chip").forEach(c => c.classList.remove("on"));
+  el.classList.add("on");
+}
+async function startMock() {
+  const sid = $("#main .chip.on[data-sid]")?.dataset.sid || INDEX.subjects[0].id;
+  const n = +$("#main .chip.on[data-n]")?.dataset.n || 50;
+  const t = +$("#main .chip.on[data-t]")?.dataset.t || 60;
+  state.arg = sid;
+  state.q = null;
+  await startRandom.call(null, n); // 复用抽题（题池单文件加载）
+  if (!state.q) return; // 加载失败已在 startRandom 内提示
+  state.q.mode = "mock";
+  state.q.deadline = Date.now() + t * 6e4;
+  state.q.label = `模拟考试（${n}题/${t}分钟）`;
+  state.q.timer = setInterval(() => {
+    const left = state.q.deadline - Date.now();
+    const el = $("#timer");
+    if (el) el.textContent = fmtTime(left);
+    if (left <= 0) { clearInterval(state.q.timer); submitMock(); }
+  }, 1000);
+  go("quizMock");
+}
+function fmtTime(ms) {
+  const s = Math.max(0, Math.floor(ms / 1000));
+  return `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+}
+// 模拟考答题页（不即时判分）
+function quizMock() {
+  const Q = state.q;
+  if (!Q) return go("home");
+  const q = Q.qs[Q.idx];
+  const picked = Q.picked[q.id] || (q.type === "multi" ? [] : null);
+  $("#topbar").innerHTML = `<div class="row"><button class="back" onclick="if(confirm('放弃本次考试？')){clearInterval(state.q.timer);go('mock')}">‹</button>
+    <h1 style="font-size:16px">${esc(Q.label)}</h1><div class="timer" id="timer" style="margin-left:auto">${fmtTime(Q.deadline - Date.now())}</div></div>`;
+  let html = `<div class="card"><div class="cardgrid">${Q.qs.map((x, i) => {
+    const done = Q.picked[x.id] && (q.type === "multi" ? Q.picked[x.id].length : true);
+    return `<div class="cell ${i === Q.idx ? "cur" : ""} ${Q.picked[x.id]?.length ? "done" : ""} ${Q.flags.has(x.id) ? "flag" : ""}" onclick="mqNav(${i})">${i + 1}</div>`;
+  }).join("")}</div></div>`;
+  html += `<div class="card">`;
+  html += `<div><span class="pill">${Q.idx + 1} / ${Q.qs.length}</span><span class="pill">${q.type === "multi" ? "多选" : "单选"}</span>
+    <button class="btn ghost" style="padding:3px 10px;font-size:12px;float:right" onclick="mflag('${q.id}')">${Q.flags.has(q.id) ? "取消标记" : "标记"}</button></div>`;
+  if (q.img) html += `<div class="qstem">${esc(q.stem || "")}</div>${imgHTML(q.img, "题目图片")}`;
+  else html += `<div class="qstem">${esc(q.stem)}</div>`;
+  const letters = ["A","B","C","D","E","F"];
+  q.options.forEach((o, i) => {
+    const L = letters[i];
+    const sel = q.type === "multi" ? picked.includes(L) : picked === L;
+    html += `<div class="opt ${sel ? "sel" : ""}" onclick="mpick('${q.id}',${i})"><div class="tag">${L}</div><div class="opttext">${esc(o)}</div></div>`;
+  });
+  html += `</div>`;
+  html += `<div class="qnav">
+    <button class="btn ghost" onclick="mqNav(${Q.idx - 1})" ${Q.idx === 0 ? "disabled" : ""}>上一题</button>
+    ${Q.idx === Q.qs.length - 1
+      ? `<button class="btn" onclick="submitMock()">交卷</button>`
+      : `<button class="btn" onclick="mqNav(${Q.idx + 1})">下一题</button>`}
+  </div>`;
+  if (needScratch(q.id)) html += `<div class="fab" onclick="togglePad()" title="手写板">✎</div>`;
+  $("#main").innerHTML = html;
+  prefetchQ(Q.qs[Q.idx + 1]);
+}
+function mqNav(i) {
+  const Q = state.q;
+  if (i < 0 || i >= Q.qs.length) return;
+  Q.idx = i; render();
+}
+function mflag(qid) {
+  const F = state.q.flags;
+  F.has(qid) ? F.delete(qid) : F.add(qid);
+  render();
+}
+function mpick(qid, i) {
+  const q = state.q.qs.find(x => x.id === qid);
+  const L = "ABCDEF"[i];
+  if (q.type === "multi") {
+    const arr = state.q.picked[qid] || [];
+    state.q.picked[qid] = arr.includes(L) ? arr.filter(x => x !== L) : [...arr, L];
+  } else state.q.picked[qid] = L;
+  render();
+}
+function submitMock() {
+  const Q = state.q;
+  if (!Q) return;
+  clearInterval(Q.timer);
+  const unanswered = Q.qs.filter(q => !Q.picked[q.id]?.length).length;
+  if (unanswered && !confirm(`还有 ${unanswered} 题未作答，确定交卷？`)) return;
+  let c = 0;
+  for (const q of Q.qs) {
+    const p = Q.picked[q.id];
+    const ok = q.type === "multi"
+      ? (p && [...p].sort().join("") === [...q.answer].sort().join(""))
+      : p === q.answer;
+    Q.judged[q.id] = { correct: !!ok, picked: p };
+    if (ok) c++;
+    bump(q.id, !!ok); // 计入统计与错题本
+  }
+  const mocks = Store.get("mocks", []);
+  mocks.unshift({ date: new Date().toISOString().slice(0, 10), label: Q.label, total: Q.qs.length, correct: c, timeUsed: Math.round((Date.now() - Q.start) / 1000) });
+  Store.set("mocks", mocks.slice(0, 20));
+  go("report");
+}
+function report() {
+  const Q = state.q;
+  const n = Q.qs.length, c = Object.values(Q.judged).filter(j => j.correct).length;
+  header("成绩报告", "mock");
+  let html = `<div class="card" style="text-align:center">
+    <div class="statnum" style="font-size:42px">${Math.round(c / n * 100)}</div>
+    <div class="muted">总得分率 · 答对 ${c} / ${n} 题</div>
+    <div class="muted">用时 ${fmtTime(Date.now() - Q.start)}</div>
+    <div class="grid2" style="margin-top:14px">
+      <button class="btn ghost" onclick="go('wrong')">看错题</button>
+      <button class="btn" onclick="go('mock')">再来一套</button>
+    </div></div>`;
+  html += `<h2>逐题回顾</h2>`;
+  Q.qs.forEach((q, i) => {
+    const j = Q.judged[q.id];
+    html += `<div class="card" style="padding:12px 14px">
+      <div><b class="${j.correct ? "tag-ok" : "tag-bad"}">${j.correct ? "✓" : "✗"}</b>
+      <span class="pill">${i + 1}</span> ${(q.stem || "[图片题]").slice(0, 36)}
+      </div><div class="muted">你的答案 ${esc(j.picked?.join?.("") || j.picked || "未答")} · 正确答案 ${esc(q.answer)}</div></div>`;
+  });
+  $("#main").innerHTML = html;
+}
+function mocksHTML() {
+  return Store.get("mocks", []).slice(0, 5).map(m =>
+    `<table class="mini"><tr><td>${esc(m.date)} ${esc(m.label)}</td><td>${m.correct}/${m.total} · ${fmtTime(m.timeUsed * 1000)}</td></tr></table>`).join("");
+}
+
+// ===== 408 备考资料（按最近更新排序的最新活跃仓库，仅链接不复制内容）=====
+const REPOS408 = [
+  { g: "刷题工具", items: [
+    { u: "https://github.com/zhangtianshi001/pi-408-quiz", s: 4, n: "zhangtianshi001/pi-408-quiz", d: "408 刷题安卓 App（开源免注册）· 11-17 更新" },
+    { u: "https://github.com/ly9098-prog/MemoGrad", s: 1, n: "ly9098-prog/MemoGrad", d: "408 刷题小程序 · 2009–2026 题库 · 错题复盘 · 11-17 更新" },
+  ]},
+  { g: "资料与真题", items: [
+    { u: "https://github.com/SolitaryJune/408-zhenti", s: 0, n: "SolitaryJune/408-zhenti", d: "408 历年真题复习站（2009–2026 · 846 题）· 11-16 更新" },
+    { u: "https://github.com/luckywangyi/408CSFamily", s: 0, n: "luckywangyi/408CSFamily", d: "408 复习资料站（含王道同步精讲）· 11-15 更新" },
+    { u: "https://github.com/DzmingLi/408-official-resources", s: 9, n: "DzmingLi/408-official-resources", d: "官方大纲 / 历年真题 / 参考答案汇编 · 11-07 更新" },
+    { u: "https://github.com/chiyunxian/408", s: 0, n: "chiyunxian/408", d: "720 道真题选择题库——本站 408 题目来源 · 10-29 更新" },
+  ]},
+  { g: "规划与择校", items: [
+    { u: "https://github.com/Laz8Noy/kaoyan408-share", s: 33, n: "Laz8Noy/kaoyan408-share", d: "择校数据 / 三源考情核对 / 录取分数统计 · 10-25 更新" },
+    { u: "https://github.com/LamberttLiu/CS-Basic-SelfLearning", s: 542, n: "LamberttLiu/CS-Basic-SelfLearning", d: "数据结构 + 操作系统知识框架图解自学 · 11-16 更新" },
+  ]},
+];
+function links() {
+  header("备考资料", "home");
+  let html = `<div class="card muted" style="margin-bottom:0">计算机考研 408：数据结构 / 计算机组成原理 / 操作系统 / 计算机网络——GitHub 公开仓库，点击新窗口打开</div>`;
+  for (const grp of REPOS408) {
+    html += `<div class="sect">${esc(grp.g)}</div>`;
+    for (const r of grp.items) {
+      html += `<div class="row-item" onclick="window.open('${r.u}','_blank','noopener')">
+        <div style="flex:1"><div>${esc(r.n)} <span class="muted">★ ${r.s >= 1000 ? (r.s / 1000).toFixed(1) + "k" : r.s}</span></div>
+        <div class="muted">${esc(r.d)}</div></div><span class="arrow">↗</span></div>`;
+    }
+  }
+  html += `<div style="height:24px"></div>`;
+  $("#main").innerHTML = html;
+}
+// 文件名英文化后的进度迁移：localStorage 中旧 qid/章节ID → 新 ID（data/idmap.json）
+async function migrateIds() {
+  let map = null;
+  try {
+    const r = await fetch("data/idmap.json");
+    if (r.ok) map = await r.json();
+  } catch (e) { return; }
+  if (!map || !Object.keys(map).length) return;
+  const remap = (q) => {
+    q = String(q);
+    const i = q.indexOf("#");
+    if (i < 0) return map[q] || q;
+    const cid = q.slice(0, i);
+    return (map[cid] || cid) + q.slice(i);
+  };
+  const rec = Store.get("rec", {}); const rec2 = {};
+  for (const k of Object.keys(rec)) {
+    const nk = remap(k);
+    if (rec2[nk]) { rec2[nk].n += rec[k].n; rec2[nk].c += rec[k].c; }
+    else rec2[nk] = rec[k];
+  }
+  Store.set("rec", rec2);
+  const wrong = Store.get("wrong", {}); const w2 = {};
+  for (const k of Object.keys(wrong)) {
+    const nk = remap(k);
+    w2[nk] = w2[nk] ? { count: Math.max(w2[nk].count, wrong[k].count) } : wrong[k];
+  }
+  Store.set("wrong", w2);
+  const fav = Store.get("fav", []);
+  Store.set("fav", [...new Set(fav.map(remap))]);
+  const last = Store.get("last", null);
+  if (last) {
+    const l = { ...last };
+    if (l.qid) l.qid = remap(l.qid);
+    if (l.chapterId && map[l.chapterId]) l.chapterId = map[l.chapterId];
+    Store.set("last", l);
+  }
+}
+
+// ===== 时政热点（每日自动更新：打开即拉两个开源每日源，localStorage 兜底）=====
+function hotCache(k, v) {
+  if (v === undefined) { try { return JSON.parse(localStorage.getItem("jwz_hot_" + k)); } catch (e) { return null; } }
+  localStorage.setItem("jwz_hot_" + k, JSON.stringify({ t: Date.now(), v }));
+}
+// 带超时的 fetch（外网源挂起时 8s 中止走回退链，绝不永久卡住）
+async function fetchTO(url, opts = {}, ms = 8000) {
+  const ctl = new AbortController();
+  const t = setTimeout(() => ctl.abort(), ms);
+  try {
+    const r = await fetch(url, { ...opts, signal: ctl.signal });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    return r;
+  } finally { clearTimeout(t); }
+}
+async function ghRaw(repo, path) {
+  const r = await fetchTO(`https://api.github.com/repos/${repo}/contents/${path}`,
+    { headers: { Accept: "application/vnd.github.raw" }, cache: "no-store" });
+  return r.text();
+}
+async function ghList(repo, dir) {
+  const r = await fetchTO(`https://api.github.com/repos/${repo}/contents/${dir}?per_page=100`, { cache: "no-store" });
+  return r.json();
+}
+// md 迷你渲染器（标题/表格/列表/引用/加粗/分隔线）
+function md2html(src) {
+  const inl = s => esc(s).replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>").replace(/`([^`]+)`/g, "<code>$1</code>");
+  const lines = src.split("\n");
+  let html = "", i = 0;
+  while (i < lines.length) {
+    const l = lines[i];
+    if (/^#{1,4}\s/.test(l)) {
+      const lv = Math.min(5, l.match(/^#+/)[0].length + 1);
+      html += `<h${lv} style="margin:12px 0 6px;font-size:${17 - lv}px;font-weight:600">${inl(l.replace(/^#+\s*/, ""))}</h${lv}>`;
+      i++; continue;
+    }
+    if (/^\|/.test(l)) {
+      const rows = [];
+      while (i < lines.length && /^\|/.test(lines[i])) {
+        const cells = lines[i].replace(/^\||\|$/g, "").split("|").map(c => c.trim());
+        if (!/^-{2,}/.test(cells[0])) rows.push(cells);
+        i++;
+      }
+      if (rows.length) {
+        html += `<table class="mini" style="width:100%;border-collapse:collapse;font-size:13px;margin:8px 0"><tr>` +
+          rows[0].map(c => `<th style="border:1px solid var(--line);padding:5px 7px;text-align:left;background:#f5f5f5">${inl(c)}</th>`).join("") + `</tr>` +
+          rows.slice(1).map(r => "<tr>" + r.map(c => `<td style="border:1px solid var(--line);padding:5px 7px;vertical-align:top">${inl(c)}</td>`).join("") + "</tr>").join("") + `</table>`;
+      }
+      continue;
+    }
+    if (/^---+\s*$/.test(l)) { html += `<hr style="border:none;border-top:1px solid var(--line);margin:10px 0">`; i++; continue; }
+    if (/^\s*[-*]\s+/.test(l)) {
+      const items = [];
+      while (i < lines.length && /^\s*[-*]\s+/.test(lines[i])) { items.push(lines[i].replace(/^\s*[-*]\s+/, "")); i++; }
+      html += `<ul style="margin:6px 0 6px 20px">` + items.map(x => `<li>${inl(x)}</li>`).join("") + `</ul>`;
+      continue;
+    }
+    if (/^>\s?/.test(l)) {
+      const qs = [];
+      while (i < lines.length && /^>\s?/.test(lines[i])) { qs.push(lines[i].replace(/^>\s?/, "")); i++; }
+      html += `<div class="muted" style="border-left:3px solid var(--line);padding-left:8px;margin:6px 0">${inl(qs.join(" "))}</div>`;
+      continue;
+    }
+    if (!l.trim()) { i++; continue; }
+    const para = [];
+    while (i < lines.length && lines[i].trim() && !/^(#|\||>|---+|\s*[-*]\s)/.test(lines[i])) { para.push(inl(lines[i])); i++; }
+    html += `<p style="margin:6px 0">${para.join("<br>")}</p>`;
+  }
+  return html;
+}
+// 每日日报 HTML → {date, groups:[{title, items:[{title,date,url}]}]}
+function parseReport(html) {
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  const date = (doc.querySelector("h1") || {}).textContent || "";
+  const groups = [];
+  for (const h2 of doc.querySelectorAll("section h2")) {
+    const sec = h2.closest("section");
+    if (!sec) continue;
+    const items = [];
+    for (const h3 of sec.querySelectorAll("h3")) {
+      const tag = h3.querySelector(".tag");
+      const d = tag ? tag.textContent.trim() : "";
+      let title = h3.textContent.replace(d, "").trim();
+      const card = h3.parentElement;
+      const a = (card && card.querySelector("p.src a")) || h3.nextElementSibling;
+      const url = a && a.href ? a.href : "";
+      if (title) items.push({ title, date: d, url });
+    }
+    if (items.length) groups.push({ title: h2.textContent.trim(), items });
+  }
+  return { date: date.trim(), groups };
+}
+async function loadHotspot() {
+  const out = { daily: null, report: null, cached: [], errs: [] };
+  // ① 政策与热点速览（时政日报 md）：jsDelivr 优先（国内友好），GitHub API 兜底
+  try {
+    const list = await ghList("Cor-beau/gd-shizheng-daily", "daily");
+    const latest = list.filter(f => f.name.endsWith(".md")).map(f => f.name).sort().pop();
+    if (latest) {
+      let md;
+      try {
+        const r = await fetchTO(`https://cdn.jsdelivr.net/gh/Cor-beau/gd-shizheng-daily@main/daily/${latest}`, { cache: "no-store" }, 6000);
+        md = await r.text();
+      } catch (e) { md = await ghRaw("Cor-beau/gd-shizheng-daily", "daily/" + latest); }
+      out.daily = { date: latest.replace(/\.md$/, ""), md };
+      hotCache("daily", out.daily);
+    }
+  } catch (e) {
+    const c = hotCache("daily");
+    if (c && c.v) { out.daily = c.v; out.cached.push("政策源"); }
+    out.errs.push("政策源: " + e.message);
+  }
+  // ② 国内外大事（每日日报 HTML）：GitHub API 优先（该仓 jsDelivr 不可用），jsDelivr 兜底
+  try {
+    const list = await ghList("zjy-allen/daily-report", "archive");
+    const latest = list.filter(f => f.name.endsWith(".html")).map(f => f.name).sort().pop();
+    if (latest) {
+      let html;
+      try { html = await ghRaw("zjy-allen/daily-report", "archive/" + latest); }
+      catch (e) {
+        const r = await fetchTO(`https://cdn.jsdelivr.net/gh/zjy-allen/daily-report@main/archive/${latest}`, { cache: "no-store" }, 6000);
+        html = await r.text();
+      }
+      out.report = parseReport(html);
+      out.report.date = latest.replace(/\.html$/, "") || out.report.date;
+      hotCache("report", out.report);
+    }
+  } catch (e) {
+    const c = hotCache("report");
+    if (c && c.v) { out.report = c.v; out.cached.push("大事源"); }
+    out.errs.push("大事源: " + e.message);
+  }
+  return out;
+}
+async function hotspot() {
+  header("时政热点", "home");
+  $("#main").innerHTML = `<div class="card muted">⏳ 正在获取每日最新内容…（每日自动更新，打开即刷新）</div>`;
+  let data;
+  try { data = await loadHotspot(); }
+  catch (e) { data = { errs: ["加载异常: " + e.message] }; }
+  if (state.view !== "hotspot") return; // 用户已切页则丢弃
+  renderHot(data);
+}
+function renderHot(d) {
+  const badge = (dt, ok) => `<span class="pill">${ok ? "● 实时" : "○ 缓存"} ${esc(dt || "—")}</span>`;
+  let html = `<div class="card" style="margin-bottom:0">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <b>每日自动更新</b><span class="muted">打开即拉最新</span>
+      <span style="flex:1"></span>
+      <button class="btn ghost" style="padding:4px 12px;font-size:13px" onclick="hotspot()">刷新</button>
+    </div>
+    <div class="muted" style="margin-top:6px">
+      政策速览 ${badge(d.daily && d.daily.date, !d.cached.includes("政策源"))}
+      国内外大事 ${badge(d.report && d.report.date, !d.cached.includes("大事源"))}
+    </div>
+    ${d.errs && d.errs.length ? `<div class="muted" style="color:var(--bad);margin-top:4px">部分源获取失败（${esc(d.errs.join("；"))}），已用缓存兜底</div>` : ""}
+  </div>`;
+  if (d.daily && d.daily.md) {
+    const md = d.daily.md;
+    const cut = md.indexOf("\n---");
+    const lead = cut > 0 ? md.slice(0, cut) : md;
+    html += `<div class="sect">政策与热点速览 · ${esc(d.daily.date)}</div>`;
+    html += `<div class="card">${md2html(lead)}`;
+    if (cut > 0) html += `<details style="margin-top:8px"><summary class="muted" style="cursor:pointer">展开全文素材（含论点/表述/用法）</summary>${md2html(md.slice(cut))}</details>`;
+    html += `</div>`;
+  }
+  if (d.report && d.report.groups) {
+    for (const g of d.report.groups) {
+      html += `<div class="sect">${esc(g.title)} · ${esc(d.report.date)}</div>`;
+      for (const it of g.items) {
+        html += `<div class="row-item" ${it.url ? `onclick="window.open('${esc(it.url)}','_blank','noopener')"` : ""}>
+          <div style="flex:1"><div>${esc(it.title)}</div>
+          <div class="muted">${esc(it.date)}${it.url ? " · 来源 ↗" : ""}</div></div>
+          ${it.url ? '<span class="arrow">↗</span>' : ""}</div>`;
+      }
+    }
+  }
+  if (!d.daily && !d.report) {
+    html += `<div class="card muted">暂无内容：网络不可用且没有本地缓存，稍后再试。</div>`;
+  }
+  html += `<div style="height:24px"></div>`;
+  $("#main").innerHTML = html;
+}
+// ===== 每日科技板块（GitHub 排行 / AI 热点 · 软件赛事）=====
+function localDay(d = new Date()) {
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+}
+// 当日缓存：当天已拉过就直接渲染，跨天自动失效；上一份留作离线兜底
+function feedGet(k) {
+  try {
+    const o = JSON.parse(localStorage.getItem("jwz_feed_" + k));
+    if (!o) return { fresh: null, stale: null, day: "" };
+    return { fresh: o.day === localDay() ? o.v : null, stale: o.v, day: o.day };
+  } catch (e) { return { fresh: null, stale: null, day: "" }; }
+}
+function feedSet(k, v) { try { localStorage.setItem("jwz_feed_" + k, JSON.stringify({ day: localDay(), v })); } catch (e) { } }
+function agoTxt(unix) {
+  const m = Math.round((Date.now() - unix * 1000) / 60000);
+  if (m < 60) return m + " 分钟前";
+  if (m < 1440) return Math.round(m / 60) + " 小时前";
+  return Math.round(m / 1440) + " 天前";
+}
+function untilTxt(unix) {
+  const m = Math.round((unix * 1000 - Date.now()) / 60000);
+  if (m < 0) return "进行中";
+  if (m < 60) return m + " 分钟后";
+  if (m < 1440) return Math.round(m / 60) + " 小时后";
+  return Math.round(m / 1440) + " 天后";
+}
+async function loadGh() {
+  const boards = [
+    { label: "本周新项目 · 按 Star", q: "created:>=" + localDay(new Date(Date.now() - 7 * 864e5)) + " stars:>50" },
+    { label: "近一日有推送 · 按 Star", q: "pushed:>=" + localDay(new Date(Date.now() - 864e5)) + " stars:>2000" }
+  ];
+  const out = [];
+  for (const b of boards) {
+    const r = await fetchTO("https://api.github.com/search/repositories?sort=stars&order=desc&per_page=10&q=" + encodeURIComponent(b.q),
+      { headers: { Accept: "application/vnd.github+json" }, cache: "no-store" }, 9000);
+    const j = await r.json();
+    if (j.message) throw new Error(j.message); // 403 限流时 GitHub 回 message
+    out.push({
+      label: b.label,
+      items: (j.items || []).map(x => ({
+        name: x.full_name, url: x.html_url, desc: x.description || "", stars: x.stargazers_count,
+        lang: x.language || "", topics: x.topics || [], created: x.created_at || "", forks: x.forks_count || 0
+      }))
+    });
+  }
+  return { boards: out, day: localDay() };
+}
+// 人工整理的项目解读（data/gh-notes.json），按 owner/repo 索引；拉不到就退化为按 topics 猜类别
+let GHNOTES = null, GHNOTEDAY = "";
+async function loadGhNotes() {
+  try {
+    const j = await (await fetch("data/gh-notes.json", { cache: "no-store" })).json();
+    GHNOTES = j.repos || {}; GHNOTEDAY = j.updated || "";
+  } catch (e) { GHNOTES = GHNOTES || {}; }
+  return GHNOTES;
+}
+function ghCat(it) {
+  const n = (GHNOTES || {})[it.name];
+  if (n && n.cat) return n.cat;
+  const t = ((it.topics || []).join(" ") + " " + (it.desc || "") + " " + (it.lang || "")).toLowerCase();
+  if (/mcp|agent|llm|gpt|claude|codex|ollama|openai|anthropic/.test(t)) return "AI / Agent";
+  if (/emulat|recompil|xbox|playstation|nintendo|gta/.test(t)) return "模拟器 / 重编译";
+  if (/roadmap|awesome-list|awesome|curated|resources/.test(t)) return "目录 / 清单";
+  if (/kernel|linux|windows|shell|driver|operating-system/.test(t)) return "系统 / 内核";
+  if (/react|vue|svelte|frontend|ui-kit|design-system/.test(t)) return "前端 / UI";
+  if (/cli|developer-tools|devtool|toolkit|profiler/.test(t)) return "开发工具";
+  return "未分类";
+}
+async function ghrank(force) {
+  header("GitHub 排行", "home");
+  await loadGhNotes();
+  const c = feedGet("gh");
+  if (c.fresh && !force) { renderGh(c.fresh, true); return; }
+  $("#main").innerHTML = `<div class="card muted">⏳ 正在获取今日榜单…</div>`;
+  let d = null, err = "";
+  try { d = await loadGh(); feedSet("gh", d); }
+  catch (e) { err = e.message; }
+  if (state.view !== "gh") return;
+  if (d) renderGh(d, true);
+  else if (c.stale) renderGh(c.stale, false, err);
+  else $("#main").innerHTML = `<div class="card muted">获取失败：${esc(err)}（GitHub 搜索接口限流约 10 次/分钟，稍后点刷新）</div>`;
+}
+function renderGh(d, live, err) {
+  let html = `<div class="card" style="margin-bottom:0">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <b>GitHub 排行</b><span class="pill">${live ? "● 实时" : "○ 缓存"} ${esc(d.day || "")}</span>
+      <span style="flex:1"></span>
+      <button class="btn ghost" style="padding:4px 12px;font-size:13px" onclick="ghrank(1)">刷新</button>
+    </div>
+    <div class="muted" style="margin-top:6px;line-height:1.7">
+      两个榜：<b>本周新项目</b>＝近 7 天新建且 ★&gt;50；<b>近一日有推送</b>＝24 小时内有提交且 ★&gt;2000。<br>
+      每个项目给出类别、做什么、解决什么问题、痛点真假、创新度、投资潜力、影响力${GHNOTEDAY ? "；解读更新于 " + esc(GHNOTEDAY) : ""}。<br>
+      星数在当前数据集里系统性偏高，只当<b>相对热度</b>看，不代表影响力。
+    </div>
+    ${err ? `<div class="muted" style="color:var(--bad);margin-top:4px">本次刷新失败（${esc(err)}），显示缓存</div>` : ""}
+  </div>`;
+  for (const b of d.boards || []) {
+    html += `<div class="sect">${esc(b.label)}</div>`;
+    for (const it of b.items) {
+      const n = (GHNOTES || {})[it.name] || {};
+      const painCol = !n.pain ? "" : n.pain === "真实" ? "var(--ok)" : n.pain.indexOf("超前") >= 0 ? "#b26a00" : "var(--sub)";
+      const days = it.created ? Math.max(1, Math.round((Date.now() - new Date(it.created).getTime()) / 864e5)) : 0;
+      const stat = `★ ${Number(it.stars).toLocaleString()}` +
+        (it.forks ? ` · fork ${Number(it.forks).toLocaleString()}` : "") +
+        (it.lang ? ` · ${esc(it.lang)}` : "") +
+        (days > 0 && days <= 30 ? ` · ${days} 天 · ≈${Math.round(it.stars / days).toLocaleString()}★/天` : "");
+      let chips = `<span class="pill">类别 · ${esc(ghCat(it))}</span>`;
+      if (n.pain) chips += `<span class="pill" style="color:${painCol};border-color:${painCol}">痛点 · ${esc(n.pain)}</span>`;
+      if (n.innov) chips += `<span class="pill">创新 · ${esc(n.innov)}</span>`;
+      if (n.invest) chips += `<span class="pill">投资 · ${esc(n.invest)}</span>`;
+      if (!n.does && !n.problem && !n.impact) chips += `<span class="pill">本期未收录解读</span>`;
+      const lines = [];
+      if (n.does) lines.push(`<div><b>做什么</b> · ${esc(n.does)}</div>`);
+      if (n.problem) lines.push(`<div><b>解决什么</b> · ${esc(n.problem)}</div>`);
+      if (n.impact) lines.push(`<div><b>影响</b> · ${esc(n.impact)}</div>`);
+      html += `<div class="row-item" style="align-items:flex-start" onclick="window.open('${esc(it.url)}','_blank','noopener')">
+        <div style="flex:1;min-width:0">
+          <div><b>${esc(it.name)}</b></div>
+          <div class="muted" style="margin-top:3px;line-height:1.55">${esc(it.desc)}</div>
+          <div class="chips">${chips}</div>
+          ${lines.length ? `<div style="margin-top:7px;font-size:13px;line-height:1.75">${lines.join("")}</div>` : ""}
+          <div class="muted" style="margin-top:7px">${stat}</div>
+        </div>
+        <span class="arrow">↗</span></div>`;
+    }
+    if (!b.items.length) html += `<div class="card muted">该榜暂无数据</div>`;
+  }
+  html += `<div style="height:24px"></div>`;
+  $("#main").innerHTML = html;
+}
+async function loadAi() {
+  const since = Math.floor(Date.now() / 1000) - 2 * 86400;
+  const seen = new Set(), hits = [];
+  for (const q of ["AI", "LLM"]) {
+    const r = await fetchTO("https://hn.algolia.com/api/v1/search?tags=story&hitsPerPage=40&query=" + q +
+      "&numericFilters=created_at_i>" + since, { cache: "no-store" }, 8000);
+    const j = await r.json();
+    for (const h of j.hits || []) {
+      if (seen.has(h.objectID)) continue;
+      seen.add(h.objectID);
+      const title = h.title || "";
+      if (!/\b(AI|LLM|GPT|Claude|Gemini|DeepSeek|OpenAI|Anthropic|model|agent|transformer|neural)\b|大模型|人工智能/i.test(title)) continue;
+      hits.push({
+        title,
+        url: h.url || ("https://news.ycombinator.com/item?id=" + h.objectID),
+        hn: "https://news.ycombinator.com/item?id=" + h.objectID,
+        points: h.points || 0, comments: h.num_comments || 0, at: h.created_at_i
+      });
+    }
+  }
+  hits.sort((a, b) => b.points - a.points);
+  return { hits: hits.slice(0, 15), day: localDay() };
+}
+async function loadContests() {
+  const out = { cf: null, dom: null, day: localDay() };
+  try {
+    const r = await fetchTO("https://codeforces.com/api/contest.list?gym=false", { cache: "no-store" }, 9000);
+    const j = await r.json();
+    if (j.status === "OK") out.cf = (j.result || []).filter(c => c.phase === "BEFORE")
+      .sort((a, b) => a.startTimeSeconds - b.startTimeSeconds).slice(0, 8)
+      .map(c => ({ name: c.name, url: "https://codeforces.com/contest/" + c.id, at: c.startTimeSeconds, dur: Math.round(c.durationSeconds / 3600 * 10) / 10 }));
+  } catch (e) { /* 赛事源失败不影响 AI 热点 */ }
+  try { out.dom = (await (await fetch("data/contests.json")).json()).items || null; } catch (e) { }
+  return out;
+}
+async function aihot() {
+  header("AI 热点 · 软件赛事", "home");
+  const ca = feedGet("ai"), cc = feedGet("contest");
+  if (ca.fresh && cc.fresh) { renderAi(ca.fresh, cc.fresh, true); return; }
+  $("#main").innerHTML = `<div class="card muted">⏳ 正在获取今日 AI 热点与赛事…</div>`;
+  const [ai, ct] = await Promise.all([
+    ca.fresh ? Promise.resolve(ca.fresh) : loadAi().then(d => { feedSet("ai", d); return d; }).catch(() => null),
+    cc.fresh ? Promise.resolve(cc.fresh) : loadContests().then(d => { feedSet("contest", d); return d; }).catch(() => null)
+  ]);
+  if (state.view !== "ai") return;
+  renderAi(ai || ca.stale, ct || cc.stale, !!(ai && ct));
+}
+function renderAi(ai, ct, live) {
+  let html = `<div class="card" style="margin-bottom:0">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <b>AI 热点 · 软件赛事</b><span class="pill">${live ? "● 实时" : "○ 缓存"} ${esc((ai && ai.day) || (ct && ct.day) || "")}</span>
+      <span style="flex:1"></span>
+      <button class="btn ghost" style="padding:4px 12px;font-size:13px" onclick="aihot()">刷新</button>
+    </div>
+    <div class="muted" style="margin-top:6px">AI 热点取 Hacker News 近 48 小时高热度讨论；赛事含 Codeforces 近期场次与常驻赛事入口</div>
+  </div>`;
+  html += `<div class="sect">AI 圈热点 · 近 48 小时</div>`;
+  if (ai && ai.hits && ai.hits.length) {
+    for (const h of ai.hits) {
+      html += `<div class="row-item" onclick="window.open('${esc(h.url)}','_blank','noopener')">
+        <div style="flex:1;min-width:0"><div>${esc(h.title)}</div>
+        <div class="muted">${h.points} 分 · ${h.comments} 评论 · ${agoTxt(h.at)} · <a href="#" onclick="event.stopPropagation();window.open('${esc(h.hn)}','_blank','noopener');return false" style="color:inherit">讨论 ↗</a></div></div>
+        <span class="arrow">↗</span></div>`;
+    }
+  } else html += `<div class="card muted">暂无数据，稍后刷新。</div>`;
+  html += `<div class="sect">计算机软件赛事 · 近期场次</div>`;
+  if (ct && ct.cf && ct.cf.length) {
+    for (const c of ct.cf) {
+      html += `<div class="row-item" onclick="window.open('${esc(c.url)}','_blank','noopener')">
+        <div style="flex:1"><div>${esc(c.name)}</div>
+        <div class="muted">${untilTxt(c.at)} · ${new Date(c.at * 1000).toLocaleString("zh-CN", { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" })} · ${c.dur} 小时</div></div>
+        <span class="arrow">↗</span></div>`;
+    }
+  } else html += `<div class="card muted">Codeforces 场次暂未取到，可看下方常驻赛事。</div>`;
+  html += `<div class="sect">常驻赛事 · 报名与官网</div>`;
+  if (ct && ct.dom) {
+    for (const c of ct.dom) {
+      html += `<div class="row-item" onclick="window.open('${esc(c.url)}','_blank','noopener')">
+        <div style="flex:1"><div>${esc(c.name)}</div><div class="muted">${esc(c.when)}${c.note ? " · " + esc(c.note) : ""}</div></div>
+        <span class="arrow">↗</span></div>`;
+    }
+  } else html += `<div class="card muted">常驻赛事数据缺失（data/contests.json）。</div>`;
+  html += `<div style="height:24px"></div>`;
+  $("#main").innerHTML = html;
+}
+
+// ===== 免费 API 额度 · 领 Key / 自建站 / 大厂福利汇总 =====
+let FREEAPIS = null;
+async function apifree() {
+  header("免费 API 额度 · 领 Key 福利", "home");
+  if (!FREEAPIS) {
+    try {
+      const r = await fetch("data/free-api.json", { cache: "no-store" });
+      FREEAPIS = await r.json();
+    } catch (e) {
+      $("#main").innerHTML = `<div class="card muted">加载数据失败：${esc(e.message)}</div>`;
+      return;
+    }
+  }
+  let html = `<div class="card" style="margin-bottom:0">
+    <div style="display:flex;align-items:center;gap:8px">
+      <b>免费 / 送额度 API 聚合</b>
+      <span class="pill">● 持续收集</span>
+    </div>
+    <div class="muted" style="margin-top:6px;line-height:1.65">
+      汇总官方大厂新人礼包、开源公益反代及社区自建中转站（OneAPI / NewAPI 生态）。
+      多数兼容 OpenAI 接口规范，适合用于沉浸式翻译、NextChat、OpenWebUI 及本地代码插件。
+    </div>
+  </div>`;
+
+  for (const g of FREEAPIS.groups || []) {
+    html += `<div class="sect">${esc(g.name)}</div>`;
+    if (g.desc) html += `<div class="muted" style="padding:0 16px 8px;font-size:12px;line-height:1.5">${esc(g.desc)}</div>`;
+    for (const it of g.items || []) {
+      html += `<div class="row-item" style="align-items:flex-start" onclick="window.open('${esc(it.url)}','_blank','noopener')">
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <b>${esc(it.name)}</b>
+            <span class="pill" style="color:var(--ok);border-color:var(--ok)">${esc(it.tag)}</span>
+          </div>
+          <div style="margin-top:5px;font-size:13px;color:var(--ok);font-weight:600">${esc(it.free_info)}</div>
+          <div class="muted" style="margin-top:4px;font-size:12px;line-height:1.5"><b>模型:</b> ${esc(it.models)}</div>
+          <div class="muted" style="margin-top:2px;font-size:12px;line-height:1.5;word-break:break-all"><b>接口:</b> <code style="background:var(--card);padding:1px 4px;border-radius:4px;word-break:break-all">${esc(it.base_url)}</code></div>
+          <div class="muted" style="margin-top:4px;font-size:12px;line-height:1.5"><b>门槛/说明:</b> ${esc(it.req)} · ${esc(it.note)}</div>
+        </div>
+        <span class="arrow">↗</span>
+      </div>`;
+    }
+  }
+  html += `<div style="height:24px"></div>`;
+  $("#main").innerHTML = html;
+}
+
+// ===== 知识点 · 背诵（科目 → 分组 → 正文直接展开）=====
+let KPDATA = null;
+const kpSt = { stage: "s", s: 0, g: 0 };
+// KaTeX 按需加载：只有进入知识点才拉脚本与样式，做题页零负担
+let _katexP = null;
+function ensureKatex() {
+  if (_katexP) return _katexP;
+  _katexP = new Promise((res) => {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "vendor/katex/katex.min.css";
+    document.head.appendChild(link);
+    const s = document.createElement("script");
+    s.src = "vendor/katex/katex.min.js";
+    s.onload = () => res(window.katex || null);
+    s.onerror = () => res(null);
+    document.head.appendChild(s);
+  });
+  return _katexP;
+}
+// $…$ 行内、$$…$$ 独占一行；无 KaTeX 或解析失败时原样降级，不吞内容
+function kmath(src, display) {
+  if (window.katex) {
+    try {
+      return `<span class="kmath${display ? " d" : ""}">${katex.renderToString(src, { displayMode: display, throwOnError: false, strict: false })}</span>`;
+    } catch (e) { /* 落到原文 */ }
+  }
+  return `<span class="kmath raw">${esc(display ? "$$" + src + "$$" : "$" + src + "$")}</span>`;
+}
+function mdMath(text) {
+  const re = /\$\$([\s\S]+?)\$\$|\$([^$\n]+?)\$/g;
+  let out = "", i = 0, m;
+  while ((m = re.exec(text))) {
+    out += esc(text.slice(i, m.index));
+    out += m[1] != null ? kmath(m[1].trim(), true) : kmath(m[2], false);
+    i = re.lastIndex;
+  }
+  return out + esc(text.slice(i));
+}
+function kpBody(a) {
+  const secs = [];
+  for (const raw of (a || "").split("\n")) {
+    const line = raw.trim();
+    if (!line) continue;
+    const m = line.match(/^【([^】]+)】\s*(.*)$/);
+    if (m) secs.push({ h: m[1], t: m[2] ? [m[2]] : [] });
+    else if (secs.length) secs[secs.length - 1].t.push(line);
+    else secs.push({ h: "", t: [line] });
+  }
+  let html = "";
+  for (const s of secs) {
+    if (s.h) html += `<div class="sech">${mdMath(s.h)}</div>`;
+    if (!s.t.length) continue;
+    const cls = /公式|推导/.test(s.h) ? "fml" : "pl";
+    html += `<div class="${cls}">${mdMath(s.t.join("\n"))}</div>`;
+  }
+  return html;
+}
+async function kp() {
+  header("知识点 · 背诵", "home");
+  const ready = ensureKatex();
+  ready.then((k) => { if (k && state.view === "kp" && kpSt.stage === "c") renderKp(); });
+  if (!KPDATA) {
+    $("#main").innerHTML = `<div class="card muted">📚 加载知识点卡片…</div>`;
+    try { KPDATA = await (await fetch("data/kp.json")).json(); }
+    catch (e) {
+      if (state.view === "kp") $("#main").innerHTML = `<div class="card muted">加载失败：${esc(e.message)}</div>`;
+      return;
+    }
+  }
+  if (state.view !== "kp") return;
+  renderKp();
+}
+function renderKp() {
+  const S = kpSt;
+  const subs = KPDATA.subjects;
+  if (S.stage === "s") {
+    let html = `<div class="card muted" style="margin-bottom:0">每张卡片是一个具体知识点，正文直接展开【公式 / 定义】【推导】【怎么用】【易错】，边读边记。</div>`;
+    html += `<div class="kphead"><div class="tt">选择科目</div><span class="pill">${subs.length} 科</span></div><div class="kpgrid">`;
+    subs.forEach((s, i) => {
+      const n = s.groups.reduce((n, g) => n + g.cards.length, 0);
+      html += `<div class="kpcard" onclick="kpPickSubj(${i})">
+        <div class="t">${esc(s.name)}</div>
+        <div class="m">${s.groups.length} 组 · ${n} 个知识点</div></div>`;
+    });
+    html += `</div><div style="height:16px"></div>`;
+    $("#main").innerHTML = html;
+    return;
+  }
+  const subj = subs[S.s];
+  if (S.stage === "g") {
+    const n = subj.groups.reduce((n, g) => n + g.cards.length, 0);
+    let html = `<div class="kphead"><span class="bk" onclick="kpBack('s')">‹</span>
+      <div class="tt">${esc(subj.name)}</div><span class="pill">${n} 个知识点</span></div><div class="kpgrid">`;
+    subj.groups.forEach((g, i) => {
+      html += `<div class="kpcard" onclick="kpPickGroup(${i})">
+        <div class="t">${esc(g.name)}</div>
+        <div class="m">${g.cards.length} 个知识点</div></div>`;
+    });
+    html += `</div><div style="height:16px"></div>`;
+    $("#main").innerHTML = html;
+    return;
+  }
+  if (S.stage === "c") {
+    const g = subj.groups[S.g];
+    let html = `<div class="topbar" style="position:static;border:none;padding:0 16px"><div class="row" style="padding:10px 0">
+      <button class="back" onclick="kpBack('g')">‹</button>
+      <div style="flex:1;font-size:13px" class="muted">${esc(subj.name)} · ${esc(g.name)}</div>
+      <span class="pill">${g.cards.length} 个知识点</span></div></div><div class="kplist">`;
+    g.cards.forEach((card, i) => {
+      html += `<div class="kpfull"><div class="t"><span class="muted">${i + 1}.</span> ${mdMath(card.q)}</div>${kpBody(card.a)}</div>`;
+    });
+    html += `</div><div style="height:16px"></div>`;
+    $("#main").innerHTML = html;
+    return;
+  }
+}
+function kpPickSubj(i) { kpSt.s = i; kpSt.stage = "g"; renderKp(); }
+function kpPickGroup(i) { kpSt.g = i; kpSt.stage = "c"; renderKp(); }
+function kpBack(stage) { kpSt.stage = stage; renderKp(); }
+
+// ===== 考试中心（倒计时 + 报名入口，数据源 data/exams.json 可自行维护）=====
+async function exams() {
+  header("考试中心", "home");
+  $("#main").innerHTML = `<div class="card muted">📅 正在加载考试日程…</div>`;
+  let data;
+  try { data = await (await fetch("data/exams.json")).json(); }
+  catch (e) { data = { exams: [], note: "加载失败：" + e.message }; }
+  if (state.view !== "exams") return;
+  const t0 = new Date(new Date().toDateString());
+  const dayDiff = (iso) => Math.ceil((new Date(iso + "T00:00:00") - t0) / 86400000);
+  const list = [...(data.exams || [])].sort((a, b) =>
+    (a.done ? 1 : 0) - (b.done ? 1 : 0) ||
+    String(a.exam_iso || "9999").localeCompare(String(b.exam_iso || "9999")));
+  let html = `<div class="card muted" style="margin-bottom:0">📅 ${esc(data.note || "以官方公告为准")}</div>`;
+  for (const e of list) {
+    const days = e.exam_iso ? dayDiff(e.exam_iso) : null;
+    let badge;
+    if (e.done) badge = `<span class="pill">已考完</span>`;
+    else if (days != null && days >= 0) badge = `<div class="statnum" style="font-size:24px;color:${days <= 14 ? "var(--bad)" : "var(--fg)"}">D-${days}</div>`;
+    else badge = `<span class="pill">已结束</span>`;
+    html += `<div class="card">
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        ${badge}
+        <div style="flex:1;min-width:150px"><b>${esc(e.name)}</b>${e.est ? ' <span class="pill">预估</span>' : ""}
+          <div class="muted" style="font-size:13px">${esc(e.group || "")}</div></div>
+      </div>
+      <div class="muted" style="margin-top:8px;font-size:13px">笔试：${esc(e.exam_text || "待公告")}<br>报名：${esc(e.reg_text || "待公告")}</div>
+      <div class="grid2" style="margin-top:10px">
+        <button class="btn ghost" onclick="window.open('${esc(e.reg_url)}','_blank','noopener')">报名入口 ↗</button>
+        <button class="btn ghost" onclick="window.open('${esc(e.site_url)}','_blank','noopener')">官方网站 ↗</button>
+      </div>
+    </div>`;
+  }
+  $("#main").innerHTML = html;
+}
+// 启动：idmap 迁移（文件名英文化后旧做题进度自动换新 ID），再渲染
+(async () => { try { await migrateIds(); } catch (e) {} render(); })();
+
+// 注册 Service Worker（PWA 安装资格 + 图片缓存提速 + 离线）
+if ("serviceWorker" in navigator) {
+  addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+}
+</script>
+</body>
+</html>

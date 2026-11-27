@@ -1,0 +1,14 @@
+sources/
+tools/download_pdfs.py
+img/test_*
+pan_*.py
+__pycache__/
+_test/
+_tmp_xingce/
+_tmp_shenlun/
+_tmp_falv/
+_tmp_ruankao/
+dist/
+node_modules/
+src/
+*_encrypted.json

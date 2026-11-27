@@ -1,0 +1,66 @@
+@ 高等数学 · 导数与微分
+# 导数定义
+【公式】
+$$f'(x_0)=\lim_{\Delta x\to0}\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}=\lim_{x\to x_0}\frac{f(x)-f(x_0)}{x-x_0}$$
+【推导】连接 $(x_0,f(x_0))$ 与 $(x_0+\Delta x,f(x_0+\Delta x))$ 的割线斜率是 $\frac{\Delta y}{\Delta x}$；令 $\Delta x\to0$，割线趋于切线，斜率的极限就是导数。左极限存在为左导数，右极限存在为右导数，两者相等才可导。
+【怎么用】抽象函数给 $f(0)=0$ 时，$\lim_{x\to0}\frac{f(x)}{x}$ 就是 $f'(0)$；把增量形式凑成定义式的比式，多余因子提到极限外面。
+【易错】可导必连续，连续不一定可导，$|x|$ 在 $0$ 处连续但左右导数一正一负；分段点可导要左右导数都存在且相等；定义里 $\Delta x$ 可正可负，单侧不算。
+# 基本求导公式表
+【公式】
+$$\begin{gathered}(x^{\alpha})'=\alpha x^{\alpha-1} \\ (a^{x})'=a^{x}\ln a \\ (e^{x})'=e^{x} \\ (\log_a x)'=\frac{1}{x\ln a} \\ (\ln x)'=\frac{1}{x}\end{gathered}$$
+$$(\sin x)'=\cos x,\quad (\cos x)'=-\sin x,\quad (\tan x)'=\sec^{2}x,\quad (\cot x)'=-\csc^{2}x$$
+$$\begin{gathered}(\arcsin x)'=\frac{1}{\sqrt{1-x^{2}}} \\ (\arccos x)'=-\frac{1}{\sqrt{1-x^{2}}} \\ (\arctan x)'=\frac{1}{1+x^{2}}\end{gathered}$$
+【推导】幂函数由二项式展开取一次项，$(x+\Delta x)^{\alpha}=x^{\alpha}+\alpha x^{\alpha-1}\Delta x+\cdots$；指数与对数由两个重要极限 $\lim_{t\to0}\frac{\ln(1+t)}{t}=1$ 与 $\lim_{t\to0}\frac{e^{t}-1}{t}=1$ 推出；反三角函数用反函数求导法则 $(\arcsin x)'=\frac{1}{(\sin y)'}$，其中 $y=\arcsin x$。
+【怎么用】先把表达式化成基本初等函数与四则运算、复合的组合，再逐层套表，不要背组合结果。
+【易错】$(\ln x)'$ 与 $(\log_a x)'$ 差一个 $\ln a$；$\tan$ 的导数是 $\sec^{2}x$ 不是 $\sec^{2}$ 乘别的；$\arcsin$ 与 $\arccos$ 差负号，$\arctan$ 与 $\text{arccot}$ 也差负号。
+# 复合函数求导（链式法则）
+【公式】
+$$y=f(g(x))\ \Rightarrow\ y'=f'(g(x))\cdot g'(x);\qquad \frac{dy}{dx}=\frac{dy}{du}\cdot\frac{du}{dx}$$
+【推导】外层函数对中间变量的变化率，乘以中间变量对自变量的变化率，两个变化率相乘就是总变化率。多层复合就一路剥到最内层：$y=f(u)$、$u=g(v)$、$v=h(x)$，则 $y'=f'(u)g'(v)h'(x)$。
+【怎么用】由外向内逐层求导再连乘：$\left(\sin^{2}3x\right)'=2\sin3x\cdot\cos3x\cdot3=3\sin6x$；$\left(e^{\sqrt{x}}\right)'=e^{\sqrt{x}}\cdot\frac{1}{2\sqrt{x}}$。
+【易错】每剥一层都要乘该层的导数，漏乘内层是最常见错误；幂指函数 $x^{x}$ 不能套幂函数公式，要先写成 $e^{x\ln x}$ 或两边取对数。
+# 隐函数求导
+【公式】
+$$F(x,y)=0\ \Rightarrow\ y'=-\frac{F_x}{F_y}\qquad(F_y\ne0)$$
+【推导】把 $y$ 看成 $x$ 的函数，方程两边同时对 $x$ 求导，凡是含 $y$ 的项都要乘 $y'$（链式法则）。整理出 $y'$ 的方程再解出来，就得到 $y'=-\frac{F_x}{F_y}$：分子是对 $x$ 的偏导，分母是对 $y$ 的偏导。
+【怎么用】圆 $x^{2}+y^{2}=1$ 两边求导得 $2x+2yy'=0$，故 $y'=-\frac{x}{y}$；求某点切线就先代入该点求 $y'$ 的数值。
+【易错】含 $y$ 的项必须乘 $y'$，漏掉这一项结果是错的；$y'$ 表达式中可以含 $y$，不必强行解成 $x$ 的显式；二阶导要在一阶导结果上继续求导。
+# 参数方程求导
+【公式】
+$$\begin{gathered}x=\varphi(t),\ y=\psi(t)\ \Rightarrow\ \frac{dy}{dx}=\frac{\psi'(t)}{\varphi'(t)}; \\ \frac{d^{2}y}{dx^{2}}=\frac{\frac{d}{dt}\left(\frac{dy}{dx}\right)}{\varphi'(t)}\end{gathered}$$
+【推导】把 $y$ 看成经 $t$ 中转的复合函数：$\frac{dy}{dx}=\frac{dy/dt}{dx/dt}$，两个对 $t$ 的导数相除。二阶导要把一阶导结果再对 $t$ 求导，然后除以 $\varphi'(t)$，因为分母仍是 $dx$ 而不是 $dt$。
+【怎么用】摆线 $x=t-\sin t$、$y=1-\cos t$，$\frac{dy}{dx}=\frac{\sin t}{1-\cos t}$，切线斜率直接代 $t$。
+【易错】二阶导最容易错成 $\frac{\psi''(t)}{\varphi''(t)}$；正确做法是 $\frac{d}{dt}\left(\frac{dy}{dx}\right)$ 再除以 $\varphi'(t)$；$\varphi'(t)=0$ 处切线竖直，斜率不存在。
+# 高阶导数
+【公式】
+$$\begin{gathered}(uv)^{(n)}=\sum_{k=0}^{n}\binom{n}{k}u^{(k)}v^{(n-k)}; \\ (\sin x)^{(n)}=\sin\left(x+\frac{n\pi}{2}\right); \\ (e^{ax})^{(n)}=a^{n}e^{ax}\end{gathered}$$
+【推导】莱布尼茨公式就是把乘积求导法则用 $n$ 次：每次求导给两项各加一阶，展开后 $k$ 阶落在 $u$ 上的项共 $\binom{n}{k}$ 个，故系数是组合数，与二项式定理同形。$\sin$ 的 $n$ 阶导每求四次回到自身，相位每阶前移 $\frac{\pi}{2}$；$e^{ax}$ 每求一次提一个 $a$。
+【怎么用】求 $f^{(n)}(0)$ 除了递推，也可以展开成幂级数取 $\frac{x^{n}}{n!}$ 的系数；$(x^{n})^{(n)}=n!$，$(x^{n})^{(n+1)}=0$。
+【易错】$\left(\frac{1}{x}\right)^{(n)}=\frac{(-1)^{n}n!}{x^{n+1}}$，符号和阶乘常丢；$(uv)^{(n)}$ 不是 $u^{(n)}v^{(n)}$；低阶导的公式不能直接套到高阶。
+# 微分与线性近似
+【公式】
+$$dy=f'(x)\,dx,\qquad \Delta y\approx f'(x_0)\Delta x,\qquad f(x)\approx f(x_0)+f'(x_0)(x-x_0)$$
+【推导】增量可写成 $\Delta y=f'(x_0)\Delta x+o(\Delta x)$，第一项关于 $\Delta x$ 是线性的，称为微分 $dy$；第二项当 $\Delta x$ 很小时可忽略，于是用切线代替曲线在局部成立，这就是可微的几何含义。
+【怎么用】估算：$\sqrt{1.02}\approx1+\frac{1}{2}\cdot0.02=1.01$，$\sin 0.01\approx0.01$；误差传播：$|\Delta y|\approx|f'(x_0)||\Delta x|$。
+【易错】微分不是增量本身，只是它的线性主部；一阶近似只在 $x_0$ 附近成立，离得远误差迅速变大；多元情形微分是 $\sum f_{x_i}dx_i$，不是单个偏导。
+# 罗尔、拉格朗日、柯西中值定理
+【公式】
+$$\text{拉格朗日}:\ f(b)-f(a)=f'(\xi)(b-a),\quad \xi\in(a,b)$$
+$$\text{柯西}:\ \frac{f(b)-f(a)}{g(b)-g(a)}=\frac{f'(\xi)}{g'(\xi)};\qquad \text{罗尔是}\ f(a)=f(b)\ \text{的特例}$$
+【推导】罗尔：闭区间连续、开区间可导、端点相等，必有一点切线水平（极值点出现在内部）。拉格朗日构造 $F(x)=f(x)-\frac{f(b)-f(a)}{b-a}(x-a)$，使 $F(a)=F(b)$，对 $F$ 用罗尔即得。柯西把 $F$ 推广为 $\frac{f}{g}$ 的差商，同样构造辅助函数。
+【怎么用】证明存在 $\xi$ 使某关系成立，就把结论整理成 $\frac{f'(\xi)}{g'(\xi)}=$ 常数的形状反推辅助函数；证明不等式把差写成 $f(b)-f(a)$ 用拉格朗日放缩。
+【易错】三个条件缺一不可；$\xi$ 只保证存在，不能指定位置；柯西要求 $g'(x)\ne0$；用中值定理证明不等式时 $f'$ 的界要在区间上成立。
+# 单调性、极值与最值
+【公式】
+$$f'(x)>0\Rightarrow f\ \text{单调增};\qquad f'(x)<0\Rightarrow f\ \text{单调减}$$
+$$f'(x_0)=0,\ f''(x_0)<0\Rightarrow\text{极大};\qquad f'(x_0)=0,\ f''(x_0)>0\Rightarrow\text{极小}$$
+【推导】导数符号就是切线斜率的符号：斜率为正曲线上升，为负下降。驻点处切线水平，左升右降是极大，左降右升是极小，二阶导为负表示曲线凸向下，正是极大；为正表示凹向上，正是极小。
+【怎么用】求闭区间最值：列出驻点、不可导点、两端点，比函数值取最大最小；求单调区间就是解 $f'\gtrless0$ 并避开定义域断点。
+【易错】$f'(x_0)=0$ 不一定是极值（$y=x^{3}$ 在 $0$ 处）；极值点也可能不可导（$y=|x|$ 在 $0$ 处）；最值在端点可能取到，别只算驻点；单调区间要用开区间书写。
+# 凹凸性、拐点与曲率
+【公式】
+$$f''(x)>0\Rightarrow\text{凹（开口向上）};\qquad f''(x)<0\Rightarrow\text{凸（开口向下）}$$
+$$\text{拐点}\Leftrightarrow f''\ \text{在该点两侧变号};\qquad K=\frac{|y''|}{(1+y'^{2})^{3/2}}$$
+【推导】二阶导是切线斜率的变化率：为正说明斜率递增，切线越来越陡，曲线向上弯；为负说明斜率递减，曲线向下弯。拐点是弯曲方向翻转的位置，因此必须二阶导变号。曲率度量曲线弯曲的快慢，$y'$ 与 $y''$ 都参与：直线 $y''=0$ 曲率为 $0$，半径越小曲率越大。
+【怎么用】求拐点：解 $f''=0$ 与 $f''$ 不存在的点，再检查两侧符号是否改变；参数方程用 $K=\frac{|\varphi'\psi''-\psi'\varphi''|}{(\varphi'^{2}+\psi'^{2})^{3/2}}$。
+【易错】$f''(x_0)=0$ 不一定是拐点（$y=x^{4}$ 在 $0$ 处两侧都为正）；拐点必须有 $f''$ 变号，仅有 $f''=0$ 不够；曲率公式分子是绝对值。

@@ -1,0 +1,73 @@
+{
+  "updated": "2026-11-18",
+  "note": "日期按历年规律预估（est=true 即预估），一切以官方公告为准；直接编辑本文件即可调整/增删考试",
+  "exams": [
+    {
+      "id": "kaoyan2027",
+      "name": "2027 考研初试",
+      "group": "考研 · 408/数学1",
+      "exam_iso": "2026-12-19",
+      "exam_text": "2026年12月19-20日（预估）",
+      "est": true,
+      "reg_text": "2026年10月（已结束）",
+      "reg_url": "https://yz.chsi.com.cn/",
+      "site_url": "https://yz.chsi.com.cn/"
+    },
+    {
+      "id": "guokao2027",
+      "name": "2027 国家公务员考试",
+      "group": "公务员 · 行测/申论",
+      "exam_iso": "2026-11-29",
+      "exam_text": "2026年11月底笔试（预估）",
+      "est": true,
+      "reg_text": "2026年10月中旬（预估）",
+      "reg_url": "https://scs.mohrss.gov.cn/gkzyty/",
+      "site_url": "https://www.scs.gov.cn/"
+    },
+    {
+      "id": "wenjun2027",
+      "name": "2027 军队文职招聘",
+      "group": "军队文职 · 公共科目",
+      "exam_iso": "2027-01-10",
+      "exam_text": "2027年1月上旬笔试（预估）",
+      "est": true,
+      "reg_text": "2026年11-12月公告（预估）",
+      "reg_url": "https://www.81rc.mil.cn/",
+      "site_url": "https://www.81rc.mil.cn/"
+    },
+    {
+      "id": "rk2027s",
+      "name": "2027 软考上半年（五证）",
+      "group": "软考 · 架构/分析/高项/软设/信安",
+      "exam_iso": "2027-05-29",
+      "exam_text": "2027年5月下旬笔试（预估）",
+      "est": true,
+      "reg_text": "2027年2-3月（预估）",
+      "reg_url": "https://www.ruankao.org.cn/",
+      "site_url": "https://www.ruankao.org.cn/"
+    },
+    {
+      "id": "rk2026a",
+      "name": "2026 软考下半年",
+      "group": "软考 · 架构/分析/高项/软设/信安",
+      "exam_iso": "2026-11-07",
+      "exam_text": "2026年11月7-8日（已考）",
+      "est": false,
+      "done": true,
+      "reg_text": "成绩预计12月发布",
+      "reg_url": "https://www.ruankao.org.cn/",
+      "site_url": "https://www.ruankao.org.cn/"
+    },
+    {
+      "id": "fakao2027",
+      "name": "2027 法考客观题",
+      "group": "法考 · 法律",
+      "exam_iso": "2027-09-11",
+      "exam_text": "2027年9月中旬客观题（预估）",
+      "est": true,
+      "reg_text": "2027年6月（预估）",
+      "reg_url": "https://www.moj.gov.cn/",
+      "site_url": "https://www.moj.gov.cn/"
+    }
+  ]
+}

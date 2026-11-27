@@ -1,0 +1,46 @@
+{
+  "items": [
+    {
+      "name": "ICPC 国际大学生程序设计竞赛",
+      "url": "https://icpc.global/",
+      "when": "每年 9–12 月网络赛与区域赛",
+      "note": "三人一队、5 小时 8–13 题，校内选拔在前一年 12 月"
+    },
+    {
+      "name": "CCPC 中国大学生程序设计竞赛",
+      "url": "https://ccpc.io/",
+      "when": "每年 8 月网络赛、9–11 月分站赛",
+      "note": "赛制同 ICPC，独立赛事体系"
+    },
+    {
+      "name": "蓝桥杯全国软件和信息技术专业人才大赛",
+      "url": "https://dasai.lanqiao.cn/",
+      "when": "报名约 10–12 月，省赛 4 月，国赛 6 月",
+      "note": "个人赛、OI 赛制，C/C++/Java/Python 组别"
+    },
+    {
+      "name": "LeetCode 周赛 / 双周赛",
+      "url": "https://leetcode.cn/contest/",
+      "when": "每周日 10:30 周赛，隔周六 22:30 双周赛",
+      "note": "1.5 小时 4 题，中文站同步开赛"
+    },
+    {
+      "name": "天池大数据竞赛",
+      "url": "https://tianchi.aliyun.com/competition",
+      "when": "全年滚动发布",
+      "note": "算法与数据挖掘赛，含奖金赛与学术赛"
+    },
+    {
+      "name": "Kaggle Competitions",
+      "url": "https://www.kaggle.com/competitions",
+      "when": "全年滚动发布",
+      "note": "机器学习竞赛，Featured 赛含积分"
+    },
+    {
+      "name": "Codeforces Round",
+      "url": "https://codeforces.com/contests",
+      "when": "每周 1–2 场，通常 22:35 开赛",
+      "note": "2 小时 5–6 题，Div.1–Div.4 分档"
+    }
+  ]
+}

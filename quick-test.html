@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Quick Test - src directory</title>
+    <script src="index.html"></script>
+</head>
+<body>
+    <h1>Quick Test</h1>
+    <p>Testing src directory integrity...</p>
+    <div id="status">Loading...</div>
+
+    <script>
+        try {
+            // 测试基本变量存在
+            if (typeof documentReady === 'function') {
+                document.getElementById('status').textContent = "✅ documentReady found";
+            } else {
+                document.getElementById('status').textContent = "❌ documentReady not found";
+            }
+
+            // 测试路径加载
+            const testImg = new Image();
+            testImg.src = 'data/img/civ_1_1.png';
+            testImg.onerror = function() {
+                document.getElementById('status').textContent = "❌ Image path issue";
+            };
+            testImg.onload = function() {
+                document.getElementById('status').textContent = "✅ Image loading OK";
+            };
+        } catch(e) {
+            document.getElementById('status').textContent = "❌ Error: " + e.message;
+        }
+    </script>
+</body>
+</html>

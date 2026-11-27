@@ -1,0 +1,57 @@
+@ 高等数学 · 积分
+# 不定积分基本公式表
+【公式】
+$$\begin{gathered}\int x^{\alpha}dx=\frac{x^{\alpha+1}}{\alpha+1}+C\ (\alpha\ne-1) \\ \int\frac{dx}{x}=\ln|x|+C \\ \int e^{x}dx=e^{x}+C \\ \int a^{x}dx=\frac{a^{x}}{\ln a}+C\end{gathered}$$
+$$\begin{gathered}\int\sin x\,dx=-\cos x+C \\ \int\cos x\,dx=\sin x+C \\ \int\sec^{2}x\,dx=\tan x+C \\ \int\csc^{2}x\,dx=-\cot x+C\end{gathered}$$
+$$\begin{gathered}\int\frac{dx}{1+x^{2}}=\arctan x+C \\ \int\frac{dx}{\sqrt{1-x^{2}}}=\arcsin x+C \\ \int\sec x\tan x\,dx=\sec x+C\end{gathered}$$
+【推导】每条积分公式都是对应求导公式的反写：$\left(\frac{x^{\alpha+1}}{\alpha+1}\right)'=x^{\alpha}$，$\left(\ln|x|\right)'=\frac{1}{x}$（$x<0$ 时绝对值求导同样得 $\frac{1}{x}$），$\left(\tan x\right)'=\sec^{2}x$。$C$ 是常数，因为常数求导为零，原函数才不唯一。
+【怎么用】先化被积函数为基本公式的形状：拆项、约分、三角恒等变形；$\int\frac{x^{2}}{1+x^{2}}dx=\int\left(1-\frac{1}{1+x^{2}}\right)dx=x-\arctan x+C$。
+【易错】$\int\frac{dx}{x}=\ln|x|+C$ 的绝对值不能省；$\int\frac{dx}{x^{2}}$ 是 $-\frac{1}{x}+C$，不是 $\ln x$；最易漏写 $+C$；$\alpha=-1$ 时幂函数公式失效。
+# 第一类换元法（凑微分）
+【公式】
+$$\int f(\varphi(x))\varphi'(x)\,dx=\int f(u)\,du,\qquad u=\varphi(x)$$
+【推导】链式法则的反向使用：若 $F'(u)=f(u)$，则 $\frac{d}{dx}F(\varphi(x))=f(\varphi(x))\varphi'(x)$，两边积分即得 $\int f(\varphi(x))\varphi'(x)dx=F(\varphi(x))+C$。关键是被积函数里必须能凑出内层函数的导数 $\varphi'(x)dx=d\varphi(x)$。
+【怎么用】$\int\frac{\ln x}{x}dx=\int\ln x\,d(\ln x)=\frac{\ln^{2}x}{2}+C$；$\int e^{x^{2}}\cdot2x\,dx=e^{x^{2}}+C$；差常数因子可乘可除，如 $\int\cos2x\,dx=\frac{1}{2}\int\cos2x\,d(2x)=\frac{\sin2x}{2}+C$。
+【易错】凑微分只能补常数倍，不能补含 $x$ 的因子；凑不成就换第二类换元；换元后忘了把 $u$ 换回 $x$。
+# 第二类换元法（三角代换）
+【公式】
+$$\sqrt{a^{2}-x^{2}}:\ x=a\sin t;\qquad \sqrt{a^{2}+x^{2}}:\ x=a\tan t;\qquad \sqrt{x^{2}-a^{2}}:\ x=a\sec t$$
+【推导】三种代换的共同目的是用恒等式消去根号：$\sin^{2}t+\cos^{2}t=1$ 消 $a^{2}-x^{2}$，$1+\tan^{2}t=\sec^{2}t$ 消 $a^{2}+x^{2}$，$\sec^{2}t-1=\tan^{2}t$ 消 $x^{2}-a^{2}$。换元时 $dx=\varphi'(t)dt$ 必须一起换，积分完成后借直角三角形把 $t$ 换回 $x$。
+【怎么用】$\int\sqrt{1-x^{2}}dx$，令 $x=\sin t$，得 $\int\cos^{2}t\,dt=\frac{t}{2}+\frac{\sin2t}{4}+C=\frac{1}{2}\arcsin x+\frac{x\sqrt{1-x^{2}}}{2}+C$。
+【易错】$dx$ 必须换成 $\varphi'(t)dt$，漏掉是硬伤；回代不能只写 $\arcsin x$ 了事，含 $t$ 的三角项都要换回；$x=a\sec t$ 时正负号要看 $t$ 的范围。
+# 分部积分法
+【公式】
+$$\int u\,dv=uv-\int v\,du$$
+【推导】由乘积求导公式 $(uv)'=u'v+uv'$ 移项得 $uv'=(uv)'-u'v$，两边积分：$\int uv'dx=uv-\int u'v\,dx$，写成微分形式就是上式。它把难积的部分转移到更容易积的 $\int v\,du$ 上。
+【怎么用】选 $u$ 的顺序是“反、对、幂、指、三”，排在前面的优先做 $u$：$\int x e^{x}dx=xe^{x}-\int e^{x}dx=(x-1)e^{x}+C$；$\int x\ln x\,dx=\frac{x^{2}}{2}\ln x-\int\frac{x}{2}dx=\frac{x^{2}}{2}\ln x-\frac{x^{2}}{4}+C$。
+【易错】$u$ 和 $dv$ 选反了会越积越复杂；循环型如 $\int e^{x}\sin x\,dx$ 两次分部后回到原式，要移项解出，不是继续分部；$\int\ln x\,dx$ 要把 $dv=dx$。
+# 有理函数积分
+【公式】
+$$\frac{P(x)}{Q(x)}=\text{多项式}+\sum\frac{A_i}{(x-a_i)^{k}}+\sum\frac{B_jx+C_j}{(x^{2}+px+q)^{j}}$$
+【推导】先做多项式除法把分子次数降到低于分母；分母在实数范围分解为一次与二次不可约因式；按因式的重数逐次列出部分分式，待定系数解出 $A_i$、$B_j$、$C_j$。一次因式积分得对数，二次不可约因式配方后得 $\arctan$ 或对数。
+【怎么用】$\int\frac{dx}{x^{2}-1}=\int\frac{1}{2}\left(\frac{1}{x-1}-\frac{1}{x+1}\right)dx=\frac{1}{2}\ln\left|\frac{x-1}{x+1}\right|+C$；重根要逐次列到最高次幂。
+【易错】分子次数不小于分母时先做除法，否则部分分式形式不成立；重因式只列一次会缺项；二次不可约因式的分子必须写成一次式 $Bx+C$。
+# 定积分性质与变限积分求导
+【公式】
+$$\begin{gathered}\int_{a}^{b}f=\int_{a}^{c}f+\int_{c}^{b}f; \\ \frac{d}{dx}\int_{a}^{x}f(t)\,dt=f(x); \\ \frac{d}{dx}\int_{a}^{\varphi(x)}f(t)\,dt=f(\varphi(x))\varphi'(x)\end{gathered}$$
+【推导】变限积分 $F(x)=\int_{a}^{x}f(t)dt$ 的增量由积分中值定理得 $F(x+\Delta x)-F(x)=\int_{x}^{x+\Delta x}f(t)dt=f(\xi)\Delta x$，除以 $\Delta x$ 令 $\Delta x\to0$ 得 $F'(x)=f(x)$，说明变限积分就是 $f$ 的一个原函数。上限换成 $\varphi(x)$ 后再用一次链式法则。
+【怎么用】$\frac{d}{dx}\int_{0}^{x^{2}}\sin t\,dt=\sin x^{2}\cdot2x$；求极限时遇到变限积分的 $\frac{0}{0}$ 型，洛必达一次就把它变成普通函数。
+【易错】上限是函数时必须乘上限导数；被积函数里含 $x$ 时（如 $\int_{0}^{x}xf(t)dt$）先把 $x$ 提到积分号外，不能直接套公式；上下限都是变量时拆成两段。
+# 牛顿-莱布尼茨公式
+【公式】
+$$\int_{a}^{b}f(x)\,dx=F(b)-F(a)\qquad(F'=f)$$
+【推导】若 $F$ 是 $f$ 在 $[a,b]$ 上的原函数，则定积分等于原函数在端点的增量。它把求面积这类极限问题转成找原函数再代值，是微积分基本定理的核心，把微分与积分互逆的关系落成可计算的公式。
+【怎么用】先求不定积分得到 $F(x)$，再代上下限作差：$\int_{0}^{1}x^{2}dx=\left.\frac{x^{3}}{3}\right|_{0}^{1}=\frac{1}{3}$；分段函数分段积分再相加。
+【易错】被积函数在 $[a,b]$ 上必须连续，$1/x$ 在含 $0$ 的区间上不能直接用；上限小于下限时结果带负号；原函数不唯一，代值的差与选哪个原函数无关。
+# 定积分的几何应用
+【公式】
+$$S=\int_{a}^{b}|f(x)-g(x)|\,dx;\qquad V=\pi\int_{a}^{b}f^{2}(x)\,dx;\qquad s=\int_{a}^{b}\sqrt{1+y'^{2}}\,dx$$
+【推导】把曲边图形切成无数窄条，每条面积约 $|f-g|\Delta x$，求和取极限得面积；旋转体切成薄圆盘，每个圆盘体积 $\pi f^{2}\Delta x$，积分得体积；弧长把曲线切成小段，每段近似 $\sqrt{\Delta x^{2}+\Delta y^{2}}=\sqrt{1+y'^{2}}\Delta x$。
+【怎么用】先画草图判断哪条曲线在上、交点在哪，再看图形关于坐标轴是否对称（对称可只算一半乘 $2$）；绕 $y$ 轴用柱壳法 $V=2\pi\int_{a}^{b}x|f(x)|dx$。
+【易错】上下限是交点坐标，不是随意取；$|f-g|$ 的绝对值不能省，否则算成代数和；旋转体公式里的 $\pi f^{2}$ 用的是到轴的距离，不是 $f$ 本身。
+# 反常积分判敛
+【公式】
+$$\begin{gathered}\int_{1}^{\infty}\frac{dx}{x^{p}}\ \text{收敛}\Leftrightarrow p>1; \\ \int_{0}^{1}\frac{dx}{x^{p}}\ \text{收敛}\Leftrightarrow p<1\end{gathered}$$
+【推导】无穷区间上 $\int_{1}^{A}x^{-p}dx=\frac{A^{1-p}-1}{1-p}$（$p\ne1$），$A\to\infty$ 时只有 $1-p<0$ 即 $p>1$ 才收敛，$p=1$ 时 $\ln A\to\infty$ 发散。瑕点处同理，但方向相反：$\int_{\varepsilon}^{1}x^{-p}dx=\frac{1-\varepsilon^{1-p}}{1-p}$，$\varepsilon\to0$ 时要求 $1-p>0$ 即 $p<1$。
+【怎么用】比较判别法：把被积函数与 $\frac{1}{x^{p}}$ 比较，同阶则同敛散；含 $e^{-x}$、$\frac{1}{x\ln^{2}x}$ 这类先估主项再判断。
+【易错】无穷区间与瑕点的 $p$ 判据方向相反，混用必错；端点同时有瑕点与无穷时拆成两段分别判；判敛只看趋于端点的阶，不看常数系数。
