@@ -1,6 +1,7 @@
 // hamster Service Worker：安装资格 + 离线 + 图片缓存提速
-const V = "sw-v9";
+const V = "sw-v10";
 const CORE = ["./", "index.html", "manifest.json", "icon-hamster.svg", "favicon.svg",
+  "icon-hamster-192.png", "icon-hamster-512.png", "apple-touch-icon.png",
   "vendor/katex/katex.min.js", "vendor/katex/katex.min.css"];
 
 self.addEventListener("install", e => {

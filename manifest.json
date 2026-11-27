@@ -10,8 +10,8 @@
   "background_color": "#fafafa",
   "theme_color": "#fafafa",
   "icons": [
-    { "src": "icon-hamster.svg", "sizes": "192x192", "type": "image/svg+xml", "purpose": "any" },
-    { "src": "icon-hamster.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "any" },
-    { "src": "icon-hamster.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "maskable" }
+    { "src": "icon-hamster-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-hamster-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-hamster-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }
